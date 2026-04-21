@@ -1,0 +1,1146 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Álbum MX26 – FIFA World Cup</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  /* ── WC26 Official Palette ── */
+  --bg:    #050508;
+  --s1:    #0d0d14;
+  --s2:    #141419;
+  --s3:    #1c1c26;
+  --s4:    #242433;
+  --b1:    rgba(255,255,255,0.06);
+  --b2:    rgba(255,255,255,0.12);
+  --b3:    rgba(255,255,255,0.20);
+  --text:  #f0f0f0;
+  --muted: #5a5a7a;
+  --dim:   #252535;
+
+  /* Trophy Gold */
+  --gold:  #C9A43E;
+  --gold2: #E8C547;
+  --goldg: linear-gradient(135deg,#C9A43E 0%,#E8C547 50%,#C9A43E 100%);
+  --goldbg:#1a1508;
+  --goldbdr:rgba(201,164,62,0.3);
+
+  /* Mexico Green */
+  --green: #00A651;
+  --gbg:   #001a0e;
+  --gbdr:  rgba(0,166,81,0.3);
+
+  /* Mexico Red */
+  --red:   #CE1126;
+  --rbg:   #1a0005;
+  --rbdr:  rgba(206,17,38,0.3);
+
+  /* Chat Blue */
+  --blue:  #3b82f6;
+  --bbg:   #0a1628;
+  --bbdr:  rgba(59,130,246,0.3);
+
+  --nav: 58px;
+}
+html,body{height:100%;overflow:hidden}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased}
+
+/* ════════════════════════════════
+   SETUP / LANDING
+════════════════════════════════ */
+#screen-setup{
+  height:100%;overflow-y:auto;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:40px 20px;
+  background:
+    radial-gradient(ellipse 100% 60% at 50% -10%,rgba(201,164,62,0.12) 0%,transparent 60%),
+    radial-gradient(ellipse 60% 40% at 100% 100%,rgba(0,166,81,0.07) 0%,transparent 50%);
+}
+.landing-badge{
+  display:inline-flex;align-items:center;gap:7px;
+  background:var(--s2);border:1px solid var(--goldbdr);
+  border-radius:20px;padding:5px 14px;
+  font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:22px;
+}
+.landing-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.hero{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(62px,18vw,100px);
+  line-height:.84;text-align:center;
+  letter-spacing:.01em;margin-bottom:10px;
+  background:var(--goldg);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero-sub{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(20px,5vw,28px);
+  color:var(--text);letter-spacing:.2em;text-transform:uppercase;
+  text-align:center;margin-bottom:36px;opacity:.7;
+}
+.setup-card{
+  background:var(--s1);
+  border:1px solid var(--b1);
+  border-radius:22px;padding:26px;
+  width:100%;max-width:360px;
+  display:flex;flex-direction:column;gap:16px;
+  box-shadow:0 0 60px rgba(201,164,62,0.06);
+}
+.field{display:flex;flex-direction:column;gap:7px}
+.field label{
+  font-size:11px;font-weight:700;
+  color:var(--muted);text-transform:uppercase;letter-spacing:.12em;
+}
+.inp{
+  background:var(--s2);border:1px solid var(--b1);border-radius:12px;
+  padding:13px 15px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:15px;
+  outline:none;-webkit-appearance:none;transition:border-color .2s,box-shadow .2s;width:100%;
+}
+.inp:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,164,62,.12)}
+.inp::placeholder{color:var(--dim)}
+.inp.error{border-color:var(--red);box-shadow:0 0 0 3px rgba(206,17,38,.12)}
+.code-field{position:relative}
+.code-field .inp{text-transform:uppercase;letter-spacing:.15em;font-weight:700;font-size:16px;padding-right:42px}
+.code-eye{position:absolute;right:12px;top:50%;transform:translateY(-50%);color:var(--muted);cursor:pointer;font-size:14px}
+.divider{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:11px}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--b1)}
+.btn-primary{
+  background:var(--goldg);color:#000;border:none;border-radius:13px;
+  padding:15px;font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.08em;
+  cursor:pointer;margin-top:2px;transition:opacity .15s,transform .1s;
+  box-shadow:0 4px 24px rgba(201,164,62,.25);
+}
+.btn-primary:active{opacity:.88;transform:scale(.98)}
+.hint{font-size:12px;color:var(--muted);text-align:center;line-height:1.7}
+.hint strong{color:var(--gold)}
+.error-msg{font-size:12px;color:var(--red);display:none;padding:2px 0}
+.error-msg.on{display:block}
+
+/* ════════════════════════════════
+   APP SHELL
+════════════════════════════════ */
+#screen-app{display:none;height:100%;position:relative}
+.tab{position:absolute;inset:0;bottom:var(--nav);display:none;flex-direction:column;overflow:hidden}
+.tab.on{display:flex}
+.scroll{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch}
+
+/* ── HEADER ── */
+.hdr{background:var(--s1);border-bottom:1px solid var(--b1);padding:13px 16px 10px;flex-shrink:0}
+.hdr-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:11px}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:.04em;line-height:1}
+.logo .g{background:var(--goldg);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.user-chip{
+  display:flex;align-items:center;gap:6px;
+  background:var(--s2);border:1px solid var(--b1);border-radius:20px;
+  padding:5px 11px;font-size:12px;font-weight:600;max-width:130px;
+}
+.user-chip span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.dot-g{width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0}
+
+/* ── STATS ── */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-bottom:10px}
+.sbox{
+  background:var(--s2);border:1px solid var(--b1);
+  border-radius:10px;padding:8px 4px;text-align:center;
+}
+.snum{font-family:'Bebas Neue',sans-serif;font-size:23px;line-height:1}
+.snum.cg{color:var(--green)}.snum.co{color:var(--gold)}.snum.cr{color:var(--red)}.snum.cp{color:#818cf8}
+.slbl{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-top:1px}
+.prog-track{height:3px;background:var(--s3);border-radius:2px;overflow:hidden;margin-bottom:10px}
+.prog-fill{height:100%;background:var(--goldg);border-radius:2px;transition:width .5s cubic-bezier(.4,0,.2,1);width:0%}
+
+/* ── PILLS ── */
+.pills{display:flex;gap:5px;overflow-x:auto;scrollbar-width:none;margin-bottom:10px}
+.pills::-webkit-scrollbar{display:none}
+.pill{
+  flex-shrink:0;padding:5px 12px;border-radius:16px;
+  border:1px solid var(--b1);background:transparent;
+  color:var(--muted);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;
+  cursor:pointer;white-space:nowrap;transition:all .15s;
+}
+.pill.on{background:var(--gold);border-color:var(--gold);color:#000;font-weight:700}
+
+/* ── STICKER GRID ── */
+.s-grid{display:grid;grid-template-columns:repeat(10,1fr);gap:3px;padding:10px}
+.s{
+  aspect-ratio:1;border-radius:5px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:8px;font-weight:700;cursor:pointer;
+  user-select:none;-webkit-tap-highlight-color:transparent;
+  border:1px solid transparent;transition:transform .08s;
+}
+.s:active{transform:scale(.76)}
+.s.m{background:var(--s3);color:var(--dim);border-color:var(--b1)}
+.s.o{background:var(--gbg);color:var(--green);border-color:var(--gbdr)}
+.s.d{background:var(--goldbg);color:var(--gold);border-color:var(--goldbdr)}
+.empty-state{display:none;text-align:center;padding:60px 20px;color:var(--muted);font-size:14px}
+
+/* ════════════════════════════════
+   COMMUNITY
+════════════════════════════════ */
+.comm-hdr-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.icon-btn{
+  background:var(--s2);border:1px solid var(--b1);border-radius:10px;
+  padding:7px 12px;color:var(--muted);font-family:'DM Sans',sans-serif;
+  font-size:12px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:5px;
+  transition:border-color .15s;
+}
+.icon-btn:active{border-color:var(--gold)}
+.users-list{padding:10px 14px 20px;display:flex;flex-direction:column;gap:8px}
+.ucard{
+  background:var(--s1);border:1px solid var(--b1);border-radius:16px;
+  padding:13px;display:flex;align-items:center;gap:12px;
+  cursor:pointer;transition:border-color .15s,background .15s;
+  -webkit-tap-highlight-color:transparent;
+}
+.ucard:active{border-color:var(--gold);background:var(--s2)}
+.avatar{
+  width:44px;height:44px;border-radius:13px;
+  background:var(--s3);display:flex;align-items:center;justify-content:center;
+  font-family:'Bebas Neue',sans-serif;font-size:17px;color:var(--gold);
+  flex-shrink:0;border:1px solid var(--goldbdr);
+}
+.uinfo{flex:1;min-width:0}
+.uname{font-weight:700;font-size:14px;margin-bottom:1px}
+.ucity{font-size:12px;color:var(--muted);margin-bottom:4px}
+.match-badge{font-size:12px;font-weight:700;white-space:nowrap}
+.match-badge.hot{color:var(--gold)}.match-badge.cold{color:var(--muted)}
+.mini-bar{height:2px;background:var(--s3);border-radius:2px;overflow:hidden;margin-top:5px}
+.mini-fill{height:100%;background:var(--goldg);border-radius:2px}
+.mini-pct{font-size:11px;color:var(--muted);margin-top:3px}
+.comm-msg{text-align:center;padding:50px 20px;color:var(--muted);font-size:14px;line-height:1.8}
+
+/* ════════════════════════════════
+   MATCH VIEW
+════════════════════════════════ */
+.match-hdr{background:var(--s1);border-bottom:1px solid var(--b1);padding:13px 16px 12px;flex-shrink:0}
+.match-hdr-top{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.back-btn{
+  background:var(--s2);border:1px solid var(--b1);border-radius:10px;
+  padding:7px 11px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:13px;
+  cursor:pointer;display:flex;align-items:center;gap:4px;flex-shrink:0;transition:border-color .15s;
+}
+.back-btn:active{border-color:var(--gold)}
+.match-name{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:.03em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}
+.match-summary{
+  background:var(--s2);border:1px solid var(--b1);
+  border-radius:14px;padding:13px 15px;
+  display:flex;align-items:center;justify-content:space-between;gap:12px;
+}
+.match-big{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--gold);line-height:1}
+.match-big-lbl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:1px}
+.match-sides{text-align:right;font-size:13px;color:var(--muted);line-height:1.9}
+.match-sides strong{font-size:16px}
+.match-scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:160px}
+.msection{padding:16px 16px 0}
+.msect-title{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
+.chips-wrap{display:flex;flex-wrap:wrap;gap:5px;padding-bottom:16px;border-bottom:1px solid var(--b1)}
+.cn{padding:4px 9px;border-radius:7px;font-size:12px;font-weight:700}
+.cn.get{background:var(--gbg);color:var(--green);border:1px solid var(--gbdr)}
+.cn.give{background:var(--goldbg);color:var(--gold);border:1px solid var(--goldbdr)}
+.cn-none{font-size:13px;color:var(--muted)}
+
+/* Match footer */
+#match-footer{
+  position:fixed;bottom:var(--nav);left:0;right:0;
+  background:var(--s1);border-top:1px solid var(--b1);
+  padding:12px 16px 14px;
+  flex-direction:column;gap:9px;display:none;z-index:150;
+}
+#match-footer.on{display:flex}
+.contact-row{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)}
+.contact-num{font-weight:700;color:var(--text)}
+.btn-row{display:flex;gap:8px}
+.btn-wa{
+  flex:1;background:#25d366;color:#fff;border:none;border-radius:12px;
+  padding:13px 10px;font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:.04em;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:opacity .15s;
+}
+.btn-wa:active{opacity:.85}
+.btn-chat{
+  flex:1;background:var(--blue);color:#fff;border:none;border-radius:12px;
+  padding:13px 10px;font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:.04em;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:opacity .15s;
+}
+.btn-chat:active{opacity:.85}
+
+/* ════════════════════════════════
+   CHATS INBOX
+════════════════════════════════ */
+.inbox-list{padding:10px 14px 20px;display:flex;flex-direction:column;gap:8px}
+.ccard{
+  background:var(--s1);border:1px solid var(--b1);border-radius:16px;
+  padding:13px;display:flex;align-items:center;gap:12px;
+  cursor:pointer;transition:border-color .15s;-webkit-tap-highlight-color:transparent;
+}
+.ccard:active{border-color:var(--blue)}
+.ccard-info{flex:1;min-width:0}
+.ccard-name{font-weight:700;font-size:14px}
+.ccard-preview{font-size:12px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:2px}
+.ccard-time{font-size:11px;color:var(--muted);flex-shrink:0;align-self:flex-start}
+
+/* ════════════════════════════════
+   CHAT VIEW
+════════════════════════════════ */
+#tab-chatview{z-index:50}
+.chat-hdr{
+  background:var(--s1);border-bottom:1px solid var(--b1);
+  padding:12px 16px;flex-shrink:0;display:flex;align-items:center;gap:12px;
+}
+.chat-hdr-info{flex:1;min-width:0}
+.chat-hdr-name{font-weight:700;font-size:15px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.chat-hdr-sub{font-size:12px;color:var(--muted);margin-top:1px}
+.chat-messages{
+  flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;
+  padding:14px 14px 10px;display:flex;flex-direction:column;gap:8px;
+}
+.msg{max-width:78%;padding:9px 13px;border-radius:16px;font-size:14px;line-height:1.5;word-break:break-word}
+.msg.mine{background:var(--blue);color:#fff;align-self:flex-end;border-bottom-right-radius:4px}
+.msg.theirs{background:var(--s3);color:var(--text);align-self:flex-start;border-bottom-left-radius:4px}
+.msg-time{font-size:10px;opacity:.55;margin-top:3px;text-align:right}
+.msg.theirs .msg-time{text-align:left}
+.chat-empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--muted);font-size:14px;padding:20px;text-align:center}
+.chat-input-wrap{
+  background:var(--s1);border-top:1px solid var(--b1);
+  padding:10px 14px max(14px,env(safe-area-inset-bottom));
+  display:flex;gap:8px;align-items:flex-end;flex-shrink:0;
+}
+.chat-input{
+  flex:1;background:var(--s2);border:1px solid var(--b1);border-radius:20px;
+  padding:10px 16px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:14px;
+  outline:none;resize:none;max-height:100px;overflow-y:auto;
+  -webkit-appearance:none;transition:border-color .2s;line-height:1.4;
+}
+.chat-input:focus{border-color:var(--blue)}
+.chat-input::placeholder{color:var(--dim)}
+.send-btn{
+  width:40px;height:40px;border-radius:50%;background:var(--blue);
+  border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;transition:opacity .15s;align-self:flex-end;
+}
+.send-btn:active{opacity:.8}
+
+/* ════════════════════════════════
+   ADMIN PANEL
+════════════════════════════════ */
+#tab-admin{z-index:60;background:var(--bg)}
+.admin-hdr{background:var(--s1);border-bottom:1px solid var(--b1);padding:13px 16px;flex-shrink:0;display:flex;align-items:center;gap:12px}
+.admin-content{padding:16px 14px 100px;display:flex;flex-direction:column;gap:14px}
+.admin-card{background:var(--s1);border:1px solid var(--b1);border-radius:16px;padding:16px}
+.admin-card h3{font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--gold);margin-bottom:12px;letter-spacing:.04em}
+.admin-row{display:flex;gap:8px;align-items:center}
+.admin-row .inp{flex:1}
+.btn-sm{
+  background:var(--s3);border:1px solid var(--b2);border-radius:10px;
+  padding:11px 14px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;
+  cursor:pointer;white-space:nowrap;transition:border-color .15s;flex-shrink:0;
+}
+.btn-sm:active{border-color:var(--gold)}
+.btn-sm.gold{background:var(--gold);color:#000;border-color:transparent}
+.codes-table{display:flex;flex-direction:column;gap:6px;margin-top:8px;max-height:300px;overflow-y:auto}
+.code-row{
+  display:flex;align-items:center;justify-content:space-between;
+  background:var(--s2);border:1px solid var(--b1);border-radius:10px;padding:9px 12px;
+}
+.code-val{font-family:monospace;font-size:14px;font-weight:700;letter-spacing:.1em;color:var(--text)}
+.code-status{font-size:11px;font-weight:700;padding:3px 8px;border-radius:6px}
+.code-status.free{background:var(--gbg);color:var(--green);border:1px solid var(--gbdr)}
+.code-status.used{background:var(--s3);color:var(--muted)}
+.admin-stat-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.admin-stat{background:var(--s2);border-radius:10px;padding:11px;text-align:center}
+.admin-stat .n{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--gold);line-height:1}
+.admin-stat .l{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-top:2px}
+.copy-all-btn{width:100%;margin-top:10px}
+
+/* ════════════════════════════════
+   BOTTOM NAV
+════════════════════════════════ */
+#bottom-nav{
+  position:absolute;bottom:0;left:0;right:0;height:var(--nav);
+  background:var(--s1);border-top:1px solid var(--b1);display:flex;z-index:200;
+}
+.nav-btn{
+  flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
+  background:none;border:none;color:var(--muted);font-family:'DM Sans',sans-serif;
+  font-size:10px;font-weight:500;cursor:pointer;-webkit-tap-highlight-color:transparent;
+  transition:color .15s;position:relative;
+}
+.nav-btn.on{color:var(--gold)}
+.nav-badge{
+  position:absolute;top:7px;right:calc(50% - 16px);
+  background:var(--blue);color:#fff;font-size:9px;font-weight:700;
+  border-radius:8px;padding:1px 5px;min-width:16px;text-align:center;display:none;
+}
+.nav-badge.on{display:block}
+
+/* ════════════════════════════════
+   TOAST
+════════════════════════════════ */
+#toast{
+  position:fixed;bottom:calc(var(--nav) + 14px);left:50%;
+  transform:translateX(-50%) translateY(10px);
+  background:var(--s2);border:1px solid var(--b2);border-radius:12px;
+  padding:10px 20px;font-size:13px;font-weight:600;color:var(--text);
+  opacity:0;transition:opacity .2s,transform .2s;
+  pointer-events:none;white-space:nowrap;z-index:400;
+}
+#toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
+</style>
+</head>
+<body>
+
+<!-- ══════════ SETUP ══════════ -->
+<div id="screen-setup">
+  <div class="landing-badge">
+    <div class="dot"></div>
+    FIFA World Cup 2026 · México
+  </div>
+  <div class="hero">ÁLBUM<br>MX26</div>
+  <div class="hero-sub">Completa tu colección</div>
+
+  <div class="setup-card">
+    <div class="field">
+      <label>Tu nombre</label>
+      <input id="inp-name" class="inp" type="text" placeholder="Ej. Carlos Hernández" autocomplete="off">
+    </div>
+    <div class="field">
+      <label>WhatsApp</label>
+      <input id="inp-wa" class="inp" type="tel" placeholder="Ej. 6621234567" autocomplete="off">
+    </div>
+    <div class="field">
+      <label>Ciudad</label>
+      <input id="inp-city" class="inp" type="text" placeholder="Ej. Hermosillo" autocomplete="off">
+    </div>
+
+    <div class="divider">Código de acceso</div>
+
+    <div class="field">
+      <label>Código de acceso</label>
+      <div class="code-field">
+        <input id="inp-code" class="inp" type="text" placeholder="MX26-XXXX" autocomplete="off" maxlength="9">
+      </div>
+      <div class="error-msg" id="code-error">Código inválido o ya utilizado.</div>
+    </div>
+
+    <button class="btn-primary" onclick="createProfile()">ENTRAR AL ÁLBUM →</button>
+    <p class="hint">¿No tienes código? Contáctanos en <strong>WhatsApp</strong> para obtener el tuyo.</p>
+  </div>
+</div>
+
+<!-- ══════════ MAIN APP ══════════ -->
+<div id="screen-app">
+
+  <!-- ── MI ÁLBUM ── -->
+  <div id="tab-album" class="tab on">
+    <div class="hdr">
+      <div class="hdr-top">
+        <div class="logo">ÁLBUM <span class="g">MX26</span></div>
+        <div class="user-chip"><div class="dot-g"></div><span id="chip-name">—</span></div>
+      </div>
+      <div class="stats">
+        <div class="sbox"><div class="snum cg" id="st-o">0</div><div class="slbl">Tengo</div></div>
+        <div class="sbox"><div class="snum co" id="st-d">0</div><div class="slbl">Repetidas</div></div>
+        <div class="sbox"><div class="snum cr" id="st-m">980</div><div class="slbl">Faltan</div></div>
+        <div class="sbox"><div class="snum cp" id="st-p">0%</div><div class="slbl">Álbum</div></div>
+      </div>
+      <div class="prog-track"><div class="prog-fill" id="prog"></div></div>
+      <div class="pills">
+        <button class="pill on" data-f="all" onclick="setFilter(this)">Todas (980)</button>
+        <button class="pill" data-f="o" onclick="setFilter(this)">✓ Tengo</button>
+        <button class="pill" data-f="d" onclick="setFilter(this)">★ Repetidas</button>
+        <button class="pill" data-f="m" onclick="setFilter(this)">✕ Faltan</button>
+      </div>
+      <input class="inp" id="inp-search" type="number" min="1" max="980"
+             placeholder="Buscar estampa (1–980)"
+             oninput="renderGrid()" autocomplete="off"
+             style="font-size:13px;padding:9px 14px">
+    </div>
+    <div class="scroll">
+      <div class="s-grid" id="grid"></div>
+      <div class="empty-state" id="empty">No hay estampas en esta vista</div>
+    </div>
+  </div>
+
+  <!-- ── COMUNIDAD ── -->
+  <div id="tab-community" class="tab">
+    <div class="hdr">
+      <div class="comm-hdr-row">
+        <div class="logo">COMUNI<span class="g">DAD</span></div>
+        <button class="icon-btn" onclick="loadCommunity()">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M21 2v6h-6"/><path d="M3 12a9 9 0 0 1 15-6.7L21 8"/><path d="M3 22v-6h6"/><path d="M21 12a9 9 0 0 1-15 6.7L3 16"/></svg>
+          Actualizar
+        </button>
+      </div>
+      <input class="inp" id="comm-search" type="text" placeholder="Buscar por nombre o ciudad..."
+             oninput="renderCommunity()" autocomplete="off" style="font-size:13px;padding:9px 14px">
+    </div>
+    <div class="scroll">
+      <div id="users-list" class="users-list">
+        <div class="comm-msg">Toca <strong style="color:var(--text)">Actualizar</strong><br>para ver a otros coleccionistas</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── MATCH VIEW ── -->
+  <div id="tab-match" class="tab">
+    <div class="match-hdr">
+      <div class="match-hdr-top">
+        <button class="back-btn" onclick="showTab('community')">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+          Volver
+        </button>
+        <div class="match-name" id="match-title">—</div>
+      </div>
+      <div class="match-summary">
+        <div>
+          <div class="match-big" id="match-score">0</div>
+          <div class="match-big-lbl">Cambios posibles</div>
+        </div>
+        <div class="match-sides" id="match-sides">—</div>
+      </div>
+    </div>
+    <div class="match-scroll" id="match-scroll">
+      <div class="msection">
+        <div class="msect-title">📥 Puedes recibir de ellos (<span id="get-count">0</span>)</div>
+        <div class="chips-wrap" id="get-chips"></div>
+      </div>
+      <div class="msection">
+        <div class="msect-title">📤 Puedes darles a ellos (<span id="give-count">0</span>)</div>
+        <div class="chips-wrap" id="give-chips"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Match footer -->
+  <div id="match-footer">
+    <div class="contact-row">
+      <div class="dot-g"></div>
+      <span>WhatsApp:</span>
+      <span class="contact-num" id="match-wa-num">—</span>
+    </div>
+    <div class="btn-row">
+      <button class="btn-wa" id="btn-wa-contact">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+        WHATSAPP
+      </button>
+      <button class="btn-chat" id="btn-open-chat">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        CHATEAR
+      </button>
+    </div>
+  </div>
+
+  <!-- ── CHATS INBOX ── -->
+  <div id="tab-chats" class="tab">
+    <div class="hdr">
+      <div class="hdr-top">
+        <div class="logo">MIS <span class="g">CHATS</span></div>
+      </div>
+    </div>
+    <div class="scroll">
+      <div id="inbox-list" class="inbox-list">
+        <div class="comm-msg">Aún no tienes chats.<br>Ve a <strong style="color:var(--text)">Comunidad</strong>, encuentra a alguien y toca <strong style="color:var(--text)">Chatear</strong>.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── CHAT VIEW ── -->
+  <div id="tab-chatview" class="tab">
+    <div class="chat-hdr">
+      <button class="back-btn" id="chat-back-btn">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+        Volver
+      </button>
+      <div class="chat-hdr-info">
+        <div class="chat-hdr-name" id="chat-hdr-name">—</div>
+        <div class="chat-hdr-sub" id="chat-hdr-sub">—</div>
+      </div>
+    </div>
+    <div class="chat-messages" id="chat-messages"></div>
+    <div class="chat-input-wrap">
+      <textarea class="chat-input" id="chat-input" rows="1" placeholder="Escribe un mensaje..."
+        oninput="autoResize(this)"
+        onkeydown="if(event.key==='Enter'&&!event.shiftKey){event.preventDefault();sendMessage()}"></textarea>
+      <button class="send-btn" onclick="sendMessage()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ── ADMIN PANEL ── -->
+  <div id="tab-admin" class="tab">
+    <div class="admin-hdr">
+      <button class="back-btn" onclick="showTab('album')">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <div class="logo">ADMIN <span class="g">PANEL</span></div>
+    </div>
+    <div class="scroll">
+      <div class="admin-content">
+        <!-- Stats -->
+        <div class="admin-card">
+          <h3>📊 Resumen</h3>
+          <div class="admin-stat-row">
+            <div class="admin-stat"><div class="n" id="adm-total">—</div><div class="l">Códigos creados</div></div>
+            <div class="admin-stat"><div class="n" id="adm-free">—</div><div class="l">Disponibles</div></div>
+            <div class="admin-stat"><div class="n" id="adm-used">—</div><div class="l">Vendidos/Usados</div></div>
+            <div class="admin-stat"><div class="n" id="adm-users">—</div><div class="l">Usuarios activos</div></div>
+          </div>
+        </div>
+
+        <!-- Generate codes -->
+        <div class="admin-card">
+          <h3>🔑 Generar Códigos</h3>
+          <div class="admin-row">
+            <input class="inp" id="adm-qty" type="number" min="1" max="100" value="10" placeholder="Cantidad" style="max-width:90px">
+            <input class="inp" id="adm-prefix" type="text" value="MX26" placeholder="Prefijo" style="max-width:90px;text-transform:uppercase">
+            <button class="btn-sm gold" onclick="generateCodes()">GENERAR</button>
+          </div>
+        </div>
+
+        <!-- Codes list -->
+        <div class="admin-card">
+          <h3>📋 Lista de Códigos</h3>
+          <button class="btn-sm copy-all-btn" onclick="copyAllFreeCodes()" style="width:100%;margin-bottom:10px">📋 Copiar todos los libres</button>
+          <div class="codes-table" id="codes-table">
+            <div style="color:var(--muted);font-size:13px">Genera códigos para verlos aquí.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bottom nav -->
+  <div id="bottom-nav">
+    <button class="nav-btn on" data-tab="album" onclick="showTab('album')">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>
+      Mi Álbum
+    </button>
+    <button class="nav-btn" data-tab="community" onclick="showTab('community')">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+      Comunidad
+    </button>
+    <button class="nav-btn" data-tab="chats" onclick="showTab('chats')">
+      <div class="nav-badge" id="chat-badge">0</div>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+      Chats
+    </button>
+  </div>
+</div>
+
+<div id="toast"></div>
+
+<script>
+/* ═══════════════════════════════════════════
+   FIREBASE CONFIG
+   ═══════════════════════════════════════════ */
+const firebaseConfig = {
+  apiKey:            "AIzaSyDSZZPkRN5cCN_cScEFIBykY1n5_pd03fY",
+  authDomain:        "albumfifa-b6743.firebaseapp.com",
+  projectId:         "albumfifa-b6743",
+  storageBucket:     "albumfifa-b6743.firebasestorage.app",
+  messagingSenderId: "215957200951",
+  appId:             "1:215957200951:web:172ca2e4f60ff4d0945fb2"
+};
+
+/* ─── ADMIN CONFIG ─── */
+const ADMIN_PASSWORD = 'mx26admin2026'; // Cámbiala por lo que quieras
+
+/* ─── CONSTANTS ─── */
+const TOTAL    = 980;
+const UID_KEY  = 'mx26_uid';
+
+/* ─── STATE ─── */
+let db, myUid, myProfile;
+let myStickers      = 'm'.repeat(TOTAL);
+let activeTab       = 'album';
+let albumFilter     = 'all';
+let communityUsers  = [];
+let communityLoaded = false;
+let selectedUser    = null;
+let saveTimer;
+let activeChatId    = null;
+let activeChatUser  = null;
+let chatListener    = null;
+let inboxListener   = null;
+let inboxChats      = [];
+let chatBackDest    = 'community';
+let adminLoaded     = false;
+
+/* ════════════════ INIT ════════════════ */
+async function init() {
+  firebase.initializeApp(firebaseConfig);
+  db = firebase.firestore();
+
+  // Check for admin access via URL hash
+  if (window.location.hash === '#admin') {
+    const pw = prompt('Contraseña de administrador:');
+    if (pw === ADMIN_PASSWORD) {
+      g('screen-setup').style.display = 'none';
+      g('screen-app').style.display   = 'block';
+      showTab('admin');
+      loadAdminData();
+      return;
+    } else {
+      window.location.hash = '';
+    }
+  }
+
+  myUid = localStorage.getItem(UID_KEY);
+  if (myUid) {
+    try {
+      const doc = await db.collection('users').doc(myUid).get();
+      if (doc.exists) {
+        const d    = doc.data();
+        myProfile  = { name: d.name, whatsapp: d.whatsapp, city: d.city };
+        myStickers = d.stickers || 'm'.repeat(TOTAL);
+        enterApp();
+        return;
+      }
+    } catch(e) { console.error(e); }
+  }
+}
+
+/* ════════════════ PROFILE / CODE VALIDATION ════════════════ */
+async function createProfile() {
+  const name = g('inp-name').value.trim();
+  const wa   = g('inp-wa').value.trim();
+  const city = g('inp-city').value.trim() || 'México';
+  const code = g('inp-code').value.trim().toUpperCase();
+
+  if (!name || !wa)   { toast('Llena tu nombre y WhatsApp'); return; }
+  if (!code)          { showCodeError('Ingresa tu código de acceso'); return; }
+
+  // Validate code in Firebase
+  try {
+    const codeDoc = await db.collection('codes').doc(code).get();
+    if (!codeDoc.exists || !codeDoc.data().active || codeDoc.data().used) {
+      showCodeError('Código inválido o ya utilizado.');
+      return;
+    }
+  } catch(e) {
+    toast('Error de conexión. Intenta de nuevo.');
+    console.error(e);
+    return;
+  }
+
+  // Mark code as used and create user atomically
+  myUid = 'u' + Date.now().toString(36) + Math.random().toString(36).slice(2,8);
+  myProfile = { name, whatsapp: wa, city };
+  localStorage.setItem(UID_KEY, myUid);
+
+  try {
+    const batch = db.batch();
+    batch.update(db.collection('codes').doc(code), {
+      used: true, usedBy: myUid, usedAt: firebase.firestore.FieldValue.serverTimestamp()
+    });
+    batch.set(db.collection('users').doc(myUid), {
+      ...myProfile, stickers: myStickers, completePct: 0,
+      accessCode: code,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      updatedAt:  firebase.firestore.FieldValue.serverTimestamp()
+    });
+    await batch.commit();
+    hideCodeError();
+    enterApp();
+  } catch(e) {
+    toast('Error creando perfil. Intenta de nuevo.');
+    console.error(e);
+  }
+}
+
+function showCodeError(msg) {
+  const el = g('code-error');
+  el.textContent = msg;
+  el.classList.add('on');
+  g('inp-code').classList.add('error');
+}
+function hideCodeError() {
+  g('code-error').classList.remove('on');
+  g('inp-code').classList.remove('error');
+}
+
+function enterApp() {
+  g('screen-setup').style.display = 'none';
+  g('screen-app').style.display   = 'block';
+  g('chip-name').textContent = myProfile.name.split(' ')[0];
+  renderGrid();
+  updateStats();
+  startInboxListener();
+}
+
+/* ════════════════ ALBUM ════════════════ */
+function tap(idx) {
+  const cycle = {m:'o', o:'d', d:'m'};
+  const a = myStickers.split('');
+  a[idx] = cycle[a[idx]];
+  myStickers = a.join('');
+  updateStats();
+  if (albumFilter === 'all') {
+    const el = document.getElementById('s'+idx);
+    if (el) el.className = 's ' + myStickers[idx];
+  } else { renderGrid(); }
+  scheduleSave();
+}
+
+function scheduleSave() {
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(async () => {
+    let n=0;
+    for (const c of myStickers) if (c!=='m') n++;
+    try {
+      await db.collection('users').doc(myUid).update({
+        stickers: myStickers,
+        completePct: Math.round(n/TOTAL*100),
+        updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+      });
+    } catch(e) { console.error('Save error:',e); }
+  }, 1500);
+}
+
+function updateStats() {
+  let o=0, d=0, m=0;
+  for (const c of myStickers) { if(c==='o') o++; else if(c==='d') d++; else m++; }
+  g('st-o').textContent = o; g('st-d').textContent = d; g('st-m').textContent = m;
+  const pct = Math.round((o+d)/TOTAL*100);
+  g('st-p').textContent = pct+'%';
+  g('prog').style.width  = pct+'%';
+  document.querySelector('[data-f="o"]').textContent = '✓ Tengo ('    +o+')';
+  document.querySelector('[data-f="d"]').textContent = '★ Repetidas ('+d+')';
+  document.querySelector('[data-f="m"]').textContent = '✕ Faltan ('   +m+')';
+}
+
+function setFilter(el) {
+  document.querySelectorAll('.pill').forEach(p=>p.classList.remove('on'));
+  el.classList.add('on');
+  albumFilter = el.dataset.f;
+  g('inp-search').value='';
+  renderGrid();
+}
+
+function renderGrid() {
+  const search = g('inp-search').value;
+  let indices;
+  if (search) {
+    const n=parseInt(search);
+    indices=(n>=1&&n<=TOTAL)?[n-1]:[];
+  } else {
+    indices=[];
+    for(let i=0;i<TOTAL;i++) if(albumFilter==='all'||myStickers[i]===albumFilter) indices.push(i);
+  }
+  const grid=g('grid'), empty=g('empty');
+  if(!indices.length){grid.innerHTML='';empty.style.display='block';return;}
+  empty.style.display='none';
+  grid.innerHTML=indices.map(i=>`<div id="s${i}" class="s ${myStickers[i]}" onclick="tap(${i})">${i+1}</div>`).join('');
+}
+
+/* ════════════════ COMMUNITY ════════════════ */
+async function loadCommunity() {
+  communityLoaded=false;
+  const list=g('users-list');
+  list.innerHTML='<div class="comm-msg">Cargando coleccionistas...</div>';
+  try {
+    const snap=await db.collection('users').orderBy('completePct','desc').limit(100).get();
+    communityUsers=[];
+    snap.forEach(doc=>{if(doc.id!==myUid) communityUsers.push({id:doc.id,...doc.data()});});
+    communityLoaded=true;
+    renderCommunity();
+  } catch(e){
+    list.innerHTML='<div class="comm-msg">Error cargando. Intenta de nuevo.</div>';
+    console.error(e);
+  }
+}
+
+function renderCommunity() {
+  const search=(g('comm-search').value||'').toLowerCase();
+  let users=communityUsers;
+  if(search) users=users.filter(u=>u.name.toLowerCase().includes(search)||(u.city||'').toLowerCase().includes(search));
+  const list=g('users-list');
+  if(!users.length){list.innerHTML='<div class="comm-msg">No se encontraron usuarios.</div>';return;}
+  list.innerHTML=users.map(u=>{
+    const initials=u.name.trim().split(' ').slice(0,2).map(w=>w[0]||'').join('').toUpperCase();
+    const pct=u.completePct||0;
+    const dupes=(u.stickers||'').split('').filter(c=>c==='d').length;
+    const their=u.stickers||'m'.repeat(TOTAL);
+    let canGet=0,canGive=0;
+    for(let i=0;i<TOTAL;i++){
+      if(myStickers[i]==='m'&&their[i]==='d') canGet++;
+      if(myStickers[i]==='d'&&their[i]==='m') canGive++;
+    }
+    const bal=Math.min(canGet,canGive);
+    const badgeCls=bal>0?'hot':'cold';
+    const badgeText=bal>0?`🔄 ${bal} cambio${bal!==1?'s':''}`:canGet>0?`📥 ${canGet} te faltan`:'Sin coincidencias';
+    return `<div class="ucard" onclick="openMatch('${u.id}')">
+      <div class="avatar">${escH(initials)}</div>
+      <div class="uinfo">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:6px;margin-bottom:2px">
+          <div class="uname">${escH(u.name)}</div>
+          <div class="match-badge ${badgeCls}">${badgeText}</div>
+        </div>
+        <div class="ucity">${escH(u.city||'México')} · ${dupes} repetidas</div>
+        <div class="mini-bar"><div class="mini-fill" style="width:${pct}%"></div></div>
+        <div class="mini-pct">${pct}% completo</div>
+      </div>
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="2.5"><path d="M9 18l6-6-6-6"/></svg>
+    </div>`;
+  }).join('');
+}
+
+/* ════════════════ MATCH ════════════════ */
+function openMatch(userId) {
+  selectedUser=communityUsers.find(u=>u.id===userId);
+  if(!selectedUser) return;
+  buildMatch(); showTab('match');
+}
+
+function buildMatch() {
+  const u=selectedUser;
+  const their=u.stickers||'m'.repeat(TOTAL);
+  const iGet=[],iGive=[];
+  for(let i=0;i<TOTAL;i++){
+    if(myStickers[i]==='m'&&their[i]==='d') iGet.push(i+1);
+    if(myStickers[i]==='d'&&their[i]==='m') iGive.push(i+1);
+  }
+  const bal=Math.min(iGet.length,iGive.length);
+  g('match-title').textContent=u.name;
+  g('match-wa-num').textContent=u.whatsapp;
+  g('match-score').textContent=bal;
+  g('match-sides').innerHTML=
+    `<strong style="color:var(--green)">${iGet.length}</strong> puedes recibir<br>`+
+    `<strong style="color:var(--gold)">${iGive.length}</strong> puedes dar`;
+  g('get-count').textContent=iGet.length; g('give-count').textContent=iGive.length;
+  g('get-chips').innerHTML=iGet.length?iGet.map(n=>`<span class="cn get">${n}</span>`).join(''):'<span class="cn-none">Ninguna</span>';
+  g('give-chips').innerHTML=iGive.length?iGive.map(n=>`<span class="cn give">${n}</span>`).join(''):'<span class="cn-none">Ninguna</span>';
+  g('btn-wa-contact').onclick=()=>{
+    const recv=iGet.slice(0,30).join(', ')+(iGet.length>30?' …':'');
+    const send=iGive.slice(0,30).join(', ')+(iGive.length>30?' …':'');
+    const msg=`Hola ${u.name}! 👋 Vi tu álbum en MX26.\n\n🟢 Necesito de ti: ${recv||'ninguna'}\n🟡 Te puedo dar: ${send||'ninguna'}\n\n🔄 ¡${bal} cambio${bal!==1?'s':''} posible${bal!==1?'s':''}! ¿Le entramos? 😄`;
+    window.open(`https://wa.me/${u.whatsapp.replace(/\D/g,'')}?text=${encodeURIComponent(msg)}`,'_blank');
+  };
+  g('btn-open-chat').onclick=()=>{chatBackDest='match';openChat(u);};
+}
+
+/* ════════════════ CHAT ════════════════ */
+function chatId(a,b){return[a,b].sort().join('_')}
+
+function openChat(user){
+  activeChatId=chatId(myUid,user.id);
+  activeChatUser=user;
+  g('chat-hdr-name').textContent=user.name;
+  g('chat-hdr-sub').textContent=user.city||'México';
+  g('chat-messages').innerHTML='';
+  g('chat-input').value='';
+  autoResize(g('chat-input'));
+  g('chat-back-btn').onclick=()=>showTab(chatBackDest);
+  showTab('chatview');
+  db.collection('chats').doc(activeChatId).set({
+    participants:[myUid,user.id],
+    names:{[myUid]:myProfile.name,[user.id]:user.name},
+    lastMessage:'',lastAt:firebase.firestore.FieldValue.serverTimestamp()
+  },{merge:true}).catch(console.error);
+  if(chatListener){chatListener();chatListener=null;}
+  chatListener=db.collection('chats').doc(activeChatId)
+    .collection('messages').orderBy('ts','asc')
+    .onSnapshot(snap=>{
+      const c=g('chat-messages');
+      const atBottom=c.scrollHeight-c.scrollTop-c.clientHeight<60;
+      snap.docChanges().forEach(ch=>{
+        if(ch.type==='added'){
+          const msg=ch.doc.data();
+          const isMine=msg.senderId===myUid;
+          const el=document.createElement('div');
+          el.className='msg '+(isMine?'mine':'theirs');
+          const ts=msg.ts?new Date(msg.ts.toMillis()).toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit'}):'';
+          el.innerHTML=`<div>${escH(msg.text)}</div><div class="msg-time">${ts}</div>`;
+          c.appendChild(el);
+        }
+      });
+      if(atBottom||snap.docChanges().some(c=>c.doc.data().senderId===myUid)) c.scrollTop=c.scrollHeight;
+    },err=>console.error(err));
+}
+
+async function sendMessage(){
+  const input=g('chat-input');
+  const text=input.value.trim();
+  if(!text||!activeChatId) return;
+  input.value=''; autoResize(input);
+  try{
+    const batch=db.batch();
+    const msgRef=db.collection('chats').doc(activeChatId).collection('messages').doc();
+    batch.set(msgRef,{senderId:myUid,senderName:myProfile.name,text,ts:firebase.firestore.FieldValue.serverTimestamp()});
+    batch.update(db.collection('chats').doc(activeChatId),{lastMessage:text,lastSenderId:myUid,lastAt:firebase.firestore.FieldValue.serverTimestamp()});
+    await batch.commit();
+  }catch(e){toast('Error enviando');console.error(e);}
+}
+
+/* ════════════════ INBOX ════════════════ */
+function startInboxListener(){
+  if(inboxListener){inboxListener();inboxListener=null;}
+  inboxListener=db.collection('chats')
+    .where('participants','array-contains',myUid)
+    .orderBy('lastAt','desc')
+    .onSnapshot(snap=>{
+      inboxChats=[];
+      snap.forEach(doc=>inboxChats.push({id:doc.id,...doc.data()}));
+      renderInbox(); updateChatBadge();
+    },err=>console.error(err));
+}
+
+function renderInbox(){
+  const list=g('inbox-list');
+  if(!inboxChats.length){
+    list.innerHTML='<div class="comm-msg">Aún no tienes chats.<br>Ve a <strong style="color:var(--text)">Comunidad</strong>, encuentra a alguien y toca <strong style="color:var(--text)">Chatear</strong>.</div>';
+    return;
+  }
+  list.innerHTML=inboxChats.map(chat=>{
+    const otherId=chat.participants.find(p=>p!==myUid);
+    const otherName=(chat.names&&chat.names[otherId])||'Usuario';
+    const initials=otherName.trim().split(' ').slice(0,2).map(w=>w[0]||'').join('').toUpperCase();
+    const preview=chat.lastMessage?escH(chat.lastMessage.slice(0,50)):'Nueva conversación';
+    const timeStr=chat.lastAt?new Date(chat.lastAt.toMillis()).toLocaleTimeString('es-MX',{hour:'2-digit',minute:'2-digit'}):'';
+    return `<div class="ccard" onclick="openChatFromInbox('${chat.id}','${otherId}')">
+      <div class="avatar">${escH(initials)}</div>
+      <div class="ccard-info">
+        <div class="ccard-name">${escH(otherName)}</div>
+        <div class="ccard-preview">${preview}</div>
+      </div>
+      <div class="ccard-time">${timeStr}</div>
+    </div>`;
+  }).join('');
+}
+
+async function openChatFromInbox(cid,otherId){
+  chatBackDest='chats';
+  let user=communityUsers.find(u=>u.id===otherId);
+  if(!user){
+    try{const doc=await db.collection('users').doc(otherId).get();if(doc.exists) user={id:otherId,...doc.data()};}
+    catch(e){console.error(e);}
+  }
+  if(!user){toast('No se pudo cargar el usuario');return;}
+  openChat(user);
+}
+
+function updateChatBadge(){
+  const badge=g('chat-badge');
+  const count=inboxChats.length;
+  if(count>0&&activeTab!=='chats'&&activeTab!=='chatview'){
+    badge.textContent=count>9?'9+':count;
+    badge.classList.add('on');
+  } else { badge.classList.remove('on'); }
+}
+
+/* ════════════════ ADMIN ════════════════ */
+async function loadAdminData(){
+  try{
+    const [codesSnap, usersSnap]=await Promise.all([
+      db.collection('codes').get(),
+      db.collection('users').get()
+    ]);
+    let total=0,free=0,used=0;
+    const codes=[];
+    codesSnap.forEach(doc=>{
+      total++;
+      const d=doc.data();
+      if(d.used) used++; else free++;
+      codes.push({id:doc.id,...d});
+    });
+    g('adm-total').textContent=total;
+    g('adm-free').textContent=free;
+    g('adm-used').textContent=used;
+    g('adm-users').textContent=usersSnap.size;
+    renderCodes(codes);
+    adminLoaded=true;
+  }catch(e){console.error(e);}
+}
+
+function renderCodes(codes){
+  const table=g('codes-table');
+  if(!codes.length){table.innerHTML='<div style="color:var(--muted);font-size:13px">No hay códigos aún.</div>';return;}
+  const sorted=[...codes].sort((a,b)=>(a.used?1:0)-(b.used?1:0));
+  table.innerHTML=sorted.map(c=>
+    `<div class="code-row">
+      <span class="code-val">${escH(c.id)}</span>
+      <span class="code-status ${c.used?'used':'free'}">${c.used?'Usado':'Libre'}</span>
+    </div>`
+  ).join('');
+}
+
+async function generateCodes(){
+  const qty=parseInt(g('adm-qty').value)||10;
+  const prefix=(g('adm-prefix').value||'MX26').toUpperCase().replace(/[^A-Z0-9]/g,'');
+  const chars='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
+  const newCodes=[];
+  for(let i=0;i<qty;i++){
+    let suffix='';
+    for(let j=0;j<4;j++) suffix+=chars[Math.floor(Math.random()*chars.length)];
+    newCodes.push(prefix+'-'+suffix);
+  }
+  try{
+    const batch=db.batch();
+    newCodes.forEach(code=>{
+      batch.set(db.collection('codes').doc(code),{active:true,used:false,usedBy:null,createdAt:firebase.firestore.FieldValue.serverTimestamp()});
+    });
+    await batch.commit();
+    toast(`✅ ${qty} códigos generados`);
+    loadAdminData();
+  }catch(e){toast('Error generando códigos');console.error(e);}
+}
+
+async function copyAllFreeCodes(){
+  try{
+    const snap=await db.collection('codes').where('used','==',false).get();
+    const codes=[];
+    snap.forEach(doc=>codes.push(doc.id));
+    await navigator.clipboard.writeText(codes.join('\n'));
+    toast(`📋 ${codes.length} códigos copiados`);
+  }catch(e){toast('Error copiando');console.error(e);}
+}
+
+/* ════════════════ TAB NAV ════════════════ */
+function showTab(tab){
+  activeTab=tab;
+  g('match-footer').classList.toggle('on',tab==='match');
+  if(tab!=='chatview'&&chatListener){chatListener();chatListener=null;activeChatId=null;activeChatUser=null;}
+  ['album','community','match','chats','chatview','admin'].forEach(t=>{
+    document.getElementById('tab-'+t).classList.toggle('on',t===tab);
+  });
+  document.querySelectorAll('.nav-btn').forEach(btn=>{
+    const t=btn.dataset.tab;
+    btn.classList.toggle('on',
+      t===tab||(tab==='match'&&t==='community')||(tab==='chatview'&&t==='chats')
+    );
+  });
+  if(tab==='community'&&!communityLoaded) loadCommunity();
+  if(tab==='match') g('match-scroll').scrollTop=0;
+  if(tab==='chats') updateChatBadge();
+  if(tab==='chatview') setTimeout(()=>{const c=g('chat-messages');c.scrollTop=c.scrollHeight;},100);
+  if(tab==='admin'&&!adminLoaded) loadAdminData();
+}
+
+/* ════════════════ HELPERS ════════════════ */
+function g(id){return document.getElementById(id)}
+function escH(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function autoResize(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,100)+'px'}
+function toast(msg){
+  const el=g('toast');el.textContent=msg;el.classList.add('on');
+  setTimeout(()=>el.classList.remove('on'),2600);
+}
+
+// Format code input automatically
+g('inp-code').addEventListener('input',function(){
+  let v=this.value.toUpperCase().replace(/[^A-Z0-9]/g,'');
+  if(v.length>4) v=v.slice(0,4)+'-'+v.slice(4,8);
+  this.value=v;
+  hideCodeError();
+});
+
+init();
+</script>
+</body>
+</html>
