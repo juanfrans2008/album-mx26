@@ -52,6 +52,90 @@ html,body{height:100%;overflow:hidden}
 body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased}
 
 /* ════════════════════════════════
+   LANDING PAGE
+════════════════════════════════ */
+#screen-landing{
+  height:100%;overflow-y:auto;
+  display:flex;flex-direction:column;
+  background:
+    radial-gradient(ellipse 120% 60% at 50% -5%,rgba(201,164,62,0.15) 0%,transparent 55%),
+    radial-gradient(ellipse 80% 50% at 100% 100%,rgba(0,166,81,0.08) 0%,transparent 50%),
+    var(--bg);
+}
+.landing-nav{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 22px;flex-shrink:0;
+}
+.landing-logo{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.06em}
+.landing-logo .g{background:var(--goldg);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.btn-nav-code{
+  background:var(--s2);border:1px solid var(--goldbdr);border-radius:20px;
+  padding:7px 16px;color:var(--gold);font-family:'DM Sans',sans-serif;
+  font-size:13px;font-weight:700;cursor:pointer;transition:background .15s;
+}
+.btn-nav-code:active{background:var(--s3)}
+.landing-hero{
+  flex:1;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;padding:20px 24px 0;text-align:center;
+}
+.landing-eyebrow{
+  display:inline-flex;align-items:center;gap:7px;
+  background:var(--s2);border:1px solid var(--goldbdr);
+  border-radius:20px;padding:5px 14px;
+  font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--gold);margin-bottom:24px;
+}
+.landing-h1{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(70px,20vw,110px);
+  line-height:.82;letter-spacing:.01em;margin-bottom:12px;
+}
+.landing-h1 .line1{
+  background:var(--goldg);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  display:block;
+}
+.landing-h1 .line2{color:var(--text);display:block}
+.landing-h1 .line3{
+  background:var(--goldg);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  display:block;
+}
+.landing-sub{
+  font-size:16px;color:var(--muted);line-height:1.6;
+  max-width:300px;margin:0 auto 32px;
+}
+.landing-sub strong{color:var(--text)}
+.btn-cta{
+  background:var(--goldg);color:#000;border:none;border-radius:14px;
+  padding:17px 36px;font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.08em;
+  cursor:pointer;box-shadow:0 8px 32px rgba(201,164,62,.3);
+  transition:opacity .15s,transform .1s;margin-bottom:14px;width:100%;max-width:300px;
+}
+.btn-cta:active{opacity:.88;transform:scale(.98)}
+.btn-cta-secondary{
+  background:transparent;border:1px solid var(--b2);border-radius:14px;
+  padding:14px 36px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;
+  color:var(--muted);cursor:pointer;transition:border-color .15s,color .15s;
+  width:100%;max-width:300px;
+}
+.btn-cta-secondary:active{border-color:var(--gold);color:var(--text)}
+.landing-features{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:10px;padding:32px 20px 40px;
+}
+.feat{
+  background:var(--s1);border:1px solid var(--b1);border-radius:16px;
+  padding:16px 12px;text-align:center;
+}
+.feat-icon{font-size:24px;margin-bottom:8px}
+.feat-title{font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px}
+.feat-desc{font-size:11px;color:var(--muted);line-height:1.5}
+.landing-footer{
+  text-align:center;padding:0 20px 32px;
+  font-size:12px;color:var(--muted);line-height:1.8;
+}
+.landing-footer strong{color:var(--gold);cursor:pointer}
+
+/* ════════════════════════════════
    SETUP / LANDING
 ════════════════════════════════ */
 #screen-setup{
@@ -395,6 +479,62 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;-we
 </head>
 <body>
 
+<!-- ══════════ LANDING ══════════ -->
+<div id="screen-landing">
+  <div class="landing-nav">
+    <div class="landing-logo">ÁLBUM <span class="g">MX26</span></div>
+    <button class="btn-nav-code" onclick="goToSetup()">Ya tengo código</button>
+  </div>
+
+  <div class="landing-hero">
+    <div class="landing-eyebrow">
+      <div class="dot"></div>
+      FIFA World Cup 2026 · México
+    </div>
+    <div class="landing-h1">
+      <span class="line1">COMPLETA</span>
+      <span class="line2">TU</span>
+      <span class="line3">ÁLBUM</span>
+    </div>
+    <p class="landing-sub">
+      Registra tus estampas, encuentra a otros coleccionistas y <strong>haz cambios directamente en la app.</strong>
+    </p>
+    <button class="btn-cta" onclick="window.open('https://wa.me/526624333876?text=Hola!%20Quiero%20mi%20código%20para%20el%20Álbum%20MX26','_blank')">
+      QUIERO MI CÓDIGO
+    </button>
+    <button class="btn-cta-secondary" onclick="goToSetup()">
+      Ya tengo mi código →
+    </button>
+  </div>
+
+  <div class="landing-features">
+    <div class="feat">
+      <div class="feat-icon">📋</div>
+      <div class="feat-title">Registra</div>
+      <div class="feat-desc">Marca tus estampas y repetidas fácilmente</div>
+    </div>
+    <div class="feat">
+      <div class="feat-icon">🔄</div>
+      <div class="feat-title">Cambia</div>
+      <div class="feat-desc">Encuentra con quién hacer cambios exactos</div>
+    </div>
+    <div class="feat">
+      <div class="feat-icon">💬</div>
+      <div class="feat-title">Chatea</div>
+      <div class="feat-desc">Coordina tus cambios directo en la app</div>
+    </div>
+  </div>
+
+  <div class="landing-footer">
+    ¿Ya tienes tu código de acceso?
+    <br>
+    <strong onclick="goToSetup()">Regístrate aquí →</strong>
+    <br><br>
+    ¿No tienes código? Escríbenos al
+    <strong onclick="window.open('https://wa.me/526624333876?text=Hola!%20Quiero%20mi%20código%20para%20el%20Álbum%20MX26','_blank')">662 433 3876</strong>
+  </div>
+</div>
+
 <!-- ══════════ SETUP ══════════ -->
 <div id="screen-setup">
   <div class="landing-badge">
@@ -429,7 +569,7 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;-we
     </div>
 
     <button class="btn-primary" onclick="createProfile()">ENTRAR AL ÁLBUM →</button>
-    <p class="hint">¿No tienes código? Contáctanos en <strong>WhatsApp</strong> para obtener el tuyo.</p>
+    <p class="hint">¿No tienes código? Escríbenos al <strong onclick="window.open('https://wa.me/526624333876?text=Hola!%20Quiero%20mi%20código%20para%20el%20Álbum%20MX26','_blank')" style="color:var(--gold);cursor:pointer;text-decoration:underline">662 433 3876</strong> para obtener el tuyo.</p>
   </div>
 </div>
 
@@ -677,6 +817,10 @@ let adminLoaded     = false;
 async function init() {
   firebase.initializeApp(firebaseConfig);
   db = firebase.firestore();
+
+  // Show landing by default, hide setup
+  g('screen-setup').style.display = 'none';
+  g('screen-landing').style.display = 'flex';
 
   // Check for admin access via URL hash
   if (window.location.hash === '#admin') {
@@ -1027,12 +1171,17 @@ async function openChatFromInbox(cid,otherId){
 }
 
 function updateChatBadge(){
-  const badge=g('chat-badge');
-  const count=inboxChats.length;
-  if(count>0&&activeTab!=='chats'&&activeTab!=='chatview'){
-    badge.textContent=count>9?'9+':count;
+  const badge = g('chat-badge');
+  // Count chats where last message was NOT sent by me
+  const unread = inboxChats.filter(c =>
+    c.lastMessage && c.lastSenderId && c.lastSenderId !== myUid
+  ).length;
+  if(unread > 0 && activeTab !== 'chats' && activeTab !== 'chatview'){
+    badge.textContent = unread > 9 ? '9+' : unread;
     badge.classList.add('on');
-  } else { badge.classList.remove('on'); }
+  } else {
+    badge.classList.remove('on');
+  }
 }
 
 /* ════════════════ ADMIN ════════════════ */
@@ -1132,8 +1281,16 @@ function toast(msg){
   setTimeout(()=>el.classList.remove('on'),2600);
 }
 
+function goToSetup(){
+  g('screen-landing').style.display='none';
+  g('screen-setup').style.display='flex';
+}
+
+function goToLanding(){
+  g('screen-setup').style.display='none';
+  g('screen-landing').style.display='flex';
+}
 // Format code input automatically
-g('inp-code').addEventListener('input',function(){
   let v=this.value.toUpperCase().replace(/[^A-Z0-9]/g,'');
   if(v.length>4) v=v.slice(0,4)+'-'+v.slice(4,8);
   this.value=v;
