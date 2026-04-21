@@ -140,7 +140,7 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;-we
 ════════════════════════════════ */
 #screen-setup{
   height:100%;overflow-y:auto;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  display:none;flex-direction:column;align-items:center;justify-content:center;
   padding:40px 20px;
   background:
     radial-gradient(ellipse 100% 60% at 50% -10%,rgba(201,164,62,0.12) 0%,transparent 60%),
@@ -525,13 +525,29 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;-we
     </div>
   </div>
 
+  <!-- Contact / Request code section -->
+  <div style="padding:0 20px 16px">
+    <div style="background:var(--s1);border:1px solid var(--goldbdr);border-radius:20px;padding:22px;text-align:center">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--gold);letter-spacing:.04em;margin-bottom:6px">¿NO TIENES CÓDIGO?</div>
+      <div style="font-size:13px;color:var(--muted);margin-bottom:18px;line-height:1.6">Escríbenos directamente o déjanos tus datos y te contactamos</div>
+      <button class="btn-cta" style="margin-bottom:10px;font-size:18px;padding:14px"
+        onclick="window.open('https://wa.me/526624333876?text=Hola!%20Quiero%20mi%20código%20para%20el%20Álbum%20MX26','_blank')">
+        📲 WHATSAPP 662 433 3876
+      </button>
+      <div style="font-size:12px;color:var(--muted);margin:12px 0 14px">— o déjanos tus datos —</div>
+      <div style="display:flex;flex-direction:column;gap:8px">
+        <input class="inp" id="req-name" type="text" placeholder="Tu nombre" autocomplete="off">
+        <input class="inp" id="req-contact" type="text" placeholder="Tu WhatsApp, Instagram o teléfono" autocomplete="off">
+        <button class="btn-primary" style="font-size:16px;padding:12px" onclick="submitCodeRequest()">SOLICITAR MI CÓDIGO</button>
+      </div>
+      <div id="req-success" style="display:none;margin-top:12px;color:var(--green);font-size:13px;font-weight:600">✓ Solicitud enviada, te contactamos pronto.</div>
+    </div>
+  </div>
+
   <div class="landing-footer">
-    ¿Ya tienes tu código de acceso?
+    ¿Ya tienes tu código?
     <br>
     <strong onclick="goToSetup()">Regístrate aquí →</strong>
-    <br><br>
-    ¿No tienes código? Escríbenos al
-    <strong onclick="window.open('https://wa.me/526624333876?text=Hola!%20Quiero%20mi%20código%20para%20el%20Álbum%20MX26','_blank')">662 433 3876</strong>
   </div>
 </div>
 
@@ -752,11 +768,17 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;-we
             <div style="color:var(--muted);font-size:13px">Genera códigos para verlos aquí.</div>
           </div>
         </div>
+        <!-- Code requests -->
+        <div class="admin-card">
+          <h3>📩 Solicitudes de Código</h3>
+          <div class="codes-table" id="requests-table">
+            <div style="color:var(--muted);font-size:13px">No hay solicitudes aún.</div>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
-
-  <!-- Bottom nav -->
   <div id="bottom-nav">
     <button class="nav-btn on" data-tab="album" onclick="showTab('album')">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>
@@ -1187,9 +1209,10 @@ function updateChatBadge(){
 /* ════════════════ ADMIN ════════════════ */
 async function loadAdminData(){
   try{
-    const [codesSnap, usersSnap]=await Promise.all([
+    const [codesSnap, usersSnap, reqSnap]=await Promise.all([
       db.collection('codes').get(),
-      db.collection('users').get()
+      db.collection('users').get(),
+      db.collection('codeRequests').orderBy('createdAt','desc').limit(50).get()
     ]);
     let total=0,free=0,used=0;
     const codes=[];
@@ -1204,6 +1227,24 @@ async function loadAdminData(){
     g('adm-used').textContent=used;
     g('adm-users').textContent=usersSnap.size;
     renderCodes(codes);
+
+    // Render requests
+    const reqTable = g('requests-table');
+    if(reqSnap.empty){
+      reqTable.innerHTML='<div style="color:var(--muted);font-size:13px">No hay solicitudes aún.</div>';
+    } else {
+      reqTable.innerHTML = '';
+      reqSnap.forEach(doc=>{
+        const r=doc.data();
+        const div=document.createElement('div');
+        div.className='code-row';
+        div.style.flexDirection='column';
+        div.style.alignItems='flex-start';
+        div.style.gap='4px';
+        div.innerHTML=`<span style="font-weight:700;color:var(--text)">${escH(r.name)}</span><span style="font-size:12px;color:var(--muted)">${escH(r.contact)}</span>`;
+        reqTable.appendChild(div);
+      });
+    }
     adminLoaded=true;
   }catch(e){console.error(e);}
 }
@@ -1279,6 +1320,22 @@ function autoResize(el){el.style.height='auto';el.style.height=Math.min(el.scrol
 function toast(msg){
   const el=g('toast');el.textContent=msg;el.classList.add('on');
   setTimeout(()=>el.classList.remove('on'),2600);
+}
+
+async function submitCodeRequest(){
+  const name    = g('req-name').value.trim();
+  const contact = g('req-contact').value.trim();
+  if(!name || !contact){ toast('Escribe tu nombre y cómo contactarte'); return; }
+  try{
+    await db.collection('codeRequests').add({
+      name, contact,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      attended: false
+    });
+    g('req-success').style.display = 'block';
+    g('req-name').value = '';
+    g('req-contact').value = '';
+  }catch(e){ toast('Error enviando solicitud'); console.error(e); }
 }
 
 function goToSetup(){
