@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Álbum MX26 – FIFA World Cup</title>
+<title>MiAlbum 2026 – FIFA World Cup</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
@@ -663,7 +663,7 @@ body.show-app   #screen-app     { display: block !important; }
 <div id="screen-landing">
 
   <div class="landing-nav">
-    <div class="landing-logo">ÁLBUM <span class="g">MX26</span></div>
+    <div class="landing-logo">Mi<span class="g">Album 2026</span></div>
   </div>
 
   <div class="landing-hero" style="position:relative">
@@ -726,12 +726,12 @@ body.show-app   #screen-app     { display: block !important; }
 
     <div class="landing-eyebrow">
       <div class="dot"></div>
-      FIFA World Cup 2026 · Panini Oficial
+      FIFA World Cup 2026 · <span id="user-count-badge">Cargando...</span>
     </div>
 
     <div class="landing-h1">
       <span class="line1">ÁLBUM</span>
-      <span class="line2">MX26</span>
+      <span class="line2">MiAlbum</span>
       <span class="line3">MUNDIAL</span>
     </div>
 
@@ -746,7 +746,7 @@ body.show-app   #screen-app     { display: block !important; }
       Registra tus estampas, encuentra coleccionistas y <strong>haz cambios directamente en la app.</strong>
     </p>
 
-    <button class="btn-cta" onclick="window.open('https://wa.me/526624333876?text=Hola!%20Quiero%20mi%20código%20para%20el%20Álbum%20MX26','_blank')">
+    <button class="btn-cta" onclick="window.open('https://wa.me/526624333876?text=Hola!%20Quiero%20un%20código%20para%20MiAlbum%202026','_blank')">
       🏆 QUIERO MI CÓDIGO
     </button>
     <button class="btn-cta-secondary" onclick="goToSetup()">
@@ -792,7 +792,7 @@ body.show-app   #screen-app     { display: block !important; }
       <div style="font-family:'Bebas Neue',sans-serif;font-size:24px;background:var(--goldg);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:.04em;margin-bottom:6px">¿NO TIENES CÓDIGO?</div>
       <div style="font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:18px;line-height:1.6">Escríbenos o déjanos tus datos y te contactamos</div>
       <button class="btn-cta" style="margin-bottom:10px;font-size:17px;padding:13px"
-        onclick="window.open('https://wa.me/526624333876?text=Hola!%20Quiero%20mi%20código%20para%20el%20Álbum%20MX26','_blank')">
+        onclick="window.open('https://wa.me/526624333876?text=Hola!%20Quiero%20un%20código%20para%20MiAlbum%202026','_blank')">
         📲 WHATSAPP 662 433 3876
       </button>
       <div style="font-size:12px;color:rgba(255,255,255,0.3);margin:12px 0 14px">— o déjanos tus datos —</div>
@@ -818,7 +818,7 @@ body.show-app   #screen-app     { display: block !important; }
     <div class="dot"></div>
     FIFA World Cup 2026 · México
   </div>
-  <div class="hero">ÁLBUM<br>MX26</div>
+  <div class="hero">Mi<span class="g">Album</span><br>2026</div>
   <div class="hero-sub">Completa tu colección</div>
 
   <div class="setup-card">
@@ -864,6 +864,10 @@ body.show-app   #screen-app     { display: block !important; }
         <input id="inp-code" class="inp" type="text" placeholder="MX26-XXXX" autocomplete="off" maxlength="9">
       </div>
       <div class="error-msg" id="code-error">Código inválido o ya utilizado.</div>
+      <div style="display:flex;align-items:flex-start;gap:8px;background:rgba(206,17,38,0.08);border:1px solid rgba(206,17,38,0.2);border-radius:10px;padding:10px 12px;margin-top:4px">
+        <span style="font-size:14px;flex-shrink:0">🔒</span>
+        <span style="font-size:11px;color:rgba(255,255,255,0.5);line-height:1.6"><strong style="color:#fff">Nunca compartas tu código.</strong> Es tu contraseña personal y permanente. Si alguien más lo usa, perderás acceso a tu cuenta.</span>
+      </div>
     </div>
 
     <button class="btn-primary" onclick="createProfile()">ENTRAR AL ÁLBUM →</button>
@@ -878,7 +882,7 @@ body.show-app   #screen-app     { display: block !important; }
   <div id="tab-album" class="tab on">
     <div class="hdr">
       <div class="hdr-top">
-        <div class="logo">ÁLBUM <span class="g">MX26</span></div>
+        <div class="logo">Mi<span class="g">Album 2026</span></div>
         <div class="user-chip"><div class="dot-g"></div><span id="chip-name">—</span></div>
       </div>
       <div class="stats">
@@ -921,6 +925,7 @@ body.show-app   #screen-app     { display: block !important; }
         <button class="pill on" data-cf="all"    onclick="setCommunityFilter(this)">Todos</button>
         <button class="pill" data-cf="school"  onclick="setCommunityFilter(this)">Mi escuela</button>
         <button class="pill" data-cf="grade"   onclick="setCommunityFilter(this)">Mi grado</button>
+        <button class="pill" data-cf="top"     onclick="setCommunityFilter(this)">🏆 Top</button>
       </div>
     </div>
     <div class="scroll">
@@ -1055,6 +1060,16 @@ body.show-app   #screen-app     { display: block !important; }
             <div style="color:var(--muted);font-size:13px">Genera códigos para verlos aquí.</div>
           </div>
         </div>
+        <!-- Delete users -->
+        <div class="admin-card">
+          <h3>🗑️ Eliminar Usuario</h3>
+          <p style="font-size:13px;color:var(--muted);margin-bottom:12px;line-height:1.6">Busca por nombre o WhatsApp y elimina su cuenta y libera su código.</p>
+          <div class="admin-row" style="margin-bottom:10px">
+            <input class="inp" id="adm-search-user" type="text" placeholder="Nombre o WhatsApp..." oninput="searchUsers()">
+          </div>
+          <div id="adm-users-list" style="display:flex;flex-direction:column;gap:6px;max-height:250px;overflow-y:auto"></div>
+        </div>
+
         <!-- Code requests -->
         <div class="admin-card">
           <h3>📩 Solicitudes de Código</h3>
@@ -1130,6 +1145,7 @@ async function init() {
 
   // Show landing by default
   document.body.classList.remove('show-setup','show-app');
+  loadUserCount();
 
   // Check for admin access via URL hash
   if (window.location.hash === '#admin') {
@@ -1331,13 +1347,15 @@ function setCommunityFilter(el) {
 
 function renderCommunity() {
   const search = (g('comm-search').value || '').toLowerCase();
-  let users = communityUsers;
+  let users = [...communityUsers];
 
   // Apply filter
   if (communityFilter === 'school') {
     users = users.filter(u => u.school && myProfile && u.school === myProfile.school);
   } else if (communityFilter === 'grade') {
     users = users.filter(u => u.grade && myProfile && u.grade === myProfile.grade);
+  } else if (communityFilter === 'top') {
+    users = [...communityUsers].sort((a,b) => (b.completePct||0) - (a.completePct||0)).slice(0,20);
   }
 
   // Apply search
@@ -1352,11 +1370,39 @@ function renderCommunity() {
     list.innerHTML = '<div class="comm-msg">No se encontraron usuarios.</div>';
     return;
   }
+
+  // Leaderboard view
+  if (communityFilter === 'top') {
+    list.innerHTML = `
+      <div style="padding:4px 0 8px;text-align:center">
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:13px;letter-spacing:.15em;color:var(--muted)">TOP COLECCIONISTAS</div>
+      </div>` +
+      users.map((u, idx) => {
+        const pct   = u.completePct || 0;
+        const medal = idx === 0 ? '🥇' : idx === 1 ? '🥈' : idx === 2 ? '🥉' : `#${idx+1}`;
+        const schoolStr = u.school ? escH(u.school) : 'Hermosillo';
+        const gradeStr  = u.grade  ? ` · ${escH(u.grade)}` : '';
+        const isMe = u.id === myUid;
+        return `<div class="ucard" onclick="openMatch('${u.id}')" style="${isMe?'border-color:var(--gold)':''}">
+          <div style="font-size:${idx<3?'24px':'16px'};width:36px;text-align:center;flex-shrink:0;font-family:'Bebas Neue',sans-serif;color:var(--muted)">${medal}</div>
+          <div class="uinfo">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:6px;margin-bottom:2px">
+              <div class="uname">${escH(u.name)}${isMe?' <span style="font-size:10px;color:var(--gold)">(tú)</span>':''}</div>
+              <div style="font-family:'Bebas Neue',sans-serif;font-size:18px;color:var(--gold)">${pct}%</div>
+            </div>
+            <div class="ucity">${schoolStr}${gradeStr}</div>
+            <div class="mini-bar"><div class="mini-fill" style="width:${pct}%"></div></div>
+          </div>
+        </div>`;
+      }).join('');
+    return;
+  }
+
   list.innerHTML = users.map(u => {
-    const initials = u.name.trim().split(' ').slice(0,2).map(w=>w[0]||'').join('').toUpperCase();
-    const pct      = u.completePct || 0;
-    const dupes    = (u.stickers||'').split('').filter(c=>c==='d').length;
-    const their    = u.stickers || 'm'.repeat(TOTAL);
+    const initials  = u.name.trim().split(' ').slice(0,2).map(w=>w[0]||'').join('').toUpperCase();
+    const pct       = u.completePct || 0;
+    const dupes     = (u.stickers||'').split('').filter(c=>c==='d').length;
+    const their     = u.stickers || 'm'.repeat(TOTAL);
     let canGet=0, canGive=0;
     for (let i=0; i<TOTAL; i++) {
       if (myStickers[i]==='m' && their[i]==='d') canGet++;
@@ -1411,7 +1457,7 @@ function buildMatch() {
   g('btn-wa-contact').onclick=()=>{
     const recv=iGet.slice(0,30).join(', ')+(iGet.length>30?' …':'');
     const send=iGive.slice(0,30).join(', ')+(iGive.length>30?' …':'');
-    const msg=`Hola ${u.name}! 👋 Vi tu álbum en MX26.\n\n🟢 Necesito de ti: ${recv||'ninguna'}\n🟡 Te puedo dar: ${send||'ninguna'}\n\n🔄 ¡${bal} cambio${bal!==1?'s':''} posible${bal!==1?'s':''}! ¿Le entramos? 😄`;
+    const msg=`Hola ${u.name}! 👋 Vi tu álbum en MiAlbum 2026.\n\n🟢 Necesito de ti: ${recv||'ninguna'}\n🟡 Te puedo dar: ${send||'ninguna'}\n\n🔄 ¡${bal} cambio${bal!==1?'s':''} posible${bal!==1?'s':''}! ¿Le entramos? 😄`;
     window.open(`https://wa.me/${u.whatsapp.replace(/\D/g,'')}?text=${encodeURIComponent(msg)}`,'_blank');
   };
   g('btn-open-chat').onclick=()=>{chatBackDest='match';openChat(u);};
@@ -1532,7 +1578,63 @@ function updateChatBadge(){
 }
 
 /* ════════════════ ADMIN ════════════════ */
-async function loadAdminData(){
+async function loadUserCount() {
+  try {
+    const snap = await db.collection('users').get();
+    const count = snap.size;
+    const el = g('user-count-badge');
+    if (el) el.textContent = count > 0 ? `${count} coleccionista${count!==1?'s':''} activo${count!==1?'s':''}` : 'Sé el primero';
+  } catch(e) {
+    const el = g('user-count-badge');
+    if (el) el.textContent = 'Panini Oficial';
+  }
+}
+
+async function searchUsers() {
+  const q = (g('adm-search-user').value || '').toLowerCase().trim();
+  const list = g('adm-users-list');
+  if (!q) { list.innerHTML = ''; return; }
+  try {
+    const snap = await db.collection('users').limit(200).get();
+    const results = [];
+    snap.forEach(doc => {
+      const d = doc.data();
+      if (d.name.toLowerCase().includes(q) || (d.whatsapp||'').includes(q)) {
+        results.push({ id: doc.id, ...d });
+      }
+    });
+    if (!results.length) { list.innerHTML = '<div style="color:var(--muted);font-size:13px;padding:8px 0">Sin resultados</div>'; return; }
+    list.innerHTML = results.map(u => `
+      <div class="code-row" style="justify-content:space-between">
+        <div>
+          <div style="font-weight:700;font-size:13px;color:var(--text)">${escH(u.name)}</div>
+          <div style="font-size:11px;color:var(--muted)">${escH(u.whatsapp||'')} · ${escH(u.school||'')} · ${escH(u.grade||'')}</div>
+        </div>
+        <button onclick="deleteUser('${u.id}','${escH(u.name)}','${u.accessCode||''}')"
+          style="background:var(--rbg);border:1px solid var(--rbdr);color:var(--red);font-size:12px;font-weight:700;border-radius:8px;padding:6px 10px;cursor:pointer;flex-shrink:0">
+          Eliminar
+        </button>
+      </div>`).join('');
+  } catch(e) { console.error(e); }
+}
+
+async function deleteUser(uid, name, code) {
+  if (!confirm(`¿Eliminar a ${name}? Esto también liberará su código.`)) return;
+  try {
+    const batch = db.batch();
+    batch.delete(db.collection('users').doc(uid));
+    if (code) {
+      batch.update(db.collection('codes').doc(code), {
+        used: false, usedBy: null, usedAt: null
+      });
+    }
+    await batch.commit();
+    toast(`✅ ${name} eliminado. Código liberado.`);
+    g('adm-search-user').value = '';
+    g('adm-users-list').innerHTML = '';
+    loadAdminData();
+  } catch(e) { toast('Error eliminando usuario'); console.error(e); }
+}
   try{
     const [codesSnap, usersSnap, reqSnap]=await Promise.all([
       db.collection('codes').get(),
