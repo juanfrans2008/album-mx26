@@ -1677,46 +1677,6 @@ async function deleteUser(uid, name, code) {
     loadAdminData();
   } catch(e) { toast('Error eliminando usuario'); console.error(e); }
 }
-  try{
-    const [codesSnap, usersSnap, reqSnap]=await Promise.all([
-      db.collection('codes').get(),
-      db.collection('users').get(),
-      db.collection('codeRequests').orderBy('createdAt','desc').limit(50).get()
-    ]);
-    let total=0,free=0,used=0;
-    const codes=[];
-    codesSnap.forEach(doc=>{
-      total++;
-      const d=doc.data();
-      if(d.used) used++; else free++;
-      codes.push({id:doc.id,...d});
-    });
-    g('adm-total').textContent=total;
-    g('adm-free').textContent=free;
-    g('adm-used').textContent=used;
-    g('adm-users').textContent=usersSnap.size;
-    renderCodes(codes);
-
-    // Render requests
-    const reqTable = g('requests-table');
-    if(reqSnap.empty){
-      reqTable.innerHTML='<div style="color:var(--muted);font-size:13px">No hay solicitudes aún.</div>';
-    } else {
-      reqTable.innerHTML = '';
-      reqSnap.forEach(doc=>{
-        const r=doc.data();
-        const div=document.createElement('div');
-        div.className='code-row';
-        div.style.flexDirection='column';
-        div.style.alignItems='flex-start';
-        div.style.gap='4px';
-        div.innerHTML=`<span style="font-weight:700;color:var(--text)">${escH(r.name)}</span><span style="font-size:12px;color:var(--muted)">${escH(r.contact)}</span>`;
-        reqTable.appendChild(div);
-      });
-    }
-    adminLoaded=true;
-  }catch(e){console.error(e);}
-}
 
 function renderCodes(codes){
   const table=g('codes-table');
