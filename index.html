@@ -51,6 +51,38 @@
 html,body{height:100%;overflow:hidden}
 body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased}
 
+.btn-nav-code{display:none} /* removed */
+
+/* Soccer ball */
+.ball-wrap{position:relative;width:130px;height:130px;margin:0 auto 20px;flex-shrink:0}
+.soccer-ball{width:130px;height:130px;animation:ballSpin 12s linear infinite;filter:drop-shadow(0 0 20px rgba(201,164,62,0.4))}
+@keyframes ballSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.ball-glow{
+  position:absolute;inset:-20px;border-radius:50%;
+  background:radial-gradient(circle,rgba(201,164,62,0.15) 0%,transparent 70%);
+  animation:glowPulse 3s ease-in-out infinite;pointer-events:none;
+}
+@keyframes glowPulse{0%,100%{opacity:0.6;transform:scale(1)}50%{opacity:1;transform:scale(1.1)}}
+
+/* Mexico stripe */
+.mx-stripe{
+  display:flex;height:3px;width:80px;border-radius:2px;overflow:hidden;
+  margin:0 auto 20px;gap:1px;
+}
+.mx-stripe div{flex:1;border-radius:1px}
+
+/* Vibrant color upgrades */
+:root{
+  --gold:  #FFB800;
+  --gold2: #FFD700;
+  --goldg: linear-gradient(135deg,#E8A000 0%,#FFD700 40%,#FFB800 60%,#FFA500 100%);
+  --goldbg:#1f1500;
+  --goldbdr:rgba(255,184,0,0.35);
+  --green: #00C853;
+  --gbg:   #001f0d;
+  --gbdr:  rgba(0,200,83,0.35);
+}
+
 /* ════════════════════════════════
    LANDING PAGE
 ════════════════════════════════ */
@@ -486,10 +518,42 @@ body.show-app   #screen-app     { display: block !important; }
 <div id="screen-landing">
   <div class="landing-nav">
     <div class="landing-logo">ÁLBUM <span class="g">MX26</span></div>
-    <button class="btn-nav-code" onclick="goToSetup()">Ya tengo código</button>
   </div>
 
   <div class="landing-hero">
+    <!-- Animated Soccer Ball SVG -->
+    <div class="ball-wrap">
+      <svg class="soccer-ball" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <radialGradient id="ballGrad" cx="38%" cy="35%" r="60%">
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.15"/>
+            <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+          </radialGradient>
+          <clipPath id="circle"><circle cx="60" cy="60" r="56"/></clipPath>
+        </defs>
+        <circle cx="60" cy="60" r="56" fill="#1a1a2e" stroke="var(--gold)" stroke-width="2"/>
+        <!-- Pentagon patches -->
+        <g clip-path="url(#circle)" fill="#0d0d1a" stroke="var(--gold)" stroke-width="1.2" opacity="0.9">
+          <polygon points="60,18 71,27 67,40 53,40 49,27"/>
+          <polygon points="60,102 71,93 67,80 53,80 49,93"/>
+          <polygon points="18,46 27,36 40,43 38,57 25,60"/>
+          <polygon points="102,46 93,36 80,43 82,57 95,60"/>
+          <polygon points="22,74 33,82 38,68 25,62 14,68"/>
+          <polygon points="98,74 87,82 82,68 95,62 106,68"/>
+        </g>
+        <!-- Hexagon fills -->
+        <g clip-path="url(#circle)" fill="none" stroke="rgba(201,164,62,0.3)" stroke-width="0.8">
+          <polygon points="60,40 71,47 71,60 60,67 49,60 49,47"/>
+          <polygon points="38,57 49,50 49,63 38,70 27,63 27,50"/>
+          <polygon points="82,57 93,50 93,63 82,70 71,63 71,50"/>
+        </g>
+        <circle cx="60" cy="60" r="56" fill="url(#ballGrad)"/>
+        <circle cx="60" cy="60" r="56" fill="none" stroke="var(--gold)" stroke-width="1.5" opacity="0.6"/>
+      </svg>
+      <!-- Glow ring -->
+      <div class="ball-glow"></div>
+    </div>
+
     <div class="landing-eyebrow">
       <div class="dot"></div>
       FIFA World Cup 2026 · México
@@ -498,6 +562,12 @@ body.show-app   #screen-app     { display: block !important; }
       <span class="line1">COMPLETA</span>
       <span class="line2">TU</span>
       <span class="line3">ÁLBUM</span>
+    </div>
+    <!-- Mexico flag stripe -->
+    <div class="mx-stripe">
+      <div style="background:#006847"></div>
+      <div style="background:#fff;opacity:.15"></div>
+      <div style="background:#CE1126"></div>
     </div>
     <p class="landing-sub">
       Registra tus estampas, encuentra a otros coleccionistas y <strong>haz cambios directamente en la app.</strong>
@@ -529,7 +599,7 @@ body.show-app   #screen-app     { display: block !important; }
   </div>
 
   <!-- Contact / Request code section -->
-  <div style="padding:0 20px 16px">
+  <div style="padding:0 20px 40px">
     <div style="background:var(--s1);border:1px solid var(--goldbdr);border-radius:20px;padding:22px;text-align:center">
       <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--gold);letter-spacing:.04em;margin-bottom:6px">¿NO TIENES CÓDIGO?</div>
       <div style="font-size:13px;color:var(--muted);margin-bottom:18px;line-height:1.6">Escríbenos directamente o déjanos tus datos y te contactamos</div>
@@ -546,16 +616,16 @@ body.show-app   #screen-app     { display: block !important; }
       <div id="req-success" style="display:none;margin-top:12px;color:var(--green);font-size:13px;font-weight:600">✓ Solicitud enviada, te contactamos pronto.</div>
     </div>
   </div>
-
-  <div class="landing-footer">
-    ¿Ya tienes tu código?
-    <br>
-    <strong onclick="goToSetup()">Regístrate aquí →</strong>
-  </div>
 </div>
 
 <!-- ══════════ SETUP ══════════ -->
 <div id="screen-setup">
+  <div style="width:100%;max-width:360px;padding:16px 0 0">
+    <button onclick="goToLanding()" style="background:none;border:none;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;padding:0">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"/></svg>
+      Volver
+    </button>
+  </div>
   <div class="landing-badge">
     <div class="dot"></div>
     FIFA World Cup 2026 · México
