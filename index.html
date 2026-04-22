@@ -1347,6 +1347,7 @@ function goToLanding(){
   document.body.classList.remove('show-setup','show-app');
 }
 // Format code input automatically
+g('inp-code').addEventListener('input',function(){
   let v=this.value.toUpperCase().replace(/[^A-Z0-9]/g,'');
   if(v.length>4) v=v.slice(0,4)+'-'+v.slice(4,8);
   this.value=v;
