@@ -102,11 +102,11 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;-we
 /* ════════════════════════════════
    SOCCER BALL & ANIMATIONS
 ════════════════════════════════ */
-.ball-wrap{position:relative;width:140px;height:140px;margin:0 auto 16px;flex-shrink:0}
-.soccer-ball{width:140px;height:140px;animation:ballSpin 14s linear infinite;filter:drop-shadow(0 0 24px rgba(212,160,23,0.5))}
+.ball-wrap{position:relative;width:150px;height:150px;margin:0 auto 16px;flex-shrink:0}
+.soccer-ball{width:150px;height:150px;animation:ballSpin 14s linear infinite;filter:drop-shadow(0 8px 24px rgba(0,0,0,0.4)) drop-shadow(0 0 20px rgba(212,160,23,0.3))}
 @keyframes ballSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
-.ball-glow{position:absolute;inset:-24px;border-radius:50%;background:radial-gradient(circle,rgba(212,160,23,0.2) 0%,transparent 65%);animation:glowPulse 2.5s ease-in-out infinite;pointer-events:none}
-@keyframes glowPulse{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:1;transform:scale(1.12)}}
+.ball-glow{position:absolute;inset:-20px;border-radius:50%;background:radial-gradient(circle,rgba(212,160,23,0.15) 0%,transparent 65%);animation:glowPulse 2.5s ease-in-out infinite;pointer-events:none}
+@keyframes glowPulse{0%,100%{opacity:.4;transform:scale(1)}50%{opacity:.9;transform:scale(1.1)}}
 
 /* Floating color blobs like the official album */
 .blob{position:absolute;border-radius:50%;filter:blur(40px);opacity:.25;pointer-events:none;animation:blobFloat 6s ease-in-out infinite}
@@ -164,12 +164,12 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;-we
 }
 .btn-cta:active{opacity:.88;transform:scale(.98)}
 .btn-cta-secondary{
-  background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);border-radius:14px;
-  padding:13px 36px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;
-  color:rgba(255,255,255,0.7);cursor:pointer;transition:all .15s;
-  width:100%;max-width:300px;position:relative;z-index:2;
+  background:rgba(255,255,255,0.08);border:2px solid rgba(255,255,255,0.25);border-radius:14px;
+  padding:13px 36px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;
+  color:#fff;cursor:pointer;transition:all .15s;
+  width:100%;max-width:300px;position:relative;z-index:2;margin-bottom:8px;
 }
-.btn-cta-secondary:active{border-color:var(--gold);color:#fff}
+.btn-cta-secondary:active{border-color:var(--gold);color:var(--gold)}
 .landing-hero{
   flex-shrink:0;display:flex;flex-direction:column;align-items:center;
   padding:10px 24px 0;text-align:center;position:relative;
@@ -646,31 +646,54 @@ body.show-app   #screen-app     { display: block !important; }
     <div style="position:absolute;width:150px;height:150px;background:#2B6DB5;border-radius:50%;filter:blur(50px);opacity:.18;top:60px;left:-60px;pointer-events:none;animation:blobFloat 8s ease-in-out infinite reverse"></div>
     <div style="position:absolute;width:120px;height:120px;background:#F5C800;border-radius:50%;filter:blur(40px);opacity:.15;bottom:0;right:20px;pointer-events:none;animation:blobFloat 7s ease-in-out infinite 2s"></div>
 
-    <!-- Soccer ball -->
+    <!-- Trionda WC2026 Official Ball Style -->
     <div class="ball-wrap">
-      <svg class="soccer-ball" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+      <svg class="soccer-ball" viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <radialGradient id="ballGrad" cx="38%" cy="35%" r="60%">
-            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.12"/>
-            <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
+          <clipPath id="ballClip"><circle cx="70" cy="70" r="64"/></clipPath>
+          <radialGradient id="ballShine" cx="35%" cy="30%" r="55%">
+            <stop offset="0%" stop-color="#fff" stop-opacity="0.35"/>
+            <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
           </radialGradient>
-          <clipPath id="ballClip"><circle cx="60" cy="60" r="54"/></clipPath>
+          <radialGradient id="ballShadow" cx="65%" cy="70%" r="50%">
+            <stop offset="0%" stop-color="#000" stop-opacity="0.18"/>
+            <stop offset="100%" stop-color="#000" stop-opacity="0"/>
+          </radialGradient>
         </defs>
-        <circle cx="60" cy="60" r="54" fill="#111" stroke="#D4A017" stroke-width="2.5"/>
-        <g clip-path="url(#ballClip)" fill="#1a1400" stroke="#D4A017" stroke-width="1.4" opacity="0.95">
-          <polygon points="60,16 72,26 68,41 52,41 48,26"/>
-          <polygon points="60,104 72,94 68,79 52,79 48,94"/>
-          <polygon points="16,46 26,35 41,43 39,58 24,62"/>
-          <polygon points="104,46 94,35 79,43 81,58 96,62"/>
-          <polygon points="20,76 32,84 39,70 24,64 12,70"/>
-          <polygon points="100,76 88,84 81,70 96,64 108,70"/>
+        <!-- White base -->
+        <circle cx="70" cy="70" r="64" fill="#f0f0f0"/>
+        <!-- Red flowing panel - top right -->
+        <path d="M70,6 C95,6 118,20 128,45 C115,38 98,32 80,36 C65,39 52,50 48,65 C44,52 48,35 60,22 C63,15 66,9 70,6 Z" fill="#D62828" clip-path="url(#ballClip)"/>
+        <!-- Red panel lower extension -->
+        <path d="M128,45 C134,58 134,80 126,95 C118,82 112,68 110,54 C116,50 122,47 128,45 Z" fill="#C41E1E" clip-path="url(#ballClip)"/>
+        <!-- Blue flowing panel - left -->
+        <path d="M6,70 C6,48 17,28 35,16 C40,28 42,44 38,58 C34,70 26,80 16,86 C10,81 6,76 6,70 Z" fill="#1A5DAD" clip-path="url(#ballClip)"/>
+        <!-- Blue panel lower -->
+        <path d="M16,86 C22,98 32,108 46,114 C46,100 48,88 54,78 C44,82 30,84 16,86 Z" fill="#1648A0" clip-path="url(#ballClip)"/>
+        <!-- Green accent panel - bottom -->
+        <path d="M70,134 C50,134 32,124 20,108 C34,106 50,108 62,114 C68,117 74,122 78,128 C75,132 72,134 70,134 Z" fill="#1A8A3C" clip-path="url(#ballClip)"/>
+        <!-- Subtle panel lines/texture -->
+        <path d="M48,65 C52,50 65,39 80,36 C90,44 98,56 98,70 C98,84 90,96 78,104 C64,98 52,84 48,68 Z" fill="none" stroke="rgba(0,0,0,0.06)" stroke-width="1" clip-path="url(#ballClip)"/>
+        <!-- Stars -->
+        <g fill="#FFD700" opacity="0.9">
+          <!-- Star top -->
+          <polygon points="70,18 71.5,22.5 76,22.5 72.5,25 74,29.5 70,27 66,29.5 67.5,25 64,22.5 68.5,22.5" transform="scale(0.7) translate(30,12)"/>
+          <!-- Star right -->
+          <polygon points="70,18 71.5,22.5 76,22.5 72.5,25 74,29.5 70,27 66,29.5 67.5,25 64,22.5 68.5,22.5" transform="scale(0.6) translate(95,60)"/>
+          <!-- Star bottom left -->
+          <polygon points="70,18 71.5,22.5 76,22.5 72.5,25 74,29.5 70,27 66,29.5 67.5,25 64,22.5 68.5,22.5" transform="scale(0.55) translate(10,120)"/>
+          <!-- Star top left -->  
+          <polygon points="70,18 71.5,22.5 76,22.5 72.5,25 74,29.5 70,27 66,29.5 67.5,25 64,22.5 68.5,22.5" transform="scale(0.5) translate(30,50)"/>
         </g>
-        <g clip-path="url(#ballClip)" fill="none" stroke="rgba(212,160,23,0.2)" stroke-width="1">
-          <polygon points="60,41 72,48 72,62 60,69 48,62 48,48"/>
-          <polygon points="37,55 49,48 49,62 37,69 25,62 25,48"/>
-          <polygon points="83,55 95,48 95,62 83,69 71,62 71,48"/>
-        </g>
-        <circle cx="60" cy="60" r="54" fill="url(#ballGrad)"/>
+        <!-- Center: "26" FIFA style -->
+        <circle cx="70" cy="70" r="22" fill="rgba(255,255,255,0.92)" stroke="rgba(0,0,0,0.08)" stroke-width="1"/>
+        <text x="70" y="76" font-family="'Bebas Neue',sans-serif" font-size="22" font-weight="900" fill="#111" text-anchor="middle" letter-spacing="1">26</text>
+        <text x="70" y="84" font-family="Arial,sans-serif" font-size="6" font-weight="700" fill="#666" text-anchor="middle" letter-spacing="1.5">FIFA</text>
+        <!-- Shine overlay -->
+        <circle cx="70" cy="70" r="64" fill="url(#ballShine)"/>
+        <circle cx="70" cy="70" r="64" fill="url(#ballShadow)"/>
+        <!-- Border -->
+        <circle cx="70" cy="70" r="64" fill="none" stroke="rgba(0,0,0,0.15)" stroke-width="1.5"/>
       </svg>
       <div class="ball-glow"></div>
     </div>
