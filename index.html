@@ -135,9 +135,12 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;-we
 }
 .landing-footer strong{color:var(--gold);cursor:pointer}
 
-/* ════════════════════════════════
-   SETUP / LANDING
-════════════════════════════════ */
+/* Screen switching */
+body.show-setup #screen-landing { display: none !important; }
+body.show-setup #screen-setup   { display: flex !important; flex-direction: column; align-items: center; justify-content: center; }
+body.show-app   #screen-landing { display: none !important; }
+body.show-app   #screen-setup   { display: none !important; }
+body.show-app   #screen-app     { display: block !important; }
 #screen-setup{
   height:100%;overflow-y:auto;
   display:none;flex-direction:column;align-items:center;justify-content:center;
@@ -840,16 +843,14 @@ async function init() {
   firebase.initializeApp(firebaseConfig);
   db = firebase.firestore();
 
-  // Show landing by default, hide setup
-  g('screen-setup').style.display = 'none';
-  g('screen-landing').style.display = 'flex';
+  // Show landing by default
+  document.body.classList.remove('show-setup','show-app');
 
   // Check for admin access via URL hash
   if (window.location.hash === '#admin') {
     const pw = prompt('Contraseña de administrador:');
     if (pw === ADMIN_PASSWORD) {
-      g('screen-setup').style.display = 'none';
-      g('screen-app').style.display   = 'block';
+      document.body.classList.add('show-app');
       showTab('admin');
       loadAdminData();
       return;
@@ -933,8 +934,7 @@ function hideCodeError() {
 }
 
 function enterApp() {
-  g('screen-setup').style.display = 'none';
-  g('screen-app').style.display   = 'block';
+  document.body.classList.add('show-app');
   g('chip-name').textContent = myProfile.name.split(' ')[0];
   renderGrid();
   updateStats();
@@ -1339,17 +1339,12 @@ async function submitCodeRequest(){
 }
 
 function goToSetup(){
-  const landing = g('screen-landing');
-  const setup   = g('screen-setup');
-  landing.style.cssText = 'display:none';
-  setup.style.cssText   = 'display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;overflow-y:auto;padding:40px 20px;background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(201,164,62,.09) 0%,transparent 70%)';
+  document.body.classList.remove('show-app');
+  document.body.classList.add('show-setup');
 }
 
 function goToLanding(){
-  const landing = g('screen-landing');
-  const setup   = g('screen-setup');
-  setup.style.cssText   = 'display:none';
-  landing.style.cssText = 'display:flex;flex-direction:column;height:100%;overflow-y:auto';
+  document.body.classList.remove('show-setup','show-app');
 }
 // Format code input automatically
   let v=this.value.toUpperCase().replace(/[^A-Z0-9]/g,'');
