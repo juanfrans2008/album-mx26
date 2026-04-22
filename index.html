@@ -51,41 +51,160 @@
 html,body{height:100%;overflow:hidden}
 body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased}
 
-.btn-nav-code{display:none} /* removed */
+/* ════════════════════════════════
+   WC2026 OFFICIAL MULTICOLOR PALETTE
+════════════════════════════════ */
+:root{
+  --bg:    #0a0a0a;
+  --s1:    #111111;
+  --s2:    #1a1a1a;
+  --s3:    #222222;
+  --s4:    #2a2a2a;
+  --b1:    rgba(255,255,255,0.08);
+  --b2:    rgba(255,255,255,0.15);
+  --b3:    rgba(255,255,255,0.22);
+  --text:  #f5f5f5;
+  --muted: #666666;
+  --dim:   #333333;
 
-/* Soccer ball */
-.ball-wrap{position:relative;width:130px;height:130px;margin:0 auto 20px;flex-shrink:0}
-.soccer-ball{width:130px;height:130px;animation:ballSpin 12s linear infinite;filter:drop-shadow(0 0 20px rgba(201,164,62,0.4))}
-@keyframes ballSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
-.ball-glow{
-  position:absolute;inset:-20px;border-radius:50%;
-  background:radial-gradient(circle,rgba(201,164,62,0.15) 0%,transparent 70%);
-  animation:glowPulse 3s ease-in-out infinite;pointer-events:none;
+  /* Trophy Gold */
+  --gold:  #D4A017;
+  --gold2: #F0C040;
+  --goldg: linear-gradient(135deg,#B8860B 0%,#FFD700 45%,#DAA520 70%,#B8860B 100%);
+  --goldbg:#1a1200;
+  --goldbdr:rgba(212,160,23,0.35);
+
+  /* WC26 Official Colors */
+  --wc-red:    #E8392A;
+  --wc-blue:   #2B6DB5;
+  --wc-green:  #2E9E5B;
+  --wc-yellow: #F5C800;
+  --wc-teal:   #1B9E8E;
+  --wc-orange: #F07020;
+  --wc-purple: #7B3FA0;
+
+  /* Mexico Green for stickers */
+  --green: #2E9E5B;
+  --gbg:   #071a0e;
+  --gbdr:  rgba(46,158,91,0.35);
+
+  --red:   #E8392A;
+  --rbg:   #1a0500;
+  --rbdr:  rgba(232,57,42,0.35);
+
+  --blue:  #2B6DB5;
+  --bbg:   #070f1a;
+  --bbdr:  rgba(43,109,181,0.35);
+
+  --nav: 58px;
 }
-@keyframes glowPulse{0%,100%{opacity:0.6;transform:scale(1)}50%{opacity:1;transform:scale(1.1)}}
+
+/* ════════════════════════════════
+   SOCCER BALL & ANIMATIONS
+════════════════════════════════ */
+.ball-wrap{position:relative;width:140px;height:140px;margin:0 auto 16px;flex-shrink:0}
+.soccer-ball{width:140px;height:140px;animation:ballSpin 14s linear infinite;filter:drop-shadow(0 0 24px rgba(212,160,23,0.5))}
+@keyframes ballSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+.ball-glow{position:absolute;inset:-24px;border-radius:50%;background:radial-gradient(circle,rgba(212,160,23,0.2) 0%,transparent 65%);animation:glowPulse 2.5s ease-in-out infinite;pointer-events:none}
+@keyframes glowPulse{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:1;transform:scale(1.12)}}
+
+/* Floating color blobs like the official album */
+.blob{position:absolute;border-radius:50%;filter:blur(40px);opacity:.25;pointer-events:none;animation:blobFloat 6s ease-in-out infinite}
+@keyframes blobFloat{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-12px) scale(1.05)}}
 
 /* Mexico stripe */
-.mx-stripe{
-  display:flex;height:3px;width:80px;border-radius:2px;overflow:hidden;
-  margin:0 auto 20px;gap:1px;
-}
+.mx-stripe{display:flex;height:4px;width:90px;border-radius:2px;overflow:hidden;margin:0 auto 22px;gap:2px}
 .mx-stripe div{flex:1;border-radius:1px}
-
-/* Vibrant color upgrades */
-:root{
-  --gold:  #FFB800;
-  --gold2: #FFD700;
-  --goldg: linear-gradient(135deg,#E8A000 0%,#FFD700 40%,#FFB800 60%,#FFA500 100%);
-  --goldbg:#1f1500;
-  --goldbdr:rgba(255,184,0,0.35);
-  --green: #00C853;
-  --gbg:   #001f0d;
-  --gbdr:  rgba(0,200,83,0.35);
-}
 
 /* ════════════════════════════════
    LANDING PAGE
 ════════════════════════════════ */
+#screen-landing{
+  height:100%;overflow-y:auto;
+  display:flex;flex-direction:column;
+  background:#0a0a0a;
+  position:relative;overflow-x:hidden;
+}
+.landing-nav{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:18px 22px;flex-shrink:0;position:relative;z-index:2;
+}
+.landing-logo{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.06em}
+.landing-logo .g{background:var(--goldg);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.landing-eyebrow{
+  display:inline-flex;align-items:center;gap:7px;
+  background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);
+  border-radius:20px;padding:5px 14px;
+  font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(255,255,255,0.7);margin-bottom:20px;position:relative;z-index:2;
+}
+.landing-h1{
+  font-family:'Bebas Neue',sans-serif;
+  font-size:clamp(72px,21vw,115px);
+  line-height:.80;letter-spacing:.01em;margin-bottom:14px;
+  position:relative;z-index:2;text-align:center;
+}
+.landing-h1 .line1{color:#fff;display:block}
+.landing-h1 .line2{
+  background:var(--goldg);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  display:block;
+}
+.landing-h1 .line3{color:#fff;display:block}
+.landing-sub{
+  font-size:15px;color:rgba(255,255,255,0.55);line-height:1.6;
+  max-width:290px;margin:0 auto 28px;text-align:center;position:relative;z-index:2;
+}
+.landing-sub strong{color:#fff}
+.btn-cta{
+  background:var(--goldg);color:#000;border:none;border-radius:14px;
+  padding:17px 36px;font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.08em;
+  cursor:pointer;box-shadow:0 8px 36px rgba(212,160,23,.45);
+  transition:opacity .15s,transform .1s;margin-bottom:12px;width:100%;max-width:300px;
+  position:relative;z-index:2;
+}
+.btn-cta:active{opacity:.88;transform:scale(.98)}
+.btn-cta-secondary{
+  background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);border-radius:14px;
+  padding:13px 36px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:700;
+  color:rgba(255,255,255,0.7);cursor:pointer;transition:all .15s;
+  width:100%;max-width:300px;position:relative;z-index:2;
+}
+.btn-cta-secondary:active{border-color:var(--gold);color:#fff}
+.landing-hero{
+  flex-shrink:0;display:flex;flex-direction:column;align-items:center;
+  padding:10px 24px 0;text-align:center;position:relative;
+}
+
+/* Color blob decorations */
+.blob-1{width:200px;height:200px;background:var(--wc-red);top:-60px;right:-60px;animation-delay:0s}
+.blob-2{width:160px;height:160px;background:var(--wc-blue);top:80px;left:-70px;animation-delay:2s}
+.blob-3{width:120px;height:120px;background:var(--wc-green);bottom:20px;right:-40px;animation-delay:4s}
+.blob-4{width:100px;height:100px;background:var(--wc-yellow);bottom:-20px;left:20px;animation-delay:1s}
+
+/* Color strips like album cover */
+.color-bar{
+  display:flex;height:5px;width:100%;margin:24px 0 0;gap:0;flex-shrink:0;position:relative;z-index:2;
+}
+.color-bar div{flex:1}
+
+/* Features */
+.landing-features{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:8px;padding:20px 16px 16px;position:relative;z-index:2;
+}
+.feat{
+  border-radius:16px;padding:14px 10px;text-align:center;
+  border:1px solid rgba(255,255,255,0.08);
+}
+.feat:nth-child(1){background:rgba(232,57,42,0.1);border-color:rgba(232,57,42,0.2)}
+.feat:nth-child(2){background:rgba(43,109,181,0.1);border-color:rgba(43,109,181,0.2)}
+.feat:nth-child(3){background:rgba(46,158,91,0.1);border-color:rgba(46,158,91,0.2)}
+.feat-icon{font-size:22px;margin-bottom:6px}
+.feat-title{font-size:13px;font-weight:700;color:#fff;margin-bottom:3px}
+.feat-desc{font-size:11px;color:rgba(255,255,255,0.45);line-height:1.4}
+
+.btn-nav-code{display:none}
+.landing-footer{display:none}
 #screen-landing{
   height:100%;overflow-y:auto;
   display:flex;flex-direction:column;
@@ -516,98 +635,118 @@ body.show-app   #screen-app     { display: block !important; }
 
 <!-- ══════════ LANDING ══════════ -->
 <div id="screen-landing">
+
   <div class="landing-nav">
     <div class="landing-logo">ÁLBUM <span class="g">MX26</span></div>
   </div>
 
-  <div class="landing-hero">
-    <!-- Animated Soccer Ball SVG -->
+  <div class="landing-hero" style="position:relative;overflow:hidden">
+    <!-- Color blobs -->
+    <div style="position:absolute;width:180px;height:180px;background:#E8392A;border-radius:50%;filter:blur(50px);opacity:.18;top:-60px;right:-60px;pointer-events:none;animation:blobFloat 6s ease-in-out infinite"></div>
+    <div style="position:absolute;width:150px;height:150px;background:#2B6DB5;border-radius:50%;filter:blur(50px);opacity:.18;top:60px;left:-60px;pointer-events:none;animation:blobFloat 8s ease-in-out infinite reverse"></div>
+    <div style="position:absolute;width:120px;height:120px;background:#F5C800;border-radius:50%;filter:blur(40px);opacity:.15;bottom:0;right:20px;pointer-events:none;animation:blobFloat 7s ease-in-out infinite 2s"></div>
+
+    <!-- Soccer ball -->
     <div class="ball-wrap">
       <svg class="soccer-ball" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <radialGradient id="ballGrad" cx="38%" cy="35%" r="60%">
-            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.15"/>
+            <stop offset="0%" stop-color="#ffffff" stop-opacity="0.12"/>
             <stop offset="100%" stop-color="#000000" stop-opacity="0"/>
           </radialGradient>
-          <clipPath id="circle"><circle cx="60" cy="60" r="56"/></clipPath>
+          <clipPath id="ballClip"><circle cx="60" cy="60" r="54"/></clipPath>
         </defs>
-        <circle cx="60" cy="60" r="56" fill="#1a1a2e" stroke="var(--gold)" stroke-width="2"/>
-        <!-- Pentagon patches -->
-        <g clip-path="url(#circle)" fill="#0d0d1a" stroke="var(--gold)" stroke-width="1.2" opacity="0.9">
-          <polygon points="60,18 71,27 67,40 53,40 49,27"/>
-          <polygon points="60,102 71,93 67,80 53,80 49,93"/>
-          <polygon points="18,46 27,36 40,43 38,57 25,60"/>
-          <polygon points="102,46 93,36 80,43 82,57 95,60"/>
-          <polygon points="22,74 33,82 38,68 25,62 14,68"/>
-          <polygon points="98,74 87,82 82,68 95,62 106,68"/>
+        <circle cx="60" cy="60" r="54" fill="#111" stroke="#D4A017" stroke-width="2.5"/>
+        <g clip-path="url(#ballClip)" fill="#1a1400" stroke="#D4A017" stroke-width="1.4" opacity="0.95">
+          <polygon points="60,16 72,26 68,41 52,41 48,26"/>
+          <polygon points="60,104 72,94 68,79 52,79 48,94"/>
+          <polygon points="16,46 26,35 41,43 39,58 24,62"/>
+          <polygon points="104,46 94,35 79,43 81,58 96,62"/>
+          <polygon points="20,76 32,84 39,70 24,64 12,70"/>
+          <polygon points="100,76 88,84 81,70 96,64 108,70"/>
         </g>
-        <!-- Hexagon fills -->
-        <g clip-path="url(#circle)" fill="none" stroke="rgba(201,164,62,0.3)" stroke-width="0.8">
-          <polygon points="60,40 71,47 71,60 60,67 49,60 49,47"/>
-          <polygon points="38,57 49,50 49,63 38,70 27,63 27,50"/>
-          <polygon points="82,57 93,50 93,63 82,70 71,63 71,50"/>
+        <g clip-path="url(#ballClip)" fill="none" stroke="rgba(212,160,23,0.2)" stroke-width="1">
+          <polygon points="60,41 72,48 72,62 60,69 48,62 48,48"/>
+          <polygon points="37,55 49,48 49,62 37,69 25,62 25,48"/>
+          <polygon points="83,55 95,48 95,62 83,69 71,62 71,48"/>
         </g>
-        <circle cx="60" cy="60" r="56" fill="url(#ballGrad)"/>
-        <circle cx="60" cy="60" r="56" fill="none" stroke="var(--gold)" stroke-width="1.5" opacity="0.6"/>
+        <circle cx="60" cy="60" r="54" fill="url(#ballGrad)"/>
       </svg>
-      <!-- Glow ring -->
       <div class="ball-glow"></div>
     </div>
 
     <div class="landing-eyebrow">
       <div class="dot"></div>
-      FIFA World Cup 2026 · México
+      FIFA World Cup 2026 · Panini Oficial
     </div>
+
     <div class="landing-h1">
-      <span class="line1">COMPLETA</span>
-      <span class="line2">TU</span>
-      <span class="line3">ÁLBUM</span>
+      <span class="line1">ÁLBUM</span>
+      <span class="line2">MX26</span>
+      <span class="line3">MUNDIAL</span>
     </div>
-    <!-- Mexico flag stripe -->
+
+    <!-- Mexico tricolor stripe -->
     <div class="mx-stripe">
       <div style="background:#006847"></div>
-      <div style="background:#fff;opacity:.15"></div>
+      <div style="background:rgba(255,255,255,0.15)"></div>
       <div style="background:#CE1126"></div>
     </div>
+
     <p class="landing-sub">
-      Registra tus estampas, encuentra a otros coleccionistas y <strong>haz cambios directamente en la app.</strong>
+      Registra tus estampas, encuentra coleccionistas y <strong>haz cambios directamente en la app.</strong>
     </p>
+
     <button class="btn-cta" onclick="window.open('https://wa.me/526624333876?text=Hola!%20Quiero%20mi%20código%20para%20el%20Álbum%20MX26','_blank')">
-      QUIERO MI CÓDIGO
+      🏆 QUIERO MI CÓDIGO
     </button>
     <button class="btn-cta-secondary" onclick="goToSetup()">
       Ya tengo mi código →
     </button>
   </div>
 
+  <!-- Rainbow color bar like the official album cover -->
+  <div style="display:flex;height:6px;width:100%;margin:20px 0 0;flex-shrink:0">
+    <div style="flex:1;background:#E8392A"></div>
+    <div style="flex:1;background:#F07020"></div>
+    <div style="flex:1;background:#F5C800"></div>
+    <div style="flex:1;background:#2E9E5B"></div>
+    <div style="flex:1;background:#1B9E8E"></div>
+    <div style="flex:1;background:#2B6DB5"></div>
+    <div style="flex:1;background:#7B3FA0"></div>
+    <div style="flex:1;background:#E8392A"></div>
+    <div style="flex:1;background:#F5C800"></div>
+    <div style="flex:1;background:#2B6DB5"></div>
+  </div>
+
   <div class="landing-features">
     <div class="feat">
       <div class="feat-icon">📋</div>
       <div class="feat-title">Registra</div>
-      <div class="feat-desc">Marca tus estampas y repetidas fácilmente</div>
+      <div class="feat-desc">Marca tus estampas fácilmente</div>
     </div>
     <div class="feat">
       <div class="feat-icon">🔄</div>
       <div class="feat-title">Cambia</div>
-      <div class="feat-desc">Encuentra con quién hacer cambios exactos</div>
+      <div class="feat-desc">Encuentra cambios exactos</div>
     </div>
     <div class="feat">
       <div class="feat-icon">💬</div>
       <div class="feat-title">Chatea</div>
-      <div class="feat-desc">Coordina tus cambios directo en la app</div>
+      <div class="feat-desc">Coordina directo en la app</div>
     </div>
   </div>
 
-  <!-- Contact / Request code section -->
-  <div style="padding:0 20px 40px">
-    <div style="background:var(--s1);border:1px solid var(--goldbdr);border-radius:20px;padding:22px;text-align:center">
-      <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:var(--gold);letter-spacing:.04em;margin-bottom:6px">¿NO TIENES CÓDIGO?</div>
-      <div style="font-size:13px;color:var(--muted);margin-bottom:18px;line-height:1.6">Escríbenos directamente o déjanos tus datos y te contactamos</div>
-      <button class="btn-cta" style="margin-bottom:10px;font-size:18px;padding:14px"
+  <!-- Contact section -->
+  <div style="padding:0 16px 40px">
+    <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:22px;text-align:center">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:24px;background:var(--goldg);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:.04em;margin-bottom:6px">¿NO TIENES CÓDIGO?</div>
+      <div style="font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:18px;line-height:1.6">Escríbenos o déjanos tus datos y te contactamos</div>
+      <button class="btn-cta" style="margin-bottom:10px;font-size:17px;padding:13px"
         onclick="window.open('https://wa.me/526624333876?text=Hola!%20Quiero%20mi%20código%20para%20el%20Álbum%20MX26','_blank')">
         📲 WHATSAPP 662 433 3876
       </button>
-      <div style="font-size:12px;color:var(--muted);margin:12px 0 14px">— o déjanos tus datos —</div>
+      <div style="font-size:12px;color:rgba(255,255,255,0.3);margin:12px 0 14px">— o déjanos tus datos —</div>
       <div style="display:flex;flex-direction:column;gap:8px">
         <input class="inp" id="req-name" type="text" placeholder="Tu nombre" autocomplete="off">
         <input class="inp" id="req-contact" type="text" placeholder="Tu WhatsApp, Instagram o teléfono" autocomplete="off">
