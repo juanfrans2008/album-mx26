@@ -298,6 +298,33 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;-we
 #screen-landing .landing-logo .g{color:#D4A017 !important;background:none !important;-webkit-text-fill-color:#D4A017 !important}
 #screen-landing .landing-eyebrow{color:rgba(255,255,255,0.8) !important}
 
+/* ── PROMO BANNER ── */
+.promo-banner{
+  display:flex;align-items:center;gap:12px;
+  background:linear-gradient(135deg,rgba(0,166,81,0.12),rgba(212,160,23,0.12),rgba(206,17,38,0.12));
+  border:1px solid rgba(212,160,23,0.4);
+  border-radius:14px;padding:12px 14px;
+  width:100%;max-width:300px;margin:0 auto 14px;
+  position:relative;z-index:2;
+  box-shadow:0 4px 20px rgba(212,160,23,0.15);
+  animation:promoGlow 3s ease-in-out infinite;
+}
+@keyframes promoGlow{0%,100%{box-shadow:0 4px 20px rgba(212,160,23,0.15)}50%{box-shadow:0 4px 28px rgba(212,160,23,0.35)}}
+.promo-sparkle{
+  font-size:28px;flex-shrink:0;
+  animation:ballBounce 2s ease-in-out infinite;
+}
+@keyframes ballBounce{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-4px) rotate(5deg)}}
+.promo-body{flex:1;text-align:left;line-height:1.4}
+.promo-label{
+  font-size:9px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;
+  color:#D4A017;margin-bottom:3px;
+}
+.promo-title{
+  font-size:12px;color:rgba(255,255,255,0.9);line-height:1.4;
+}
+.promo-title strong{color:#D4A017;font-weight:800}
+
 /* ── MOBILE COMPACT LANDING ── */
 #screen-landing .landing-nav{padding:12px 16px}
 #screen-landing .landing-hero{padding:4px 20px 0}
@@ -746,6 +773,15 @@ body.show-app   #screen-app     { display: block !important; }
       Registra tus estampas, encuentra coleccionistas y <strong>haz cambios directamente en la app.</strong>
     </p>
 
+    <!-- PROMO BANNER -->
+    <div class="promo-banner">
+      <div class="promo-sparkle">⚽</div>
+      <div class="promo-body">
+        <div class="promo-label">Premio exclusivo</div>
+        <div class="promo-title">El primero en completar el álbum se gana un <strong>balón oficial del Mundial 2026</strong></div>
+      </div>
+    </div>
+
     <button class="btn-cta" onclick="window.open('https://wa.me/526624333876?text=Hola!%20Quiero%20un%20código%20para%20MiAlbum%202026','_blank')">
       🏆 QUIERO MI CÓDIGO
     </button>
@@ -788,20 +824,19 @@ body.show-app   #screen-app     { display: block !important; }
 
   <!-- Contact section -->
   <div style="padding:0 16px 40px">
-    <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:22px;text-align:center">
-      <div style="font-family:'Bebas Neue',sans-serif;font-size:24px;background:var(--goldg);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:.04em;margin-bottom:6px">¿NO TIENES CÓDIGO?</div>
-      <div style="font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:18px;line-height:1.6">Escríbenos o déjanos tus datos y te contactamos</div>
-      <button class="btn-cta" style="margin-bottom:10px;font-size:17px;padding:13px"
-        onclick="window.open('https://wa.me/526624333876?text=Hola!%20Quiero%20un%20código%20para%20MiAlbum%202026','_blank')">
-        📲 WHATSAPP 662 433 3876
-      </button>
-      <div style="font-size:12px;color:rgba(255,255,255,0.3);margin:12px 0 14px">— o déjanos tus datos —</div>
+    <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:22px">
+      <div style="text-align:center">
+        <div style="font-family:'Bebas Neue',sans-serif;font-size:24px;background:var(--goldg);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;letter-spacing:.04em;margin-bottom:6px">¿NO TIENES CÓDIGO?</div>
+        <div style="font-size:13px;color:rgba(255,255,255,0.4);margin-bottom:18px;line-height:1.6">Contacta a tu representante más cercano</div>
+      </div>
+      <div id="reps-grid" style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px"></div>
+      <div style="font-size:12px;color:rgba(255,255,255,0.3);text-align:center;margin:6px 0 10px">— o déjanos tus datos y te contactamos —</div>
       <div style="display:flex;flex-direction:column;gap:8px">
         <input class="inp" id="req-name" type="text" placeholder="Tu nombre" autocomplete="off">
         <input class="inp" id="req-contact" type="text" placeholder="Tu WhatsApp, Instagram o teléfono" autocomplete="off">
         <button class="btn-primary" style="font-size:16px;padding:12px" onclick="submitCodeRequest()">SOLICITAR MI CÓDIGO</button>
       </div>
-      <div id="req-success" style="display:none;margin-top:12px;color:var(--green);font-size:13px;font-weight:600">✓ Solicitud enviada, te contactamos pronto.</div>
+      <div id="req-success" style="display:none;margin-top:12px;color:var(--green);font-size:13px;font-weight:600;text-align:center">✓ Solicitud enviada, te contactamos pronto.</div>
     </div>
   </div>
 </div>
@@ -841,6 +876,11 @@ body.show-app   #screen-app     { display: block !important; }
         <option value="Irlandés Hermosillo">Irlandés Hermosillo</option>
         <option value="Tec de Monterrey Hermosillo">Tec de Monterrey Hermosillo</option>
         <option value="Campogrande">Campogrande</option>
+        <option value="Senda">Senda</option>
+        <option value="Vera">Vera</option>
+        <option value="CDI">CDI</option>
+        <option value="Regis">Regis</option>
+        <option value="Guadalajara">Guadalajara</option>
         <option value="Tec de Monterrey Obregón">Tec de Monterrey Obregón</option>
         <option value="Otra">Otra</option>
       </select>
@@ -1070,6 +1110,31 @@ body.show-app   #screen-app     { display: block !important; }
           <div id="adm-users-list" style="display:flex;flex-direction:column;gap:6px;max-height:250px;overflow-y:auto"></div>
         </div>
 
+        <!-- Reps management -->
+        <div class="admin-card">
+          <h3>👥 Representantes</h3>
+          <p style="font-size:13px;color:var(--muted);margin-bottom:12px;line-height:1.6">Reps que aparecen en la portada para que los clientes los contacten.</p>
+          <div class="admin-row" style="flex-direction:column;gap:8px;align-items:stretch;margin-bottom:10px">
+            <input class="inp" id="rep-name-inp" type="text" placeholder="Nombre del rep" autocomplete="off">
+            <select id="rep-school-inp" class="inp" style="cursor:pointer">
+              <option value="">Escuela...</option>
+              <option value="Irlandés Hermosillo">Irlandés Hermosillo</option>
+              <option value="Tec de Monterrey Hermosillo">Tec de Monterrey Hermosillo</option>
+              <option value="Campogrande">Campogrande</option>
+              <option value="Senda">Senda</option>
+              <option value="Vera">Vera</option>
+              <option value="CDI">CDI</option>
+              <option value="Regis">Regis</option>
+              <option value="Guadalajara">Guadalajara</option>
+              <option value="Tec Obregón">Tec Obregón</option>
+              <option value="Otros">Otros</option>
+            </select>
+            <input class="inp" id="rep-wa-inp" type="tel" placeholder="WhatsApp con lada (ej. 526621234567)" autocomplete="off">
+            <button class="btn-sm gold" onclick="addRep()">➕ AGREGAR REP</button>
+          </div>
+          <div id="reps-admin-list" style="display:flex;flex-direction:column;gap:6px;max-height:300px;overflow-y:auto"></div>
+        </div>
+
         <!-- Code requests -->
         <div class="admin-card">
           <h3>📩 Solicitudes de Código</h3>
@@ -1146,6 +1211,7 @@ async function init() {
   // Show landing by default
   document.body.classList.remove('show-setup','show-app');
   loadUserCount();
+  loadReps();
 
   // Check for admin access via URL hash
   if (window.location.hash === '#admin') {
@@ -1521,12 +1587,17 @@ function startInboxListener(){
   if(inboxListener){inboxListener();inboxListener=null;}
   inboxListener=db.collection('chats')
     .where('participants','array-contains',myUid)
-    .orderBy('lastAt','desc')
     .onSnapshot(snap=>{
       inboxChats=[];
       snap.forEach(doc=>inboxChats.push({id:doc.id,...doc.data()}));
+      // Sort client-side by lastAt descending
+      inboxChats.sort((a,b)=>{
+        const ta = a.lastAt ? a.lastAt.toMillis() : 0;
+        const tb = b.lastAt ? b.lastAt.toMillis() : 0;
+        return tb - ta;
+      });
       renderInbox(); updateChatBadge();
-    },err=>console.error(err));
+    },err=>console.error('Inbox listener error:',err));
 }
 
 function renderInbox(){
@@ -1617,7 +1688,103 @@ async function loadAdminData() {
       });
     }
     adminLoaded = true;
+    loadRepsAdmin();
   } catch(e) { console.error(e); }
+}
+
+async function loadRepsAdmin() {
+  const list = g('reps-admin-list');
+  if (!list) return;
+  try {
+    const snap = await db.collection('reps').orderBy('order','asc').get();
+    if (snap.empty) {
+      list.innerHTML = '<div style="color:var(--muted);font-size:13px;padding:8px 0">No hay reps guardados. Usa los 5 default o agrega nuevos.</div>';
+      return;
+    }
+    const reps = [];
+    snap.forEach(doc => reps.push({ id: doc.id, ...doc.data() }));
+    list.innerHTML = reps.map(r => `
+      <div class="code-row" style="justify-content:space-between">
+        <div style="min-width:0;flex:1">
+          <div style="font-weight:700;font-size:13px;color:var(--text)">${escH(r.name)}</div>
+          <div style="font-size:11px;color:var(--muted)">${escH(r.school)} · ${escH(r.whatsapp)}</div>
+        </div>
+        <button onclick="deleteRep('${r.id}','${escH(r.name).replace(/'/g,'&#39;')}')"
+          style="background:var(--rbg);border:1px solid var(--rbdr);color:var(--red);font-size:12px;font-weight:700;border-radius:8px;padding:6px 10px;cursor:pointer;flex-shrink:0">
+          Eliminar
+        </button>
+      </div>`).join('');
+  } catch(e) { console.error(e); }
+}
+
+async function addRep() {
+  const name     = g('rep-name-inp').value.trim();
+  const school   = g('rep-school-inp').value;
+  const whatsapp = g('rep-wa-inp').value.trim().replace(/\D/g,'');
+  if (!name || !school || !whatsapp) { toast('Llena todos los campos'); return; }
+  if (whatsapp.length < 10) { toast('WhatsApp inválido'); return; }
+  try {
+    // Get current count for ordering
+    const snap = await db.collection('reps').get();
+    await db.collection('reps').add({
+      name, school, whatsapp,
+      order: snap.size,
+      createdAt: firebase.firestore.FieldValue.serverTimestamp()
+    });
+    toast('✅ Rep agregado');
+    g('rep-name-inp').value = '';
+    g('rep-school-inp').value = '';
+    g('rep-wa-inp').value = '';
+    loadRepsAdmin();
+  } catch(e) { toast('Error agregando rep'); console.error(e); }
+}
+
+async function deleteRep(id, name) {
+  if (!confirm(`¿Eliminar a ${name} de los reps?`)) return;
+  try {
+    await db.collection('reps').doc(id).delete();
+    toast('✅ Rep eliminado');
+    loadRepsAdmin();
+  } catch(e) { toast('Error eliminando'); console.error(e); }
+}
+
+async function loadReps() {
+  const grid = g('reps-grid');
+  if (!grid) return;
+
+  // Default reps (can be overridden in admin)
+  const defaultReps = [
+    { name: 'Alex Tonella',     school: 'Campogrande',       whatsapp: '526625227619' },
+    { name: 'Santiago Salido',  school: 'Irlandés Hermosillo', whatsapp: '526623003581' },
+    { name: 'Toño Gándara',     school: 'Tec Obregón',       whatsapp: '526441001010' },
+    { name: 'Toño González',    school: 'Guadalajara',       whatsapp: '526622752603' },
+    { name: 'JuanFran Salazar', school: 'Otros',             whatsapp: '526624333876' }
+  ];
+
+  let reps = defaultReps;
+
+  // Try to load custom reps from Firebase
+  try {
+    const snap = await db.collection('reps').orderBy('order','asc').get();
+    if (!snap.empty) {
+      reps = [];
+      snap.forEach(doc => reps.push({ id: doc.id, ...doc.data() }));
+    }
+  } catch(e) { /* fall back to defaults */ }
+
+  grid.innerHTML = reps.map(r => {
+    const msg = encodeURIComponent('Hola ' + r.name + '! Quiero un código para MiAlbum 2026');
+    const initials = r.name.trim().split(' ').slice(0,2).map(w=>w[0]||'').join('').toUpperCase();
+    return `<a href="https://wa.me/${r.whatsapp.replace(/\D/g,'')}?text=${msg}" target="_blank"
+      style="display:flex;align-items:center;gap:12px;background:rgba(37,211,102,0.08);border:1px solid rgba(37,211,102,0.25);border-radius:12px;padding:11px 13px;text-decoration:none;transition:background .15s">
+      <div style="width:38px;height:38px;border-radius:11px;background:#25d366;color:#000;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:15px;flex-shrink:0">${escH(initials)}</div>
+      <div style="flex:1;min-width:0">
+        <div style="font-weight:700;font-size:14px;color:#fff">${escH(r.name)}</div>
+        <div style="font-size:11px;color:rgba(255,255,255,0.5)">${escH(r.school)}</div>
+      </div>
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="#25d366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+    </a>`;
+  }).join('');
 }
 
 async function loadUserCount() {
@@ -1647,17 +1814,76 @@ async function searchUsers() {
     });
     if (!results.length) { list.innerHTML = '<div style="color:var(--muted);font-size:13px;padding:8px 0">Sin resultados</div>'; return; }
     list.innerHTML = results.map(u => `
-      <div class="code-row" style="justify-content:space-between">
-        <div>
-          <div style="font-weight:700;font-size:13px;color:var(--text)">${escH(u.name)}</div>
-          <div style="font-size:11px;color:var(--muted)">${escH(u.whatsapp||'')} · ${escH(u.school||'')} · ${escH(u.grade||'')}</div>
+      <div class="code-row" style="flex-direction:column;align-items:stretch;gap:8px">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:8px">
+          <div style="min-width:0;flex:1">
+            <div style="font-weight:700;font-size:13px;color:var(--text)">${escH(u.name)}</div>
+            <div style="font-size:11px;color:var(--muted)">${escH(u.whatsapp||'')} · ${escH(u.school||'—')} · ${escH(u.grade||'—')}</div>
+          </div>
+          <div style="display:flex;gap:6px;flex-shrink:0">
+            <button onclick="editUser('${u.id}','${escH(u.name).replace(/'/g,'&#39;')}','${escH(u.school||'').replace(/'/g,'&#39;')}','${escH(u.grade||'').replace(/'/g,'&#39;')}')"
+              style="background:var(--goldbg);border:1px solid var(--goldbdr);color:var(--gold);font-size:12px;font-weight:700;border-radius:8px;padding:6px 10px;cursor:pointer">
+              Editar
+            </button>
+            <button onclick="deleteUser('${u.id}','${escH(u.name).replace(/'/g,'&#39;')}','${u.accessCode||''}')"
+              style="background:var(--rbg);border:1px solid var(--rbdr);color:var(--red);font-size:12px;font-weight:700;border-radius:8px;padding:6px 10px;cursor:pointer">
+              Eliminar
+            </button>
+          </div>
         </div>
-        <button onclick="deleteUser('${u.id}','${escH(u.name)}','${u.accessCode||''}')"
-          style="background:var(--rbg);border:1px solid var(--rbdr);color:var(--red);font-size:12px;font-weight:700;border-radius:8px;padding:6px 10px;cursor:pointer;flex-shrink:0">
-          Eliminar
-        </button>
+        <div id="edit-form-${u.id}" style="display:none;background:var(--s2);border-radius:10px;padding:10px;gap:8px;flex-direction:column">
+          <select id="edit-school-${u.id}" class="inp" style="font-size:13px">
+            <option value="Irlandés Hermosillo">Irlandés Hermosillo</option>
+            <option value="Tec de Monterrey Hermosillo">Tec de Monterrey Hermosillo</option>
+            <option value="Campogrande">Campogrande</option>
+            <option value="Senda">Senda</option>
+            <option value="Vera">Vera</option>
+            <option value="CDI">CDI</option>
+            <option value="Regis">Regis</option>
+            <option value="Guadalajara">Guadalajara</option>
+            <option value="Tec de Monterrey Obregón">Tec de Monterrey Obregón</option>
+            <option value="Otra">Otra</option>
+          </select>
+          <select id="edit-grade-${u.id}" class="inp" style="font-size:13px">
+            <option value="Primaria">Primaria</option>
+            <option value="Secundaria">Secundaria</option>
+            <option value="Preparatoria">Preparatoria</option>
+            <option value="Otra">Otra</option>
+          </select>
+          <button onclick="saveUserEdit('${u.id}')"
+            style="background:var(--gold);color:#000;font-size:13px;font-weight:700;border:none;border-radius:8px;padding:10px;cursor:pointer">
+            Guardar cambios
+          </button>
+        </div>
       </div>`).join('');
   } catch(e) { console.error(e); }
+}
+
+function editUser(uid, name, currentSchool, currentGrade) {
+  const form = document.getElementById('edit-form-' + uid);
+  if (!form) return;
+  if (form.style.display === 'none') {
+    form.style.display = 'flex';
+    const schoolSel = document.getElementById('edit-school-' + uid);
+    const gradeSel  = document.getElementById('edit-grade-' + uid);
+    if (currentSchool) schoolSel.value = currentSchool;
+    if (currentGrade)  gradeSel.value  = currentGrade;
+  } else {
+    form.style.display = 'none';
+  }
+}
+
+async function saveUserEdit(uid) {
+  const school = document.getElementById('edit-school-' + uid).value;
+  const grade  = document.getElementById('edit-grade-' + uid).value;
+  try {
+    await db.collection('users').doc(uid).update({
+      school, grade, city: school,
+      updatedAt: firebase.firestore.FieldValue.serverTimestamp()
+    });
+    toast('✅ Usuario actualizado');
+    searchUsers();
+  } catch(e) { toast('Error actualizando'); console.error(e); }
 }
 
 async function deleteUser(uid, name, code) {
