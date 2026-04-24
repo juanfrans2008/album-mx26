@@ -1524,12 +1524,22 @@ function buildMatch() {
     const recv=iGet.slice(0,30).join(', ')+(iGet.length>30?' …':'');
     const send=iGive.slice(0,30).join(', ')+(iGive.length>30?' …':'');
     const msg=`Hola ${u.name}! 👋 Vi tu álbum en MiAlbum 2026.\n\n🟢 Necesito de ti: ${recv||'ninguna'}\n🟡 Te puedo dar: ${send||'ninguna'}\n\n🔄 ¡${bal} cambio${bal!==1?'s':''} posible${bal!==1?'s':''}! ¿Le entramos? 😄`;
-    window.open(`https://wa.me/${u.whatsapp.replace(/\D/g,'')}?text=${encodeURIComponent(msg)}`,'_blank');
+    window.open(`https://wa.me/${normalizeMxPhone(u.whatsapp)}?text=${encodeURIComponent(msg)}`,'_blank');
   };
   g('btn-open-chat').onclick=()=>{chatBackDest='match';openChat(u);};
 }
 
 /* ════════════════ CHAT ════════════════ */
+function normalizeMxPhone(num) {
+  const digits = String(num || '').replace(/\D/g,'');
+  // Already has Mexico country code
+  if (digits.startsWith('52') && digits.length >= 12) return digits;
+  // 10-digit local Mexican number -> prepend 52
+  if (digits.length === 10) return '52' + digits;
+  // Anything else, return as-is (they typed country code themselves)
+  return digits;
+}
+
 function chatId(a,b){return[a,b].sort().join('_')}
 
 function openChat(user){
@@ -1775,7 +1785,7 @@ async function loadReps() {
   grid.innerHTML = reps.map(r => {
     const msg = encodeURIComponent('Hola ' + r.name + '! Quiero un código para MiAlbum 2026');
     const initials = r.name.trim().split(' ').slice(0,2).map(w=>w[0]||'').join('').toUpperCase();
-    return `<a href="https://wa.me/${r.whatsapp.replace(/\D/g,'')}?text=${msg}" target="_blank"
+    return `<a href="https://wa.me/${normalizeMxPhone(r.whatsapp)}?text=${msg}" target="_blank"
       style="display:flex;align-items:center;gap:12px;background:rgba(37,211,102,0.08);border:1px solid rgba(37,211,102,0.25);border-radius:12px;padding:11px 13px;text-decoration:none;transition:background .15s">
       <div style="width:38px;height:38px;border-radius:11px;background:#25d366;color:#000;display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:15px;flex-shrink:0">${escH(initials)}</div>
       <div style="flex:1;min-width:0">
