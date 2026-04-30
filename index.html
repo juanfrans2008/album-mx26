@@ -37,7 +37,7 @@
   --blue:  #2B6DB5;
   --bbg:   #070f1a;
   --bbdr:  rgba(43,109,181,0.35);
-  --nav: 58px;
+  --nav: 72px;
 }
 html,body{height:100%;overflow:hidden}
 body{background:#0a0a0a;color:var(--text);font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased}
@@ -280,12 +280,13 @@ border-radius:10px;padding:8px 4px;text-align:center;
 .pills::-webkit-scrollbar{display:none}
 .pill{
 flex-shrink:0;padding:5px 12px;border-radius:16px;
-border:1px solid rgba(255,255,255,0.09);background:transparent;
-color:var(–muted);font-family:‘DM Sans’,sans-serif;font-size:12px;font-weight:500;
+border:1px solid rgba(255,255,255,0.12);background:transparent;
+color:#888 !important;-webkit-text-fill-color:#888 !important;
+font-family:‘DM Sans’,sans-serif;font-size:12px;font-weight:500;
 cursor:pointer;white-space:nowrap;transition:all .15s;
 -webkit-appearance:none;appearance:none;
 }
-.pill.on{background:#D4A017;border-color:#D4A017;color:#000;font-weight:700}
+.pill.on{background:#D4A017;border-color:#D4A017;color:#000 !important;-webkit-text-fill-color:#000 !important;font-weight:700}
 
 /* ──────── ALBUM SECTIONS (NEW) ──────── */
 .album-tools{display:flex;gap:6px;padding:8px 10px 4px}
