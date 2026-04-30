@@ -21,7 +21,7 @@
   --b2:    rgba(255,255,255,0.12);
   --b3:    rgba(255,255,255,0.20);
   --text:  #f0f0f0;
-  --muted: #5a5a7a;
+  --muted: #666666;
   --dim:   #252535;
   --gold:  #D4A017;
   --gold2: #F0C040;
@@ -360,10 +360,10 @@ padding:2px;gap:1px;
 .s2:active{transform:scale(.84)}
 .s2 .s2-code{font-size:8px;font-weight:600;opacity:.7;letter-spacing:.04em;line-height:1}
 .s2 .s2-num{font-family:‘Bebas Neue’,sans-serif;font-size:22px;line-height:1}
-.s2.m{background:#222230;color:var(–dim);border-color:var(–b1)}
-.s2.m .s2-code{color:var(–muted)}
-.s2.o{background:var(–gbg);color:var(–green);border-color:var(–gbdr)}
-.s2.d{background:var(–goldbg);color:var(–gold);border-color:var(–goldbdr)}
+.s2.m{background:#1e1e1e;color:#444;border-color:rgba(255,255,255,0.07)}
+.s2.m .s2-code{color:#444}
+.s2.o{background:#071a0e;color:#2E9E5B;border-color:rgba(46,158,91,0.4)}
+.s2.d{background:#2d1f00;color:#F5C800;border-color:rgba(245,200,0,0.5);box-shadow:0 0 6px rgba(245,200,0,0.2)}
 
 .empty-state{display:none;text-align:center;padding:60px 20px;color:var(–muted);font-size:14px}
 
@@ -536,7 +536,7 @@ background:#111117;border-top:1px solid rgba(255,255,255,0.08);display:flex;z-in
 }
 .nav-btn{
 flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
-background:none;border:none;color:var(–muted);font-family:‘DM Sans’,sans-serif;
+background:none;border:none;color:#666;font-family:‘DM Sans’,sans-serif;
 font-size:10px;font-weight:500;cursor:pointer;-webkit-tap-highlight-color:transparent;
 transition:color .15s;position:relative;-webkit-appearance:none;appearance:none;
 }
