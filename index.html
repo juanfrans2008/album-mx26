@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="es">
 <head>
 <meta charset="UTF-8">
@@ -11,7 +12,6 @@
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  /* ── WC26 Official Palette ── */
   --bg:    #050508;
   --s1:    #0d0d14;
   --s2:    #141419;
@@ -23,182 +23,103 @@
   --text:  #f0f0f0;
   --muted: #5a5a7a;
   --dim:   #252535;
-
-  /* Trophy Gold */
-  --gold:  #C9A43E;
-  --gold2: #E8C547;
-  --goldg: linear-gradient(135deg,#C9A43E 0%,#E8C547 50%,#C9A43E 100%);
-  --goldbg:#1a1508;
-  --goldbdr:rgba(201,164,62,0.3);
-
-  /* Mexico Green */
-  --green: #00A651;
-  --gbg:   #001a0e;
-  --gbdr:  rgba(0,166,81,0.3);
-
-  /* Mexico Red */
-  --red:   #CE1126;
-  --rbg:   #1a0005;
-  --rbdr:  rgba(206,17,38,0.3);
-
-  /* Chat Blue */
-  --blue:  #3b82f6;
-  --bbg:   #0a1628;
-  --bbdr:  rgba(59,130,246,0.3);
-
-  --nav: 58px;
-}
-html,body{height:100%;overflow:hidden}
-body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased}
-
-/* ════════════════════════════════
-   WC2026 OFFICIAL MULTICOLOR PALETTE
-════════════════════════════════ */
-:root{
-  --bg:    #0a0a0a;
-  --s1:    #111111;
-  --s2:    #1a1a1a;
-  --s3:    #222222;
-  --s4:    #2a2a2a;
-  --b1:    rgba(255,255,255,0.08);
-  --b2:    rgba(255,255,255,0.15);
-  --b3:    rgba(255,255,255,0.22);
-  --text:  #f5f5f5;
-  --muted: #666666;
-  --dim:   #333333;
-
-  /* Trophy Gold */
   --gold:  #D4A017;
   --gold2: #F0C040;
   --goldg: linear-gradient(135deg,#B8860B 0%,#FFD700 45%,#DAA520 70%,#B8860B 100%);
   --goldbg:#1a1200;
   --goldbdr:rgba(212,160,23,0.35);
-
-  /* WC26 Official Colors */
-  --wc-red:    #E8392A;
-  --wc-blue:   #2B6DB5;
-  --wc-green:  #2E9E5B;
-  --wc-yellow: #F5C800;
-  --wc-teal:   #1B9E8E;
-  --wc-orange: #F07020;
-  --wc-purple: #7B3FA0;
-
-  /* Mexico Green for stickers */
   --green: #2E9E5B;
   --gbg:   #071a0e;
   --gbdr:  rgba(46,158,91,0.35);
-
   --red:   #E8392A;
   --rbg:   #1a0500;
   --rbdr:  rgba(232,57,42,0.35);
-
   --blue:  #2B6DB5;
   --bbg:   #070f1a;
   --bbdr:  rgba(43,109,181,0.35);
-
   --nav: 58px;
 }
+html,body{height:100%;overflow:hidden}
+body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased}
 
-/* ════════════════════════════════
-   SOCCER BALL & ANIMATIONS
-════════════════════════════════ */
 .ball-wrap{position:relative;width:110px;height:110px;margin:0 auto 10px;flex-shrink:0}
 .soccer-ball{width:110px;height:110px;animation:ballSpin 14s linear infinite;filter:drop-shadow(0 8px 24px rgba(0,0,0,0.4)) drop-shadow(0 0 20px rgba(212,160,23,0.3))}
 @keyframes ballSpin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
 .ball-glow{position:absolute;inset:-20px;border-radius:50%;background:radial-gradient(circle,rgba(212,160,23,0.15) 0%,transparent 65%);animation:glowPulse 2.5s ease-in-out infinite;pointer-events:none}
 @keyframes glowPulse{0%,100%{opacity:.4;transform:scale(1)}50%{opacity:.9;transform:scale(1.1)}}
 
-/* Floating color blobs like the official album */
-.blob{position:absolute;border-radius:50%;filter:blur(40px);opacity:.25;pointer-events:none;animation:blobFloat 6s ease-in-out infinite}
 @keyframes blobFloat{0%,100%{transform:translateY(0) scale(1)}50%{transform:translateY(-12px) scale(1.05)}}
 
-/* Mexico stripe */
 .mx-stripe{display:flex;height:4px;width:90px;border-radius:2px;overflow:hidden;margin:0 auto 22px;gap:2px}
 .mx-stripe div{flex:1;border-radius:1px}
 
-/* ════════════════════════════════
-   LANDING PAGE
-════════════════════════════════ */
 #screen-landing{
-  height:100%;
-  overflow-y:scroll;
-  overflow-x:hidden;
-  -webkit-overflow-scrolling:touch;
-  display:flex;
-  flex-direction:column;
-  background:#0a0a0a;
-  position:relative;
+height:100%;
+overflow-y:scroll;
+overflow-x:hidden;
+-webkit-overflow-scrolling:touch;
+display:flex;
+flex-direction:column;
+background:#0a0a0a;
+position:relative;
 }
 .landing-nav{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:18px 22px;flex-shrink:0;position:relative;z-index:2;
+display:flex;align-items:center;justify-content:space-between;
+padding:18px 22px;flex-shrink:0;position:relative;z-index:2;
 }
-.landing-logo{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.06em}
-.landing-logo .g{background:var(--goldg);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.landing-logo{font-family:‘Bebas Neue’,sans-serif;font-size:22px;letter-spacing:.06em}
+.landing-logo .g{background:var(–goldg);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .landing-eyebrow{
-  display:inline-flex;align-items:center;gap:7px;
-  background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);
-  border-radius:20px;padding:5px 14px;
-  font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
-  color:rgba(255,255,255,0.7);margin-bottom:20px;position:relative;z-index:2;
+display:inline-flex;align-items:center;gap:7px;
+background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);
+border-radius:20px;padding:5px 14px;
+font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+color:rgba(255,255,255,0.7);margin-bottom:20px;position:relative;z-index:2;
 }
 .landing-h1{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(72px,21vw,115px);
-  line-height:.80;letter-spacing:.01em;margin-bottom:14px;
-  position:relative;z-index:2;text-align:center;
+font-family:‘Bebas Neue’,sans-serif;
+font-size:clamp(72px,21vw,115px);
+line-height:.80;letter-spacing:.01em;margin-bottom:14px;
+position:relative;z-index:2;text-align:center;
 }
 .landing-h1 .line1{color:#fff;display:block}
 .landing-h1 .line2{
-  background:var(--goldg);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-  display:block;
+background:var(–goldg);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+display:block;
 }
 .landing-h1 .line3{color:#fff;display:block}
 .landing-sub{
-  font-size:15px;color:rgba(255,255,255,0.55);line-height:1.6;
-  max-width:290px;margin:0 auto 28px;text-align:center;position:relative;z-index:2;
+font-size:15px;color:rgba(255,255,255,0.55);line-height:1.6;
+max-width:290px;margin:0 auto 28px;text-align:center;position:relative;z-index:2;
 }
 .landing-sub strong{color:#fff}
 .btn-cta{
-  background:var(--goldg);color:#000;border:none;border-radius:14px;
-  padding:17px 36px;font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.08em;
-  cursor:pointer;box-shadow:0 8px 36px rgba(212,160,23,.45);
-  transition:opacity .15s,transform .1s;margin-bottom:12px;width:100%;max-width:300px;
-  position:relative;z-index:2;
+background:var(–goldg);color:#000;border:none;border-radius:14px;
+padding:17px 36px;font-family:‘Bebas Neue’,sans-serif;font-size:22px;letter-spacing:.08em;
+cursor:pointer;box-shadow:0 8px 36px rgba(212,160,23,.45);
+transition:opacity .15s,transform .1s;margin-bottom:12px;width:100%;max-width:300px;
+position:relative;z-index:2;
 }
 .btn-cta:active{opacity:.88;transform:scale(.98)}
 .btn-cta-secondary{
-  background:rgba(255,255,255,0.08);border:2px solid rgba(255,255,255,0.25);border-radius:14px;
-  padding:13px 36px;font-family:'DM Sans',sans-serif;font-size:15px;font-weight:700;
-  color:#fff;cursor:pointer;transition:all .15s;
-  width:100%;max-width:300px;position:relative;z-index:2;margin-bottom:8px;
+background:rgba(255,255,255,0.08);border:2px solid rgba(255,255,255,0.25);border-radius:14px;
+padding:13px 36px;font-family:‘DM Sans’,sans-serif;font-size:15px;font-weight:700;
+color:#fff;cursor:pointer;transition:all .15s;
+width:100%;max-width:300px;position:relative;z-index:2;margin-bottom:8px;
 }
-.btn-cta-secondary:active{border-color:var(--gold);color:var(--gold)}
+.btn-cta-secondary:active{border-color:var(–gold);color:var(–gold)}
 .landing-hero{
-  flex-shrink:0;display:flex;flex-direction:column;align-items:center;
-  padding:10px 24px 0;text-align:center;position:relative;
+flex-shrink:0;display:flex;flex-direction:column;align-items:center;
+padding:10px 24px 0;text-align:center;position:relative;
 }
 
-/* Color blob decorations */
-.blob-1{width:200px;height:200px;background:var(--wc-red);top:-60px;right:-60px;animation-delay:0s}
-.blob-2{width:160px;height:160px;background:var(--wc-blue);top:80px;left:-70px;animation-delay:2s}
-.blob-3{width:120px;height:120px;background:var(--wc-green);bottom:20px;right:-40px;animation-delay:4s}
-.blob-4{width:100px;height:100px;background:var(--wc-yellow);bottom:-20px;left:20px;animation-delay:1s}
-
-/* Color strips like album cover */
-.color-bar{
-  display:flex;height:5px;width:100%;margin:24px 0 0;gap:0;flex-shrink:0;position:relative;z-index:2;
-}
-.color-bar div{flex:1}
-
-/* Features */
 .landing-features{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:8px;padding:20px 16px 16px;position:relative;z-index:2;
+display:grid;grid-template-columns:repeat(3,1fr);
+gap:8px;padding:20px 16px 16px;position:relative;z-index:2;
 }
 .feat{
-  border-radius:16px;padding:14px 10px;text-align:center;
-  border:1px solid rgba(255,255,255,0.08);
+border-radius:16px;padding:14px 10px;text-align:center;
+border:1px solid rgba(255,255,255,0.08);
 }
 .feat:nth-child(1){background:rgba(232,57,42,0.1);border-color:rgba(232,57,42,0.2)}
 .feat:nth-child(2){background:rgba(43,109,181,0.1);border-color:rgba(43,109,181,0.2)}
@@ -207,125 +128,32 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;-we
 .feat-title{font-size:13px;font-weight:700;color:#fff;margin-bottom:3px}
 .feat-desc{font-size:11px;color:rgba(255,255,255,0.45);line-height:1.4}
 
-.btn-nav-code{display:none}
-.landing-footer{display:none}
-#screen-landing{
-  height:100%;overflow-y:auto;
-  display:flex;flex-direction:column;
-  background:
-    radial-gradient(ellipse 120% 60% at 50% -5%,rgba(201,164,62,0.15) 0%,transparent 55%),
-    radial-gradient(ellipse 80% 50% at 100% 100%,rgba(0,166,81,0.08) 0%,transparent 50%),
-    var(--bg);
-}
-.landing-nav{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:18px 22px;flex-shrink:0;
-}
-.landing-logo{font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.06em}
-.landing-logo .g{background:var(--goldg);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-.btn-nav-code{
-  background:var(--s2);border:1px solid var(--goldbdr);border-radius:20px;
-  padding:7px 16px;color:var(--gold);font-family:'DM Sans',sans-serif;
-  font-size:13px;font-weight:700;cursor:pointer;transition:background .15s;
-}
-.btn-nav-code:active{background:var(--s3)}
-.landing-hero{
-  flex:1;display:flex;flex-direction:column;align-items:center;
-  justify-content:center;padding:20px 24px 0;text-align:center;
-}
-.landing-eyebrow{
-  display:inline-flex;align-items:center;gap:7px;
-  background:var(--s2);border:1px solid var(--goldbdr);
-  border-radius:20px;padding:5px 14px;
-  font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--gold);margin-bottom:24px;
-}
-.landing-h1{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(70px,20vw,110px);
-  line-height:.82;letter-spacing:.01em;margin-bottom:12px;
-}
-.landing-h1 .line1{
-  background:var(--goldg);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-  display:block;
-}
-.landing-h1 .line2{color:var(--text);display:block}
-.landing-h1 .line3{
-  background:var(--goldg);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
-  display:block;
-}
-.landing-sub{
-  font-size:16px;color:var(--muted);line-height:1.6;
-  max-width:300px;margin:0 auto 32px;
-}
-.landing-sub strong{color:var(--text)}
-.btn-cta{
-  background:var(--goldg);color:#000;border:none;border-radius:14px;
-  padding:17px 36px;font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.08em;
-  cursor:pointer;box-shadow:0 8px 32px rgba(201,164,62,.3);
-  transition:opacity .15s,transform .1s;margin-bottom:14px;width:100%;max-width:300px;
-}
-.btn-cta:active{opacity:.88;transform:scale(.98)}
-.btn-cta-secondary{
-  background:transparent;border:1px solid var(--b2);border-radius:14px;
-  padding:14px 36px;font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;
-  color:var(--muted);cursor:pointer;transition:border-color .15s,color .15s;
-  width:100%;max-width:300px;
-}
-.btn-cta-secondary:active{border-color:var(--gold);color:var(--text)}
-.landing-features{
-  display:grid;grid-template-columns:repeat(3,1fr);
-  gap:10px;padding:32px 20px 40px;
-}
-.feat{
-  background:var(--s1);border:1px solid var(--b1);border-radius:16px;
-  padding:16px 12px;text-align:center;
-}
-.feat-icon{font-size:24px;margin-bottom:8px}
-.feat-title{font-size:13px;font-weight:700;color:var(--text);margin-bottom:4px}
-.feat-desc{font-size:11px;color:var(--muted);line-height:1.5}
-.landing-footer{
-  text-align:center;padding:0 20px 32px;
-  font-size:12px;color:var(--muted);line-height:1.8;
-}
-.landing-footer strong{color:var(--gold);cursor:pointer}
-
-/* ── TITLE & BUTTON SOLID COLOR FIX ── */
-#screen-landing .landing-h1 .line1{color:#fff !important;background:none !important;-webkit-text-fill-color:#fff !important}
-#screen-landing .landing-h1 .line2{color:#D4A017 !important;background:none !important;-webkit-text-fill-color:#D4A017 !important}
-#screen-landing .landing-h1 .line3{color:#fff !important;background:none !important;-webkit-text-fill-color:#fff !important}
-#screen-landing .btn-cta{background:#D4A017 !important;color:#000 !important}
-#screen-landing .landing-logo .g{color:#D4A017 !important;background:none !important;-webkit-text-fill-color:#D4A017 !important}
-#screen-landing .landing-eyebrow{color:rgba(255,255,255,0.8) !important}
-
-/* ── PROMO BANNER ── */
 .promo-banner{
-  display:flex;align-items:center;gap:12px;
-  background:linear-gradient(135deg,rgba(0,166,81,0.12),rgba(212,160,23,0.12),rgba(206,17,38,0.12));
-  border:1px solid rgba(212,160,23,0.4);
-  border-radius:14px;padding:12px 14px;
-  width:100%;max-width:300px;margin:0 auto 14px;
-  position:relative;z-index:2;
-  box-shadow:0 4px 20px rgba(212,160,23,0.15);
-  animation:promoGlow 3s ease-in-out infinite;
+display:flex;align-items:center;gap:12px;
+background:linear-gradient(135deg,rgba(0,166,81,0.12),rgba(212,160,23,0.12),rgba(206,17,38,0.12));
+border:1px solid rgba(212,160,23,0.4);
+border-radius:14px;padding:12px 14px;
+width:100%;max-width:300px;margin:0 auto 14px;
+position:relative;z-index:2;
+box-shadow:0 4px 20px rgba(212,160,23,0.15);
+animation:promoGlow 3s ease-in-out infinite;
 }
 @keyframes promoGlow{0%,100%{box-shadow:0 4px 20px rgba(212,160,23,0.15)}50%{box-shadow:0 4px 28px rgba(212,160,23,0.35)}}
 .promo-sparkle{
-  font-size:28px;flex-shrink:0;
-  animation:ballBounce 2s ease-in-out infinite;
+font-size:28px;flex-shrink:0;
+animation:ballBounce 2s ease-in-out infinite;
 }
 @keyframes ballBounce{0%,100%{transform:translateY(0) rotate(-5deg)}50%{transform:translateY(-4px) rotate(5deg)}}
 .promo-body{flex:1;text-align:left;line-height:1.4}
 .promo-label{
-  font-size:9px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;
-  color:#D4A017;margin-bottom:3px;
+font-size:9px;font-weight:800;letter-spacing:.15em;text-transform:uppercase;
+color:#D4A017;margin-bottom:3px;
 }
 .promo-title{
-  font-size:12px;color:rgba(255,255,255,0.9);line-height:1.4;
+font-size:12px;color:rgba(255,255,255,0.9);line-height:1.4;
 }
 .promo-title strong{color:#D4A017;font-weight:800}
 
-/* ── MOBILE COMPACT LANDING ── */
 #screen-landing .landing-nav{padding:12px 16px}
 #screen-landing .landing-hero{padding:4px 20px 0}
 #screen-landing .ball-wrap{width:100px;height:100px;margin-bottom:8px}
@@ -339,354 +167,391 @@ body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;-we
 #screen-landing .landing-features{padding:12px 12px 12px}
 #screen-landing .feat{padding:12px 8px}
 
-/* Screen switching */
 body.show-setup #screen-landing { display: none !important; }
 body.show-setup #screen-setup   { display: flex !important; flex-direction: column; align-items: center; justify-content: center; }
 body.show-app   #screen-landing { display: none !important; }
 body.show-app   #screen-setup   { display: none !important; }
 body.show-app   #screen-app     { display: block !important; }
 #screen-setup{
-  height:100%;overflow-y:auto;
-  display:none;flex-direction:column;align-items:center;justify-content:center;
-  padding:40px 20px;
-  background:
-    radial-gradient(ellipse 100% 60% at 50% -10%,rgba(201,164,62,0.12) 0%,transparent 60%),
-    radial-gradient(ellipse 60% 40% at 100% 100%,rgba(0,166,81,0.07) 0%,transparent 50%);
+height:100%;overflow-y:auto;
+display:none;flex-direction:column;align-items:center;justify-content:center;
+padding:40px 20px;
+background:
+radial-gradient(ellipse 100% 60% at 50% -10%,rgba(201,164,62,0.12) 0%,transparent 60%),
+radial-gradient(ellipse 60% 40% at 100% 100%,rgba(0,166,81,0.07) 0%,transparent 50%);
 }
 .landing-badge{
-  display:inline-flex;align-items:center;gap:7px;
-  background:var(--s2);border:1px solid var(--goldbdr);
-  border-radius:20px;padding:5px 14px;
-  font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--gold);margin-bottom:22px;
+display:inline-flex;align-items:center;gap:7px;
+background:var(–s2);border:1px solid var(–goldbdr);
+border-radius:20px;padding:5px 14px;
+font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+color:var(–gold);margin-bottom:22px;
 }
-.landing-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+.landing-badge .dot{width:6px;height:6px;border-radius:50%;background:var(–green);animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 .hero{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(62px,18vw,100px);
-  line-height:.84;text-align:center;
-  letter-spacing:.01em;margin-bottom:10px;
-  background:var(--goldg);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+font-family:‘Bebas Neue’,sans-serif;
+font-size:clamp(62px,18vw,100px);
+line-height:.84;text-align:center;
+letter-spacing:.01em;margin-bottom:10px;
+background:var(–goldg);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
 }
 .hero-sub{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:clamp(20px,5vw,28px);
-  color:var(--text);letter-spacing:.2em;text-transform:uppercase;
-  text-align:center;margin-bottom:36px;opacity:.7;
+font-family:‘Bebas Neue’,sans-serif;
+font-size:clamp(20px,5vw,28px);
+color:var(–text);letter-spacing:.2em;text-transform:uppercase;
+text-align:center;margin-bottom:36px;opacity:.7;
 }
 .setup-card{
-  background:var(--s1);
-  border:1px solid var(--b1);
-  border-radius:22px;padding:26px;
-  width:100%;max-width:360px;
-  display:flex;flex-direction:column;gap:16px;
-  box-shadow:0 0 60px rgba(201,164,62,0.06);
+background:var(–s1);
+border:1px solid var(–b1);
+border-radius:22px;padding:26px;
+width:100%;max-width:360px;
+display:flex;flex-direction:column;gap:16px;
+box-shadow:0 0 60px rgba(201,164,62,0.06);
 }
 .field{display:flex;flex-direction:column;gap:7px}
 .field label{
-  font-size:11px;font-weight:700;
-  color:var(--muted);text-transform:uppercase;letter-spacing:.12em;
+font-size:11px;font-weight:700;
+color:var(–muted);text-transform:uppercase;letter-spacing:.12em;
 }
 .inp{
-  background:var(--s2);border:1px solid var(--b1);border-radius:12px;
-  padding:13px 15px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:15px;
-  outline:none;-webkit-appearance:none;transition:border-color .2s,box-shadow .2s;width:100%;
+background:var(–s2);border:1px solid var(–b1);border-radius:12px;
+padding:13px 15px;color:var(–text);font-family:‘DM Sans’,sans-serif;font-size:15px;
+outline:none;-webkit-appearance:none;transition:border-color .2s,box-shadow .2s;width:100%;
 }
-.inp:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,164,62,.12)}
-.inp::placeholder{color:var(--dim)}
-.inp.error{border-color:var(--red);box-shadow:0 0 0 3px rgba(206,17,38,.12)}
+.inp:focus{border-color:var(–gold);box-shadow:0 0 0 3px rgba(201,164,62,.12)}
+.inp::placeholder{color:var(–dim)}
+.inp.error{border-color:var(–red);box-shadow:0 0 0 3px rgba(206,17,38,.12)}
 .code-field{position:relative}
 .code-field .inp{text-transform:uppercase;letter-spacing:.15em;font-weight:700;font-size:16px;padding-right:42px}
-.code-eye{position:absolute;right:12px;top:50%;transform:translateY(-50%);color:var(--muted);cursor:pointer;font-size:14px}
-.divider{display:flex;align-items:center;gap:10px;color:var(--muted);font-size:11px}
-.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--b1)}
+.code-eye{position:absolute;right:12px;top:50%;transform:translateY(-50%);color:var(–muted);cursor:pointer;font-size:14px}
+.divider{display:flex;align-items:center;gap:10px;color:var(–muted);font-size:11px}
+.divider::before,.divider::after{content:’’;flex:1;height:1px;background:var(–b1)}
 .btn-primary{
-  background:var(--goldg);color:#000;border:none;border-radius:13px;
-  padding:15px;font-family:'Bebas Neue',sans-serif;font-size:20px;letter-spacing:.08em;
-  cursor:pointer;margin-top:2px;transition:opacity .15s,transform .1s;
-  box-shadow:0 4px 24px rgba(201,164,62,.25);
+background:var(–goldg);color:#000;border:none;border-radius:13px;
+padding:15px;font-family:‘Bebas Neue’,sans-serif;font-size:20px;letter-spacing:.08em;
+cursor:pointer;margin-top:2px;transition:opacity .15s,transform .1s;
+box-shadow:0 4px 24px rgba(201,164,62,.25);
 }
 .btn-primary:active{opacity:.88;transform:scale(.98)}
-.hint{font-size:12px;color:var(--muted);text-align:center;line-height:1.7}
-.hint strong{color:var(--gold)}
-.error-msg{font-size:12px;color:var(--red);display:none;padding:2px 0}
+.hint{font-size:12px;color:var(–muted);text-align:center;line-height:1.7}
+.hint strong{color:var(–gold)}
+.error-msg{font-size:12px;color:var(–red);display:none;padding:2px 0}
 .error-msg.on{display:block}
 
-/* ════════════════════════════════
-   APP SHELL
-════════════════════════════════ */
 #screen-app{display:none;height:100%;position:relative}
-.tab{position:absolute;inset:0;bottom:var(--nav);display:none;flex-direction:column;overflow:hidden}
+.tab{position:absolute;inset:0;bottom:var(–nav);display:none;flex-direction:column;overflow:hidden}
 .tab.on{display:flex}
 .scroll{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch}
 
-/* ── HEADER ── */
-.hdr{background:var(--s1);border-bottom:1px solid var(--b1);padding:13px 16px 10px;flex-shrink:0}
+.hdr{background:var(–s1);border-bottom:1px solid var(–b1);padding:13px 16px 10px;flex-shrink:0}
 .hdr-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:11px}
-.logo{font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:.04em;line-height:1}
-.logo .g{background:var(--goldg);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.logo{font-family:‘Bebas Neue’,sans-serif;font-size:26px;letter-spacing:.04em;line-height:1}
+.logo .g{background:var(–goldg);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 .user-chip{
-  display:flex;align-items:center;gap:6px;
-  background:var(--s2);border:1px solid var(--b1);border-radius:20px;
-  padding:5px 11px;font-size:12px;font-weight:600;max-width:130px;
+display:flex;align-items:center;gap:6px;
+background:var(–s2);border:1px solid var(–b1);border-radius:20px;
+padding:5px 11px;font-size:12px;font-weight:600;max-width:130px;
 }
 .user-chip span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.dot-g{width:6px;height:6px;border-radius:50%;background:var(--green);flex-shrink:0}
+.dot-g{width:6px;height:6px;border-radius:50%;background:var(–green);flex-shrink:0}
 
-/* ── STATS ── */
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-bottom:10px}
 .sbox{
-  background:var(--s2);border:1px solid var(--b1);
-  border-radius:10px;padding:8px 4px;text-align:center;
+background:var(–s2);border:1px solid var(–b1);
+border-radius:10px;padding:8px 4px;text-align:center;
 }
-.snum{font-family:'Bebas Neue',sans-serif;font-size:23px;line-height:1}
-.snum.cg{color:var(--green)}.snum.co{color:var(--gold)}.snum.cr{color:var(--red)}.snum.cp{color:#818cf8}
-.slbl{font-size:9px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-top:1px}
-.prog-track{height:3px;background:var(--s3);border-radius:2px;overflow:hidden;margin-bottom:10px}
-.prog-fill{height:100%;background:var(--goldg);border-radius:2px;transition:width .5s cubic-bezier(.4,0,.2,1);width:0%}
+.snum{font-family:‘Bebas Neue’,sans-serif;font-size:23px;line-height:1}
+.snum.cg{color:var(–green)}.snum.co{color:var(–gold)}.snum.cr{color:var(–red)}.snum.cp{color:#818cf8}
+.slbl{font-size:9px;color:var(–muted);text-transform:uppercase;letter-spacing:.06em;margin-top:1px}
+.prog-track{height:3px;background:var(–s3);border-radius:2px;overflow:hidden;margin-bottom:10px}
+.prog-fill{height:100%;background:var(–goldg);border-radius:2px;transition:width .5s cubic-bezier(.4,0,.2,1);width:0%}
 
-/* ── PILLS ── */
 .pills{display:flex;gap:5px;overflow-x:auto;scrollbar-width:none;margin-bottom:10px}
 .pills::-webkit-scrollbar{display:none}
 .pill{
-  flex-shrink:0;padding:5px 12px;border-radius:16px;
-  border:1px solid var(--b1);background:transparent;
-  color:var(--muted);font-family:'DM Sans',sans-serif;font-size:12px;font-weight:500;
-  cursor:pointer;white-space:nowrap;transition:all .15s;
+flex-shrink:0;padding:5px 12px;border-radius:16px;
+border:1px solid var(–b1);background:transparent;
+color:var(–muted);font-family:‘DM Sans’,sans-serif;font-size:12px;font-weight:500;
+cursor:pointer;white-space:nowrap;transition:all .15s;
 }
-.pill.on{background:var(--gold);border-color:var(--gold);color:#000;font-weight:700}
+.pill.on{background:var(–gold);border-color:var(–gold);color:#000;font-weight:700}
 
-/* ── STICKER GRID ── */
-.s-grid{display:grid;grid-template-columns:repeat(10,1fr);gap:3px;padding:10px}
-.s{
-  aspect-ratio:1;border-radius:5px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:8px;font-weight:700;cursor:pointer;
-  user-select:none;-webkit-tap-highlight-color:transparent;
-  border:1px solid transparent;transition:transform .08s;
+/* ──────── ALBUM SECTIONS (NEW) ──────── */
+.album-tools{display:flex;gap:6px;padding:8px 10px 4px}
+.tool-btn{
+flex:1;background:var(–s2);border:1px solid var(–b1);border-radius:10px;
+padding:8px;color:var(–muted);font-family:‘DM Sans’,sans-serif;font-size:11px;font-weight:600;
+cursor:pointer;transition:border-color .15s,color .15s;
+display:flex;align-items:center;justify-content:center;gap:5px;
 }
-.s:active{transform:scale(.76)}
-.s.m{background:var(--s3);color:var(--dim);border-color:var(--b1)}
-.s.o{background:var(--gbg);color:var(--green);border-color:var(--gbdr)}
-.s.d{background:var(--goldbg);color:var(--gold);border-color:var(--goldbdr)}
-.empty-state{display:none;text-align:center;padding:60px 20px;color:var(--muted);font-size:14px}
+.tool-btn:active{border-color:var(–gold);color:var(–text)}
+.album-list{padding:6px 10px 16px;display:flex;flex-direction:column;gap:6px}
 
-/* ════════════════════════════════
-   COMMUNITY
-════════════════════════════════ */
+.sect{
+background:var(–s1);border:1px solid var(–b1);border-radius:12px;
+overflow:hidden;transition:border-color .15s;
+}
+.sect.complete{border-color:var(–gbdr);background:linear-gradient(135deg,var(–gbg),var(–s1) 60%)}
+.sect-hdr{
+display:flex;align-items:center;gap:10px;
+padding:10px 12px;cursor:pointer;
+-webkit-tap-highlight-color:transparent;user-select:none;
+}
+.sect-hdr:active{background:var(–s2)}
+.sect-flag{font-size:22px;line-height:1;flex-shrink:0;width:26px;text-align:center}
+.sect-info{flex:1;min-width:0}
+.sect-name{
+font-family:‘Bebas Neue’,sans-serif;font-size:16px;letter-spacing:.04em;
+line-height:1.1;color:var(–text);
+display:flex;align-items:center;gap:8px;
+}
+.sect-code{
+font-family:monospace;font-size:10px;font-weight:700;letter-spacing:.1em;
+background:var(–s3);color:var(–muted);
+padding:2px 6px;border-radius:4px;
+}
+.sect-meta{
+font-size:11px;color:var(–muted);margin-top:3px;
+display:flex;align-items:center;gap:6px;
+}
+.sect-prog{
+flex:1;height:3px;background:var(–s3);border-radius:2px;overflow:hidden;
+max-width:90px;
+}
+.sect-prog-fill{height:100%;background:var(–goldg);border-radius:2px}
+.sect.complete .sect-prog-fill{background:var(–green)}
+.sect-count{font-weight:700;color:var(–text);white-space:nowrap}
+.sect-chevron{
+width:18px;height:18px;color:var(–muted);
+transition:transform .2s;flex-shrink:0;
+}
+.sect.open .sect-chevron{transform:rotate(180deg)}
+.sect-body{
+display:none;padding:4px 10px 10px;
+border-top:1px solid var(–b1);
+background:rgba(0,0,0,0.15);
+}
+.sect.open .sect-body{display:block}
+
+.s-grid-team{
+display:grid;grid-template-columns:repeat(5,1fr);gap:5px;
+padding-top:8px;
+}
+.s2{
+aspect-ratio:1;border-radius:7px;
+display:flex;flex-direction:column;align-items:center;justify-content:center;
+font-weight:700;cursor:pointer;
+user-select:none;-webkit-tap-highlight-color:transparent;
+border:1px solid transparent;transition:transform .08s;
+padding:2px;gap:1px;
+}
+.s2:active{transform:scale(.84)}
+.s2 .s2-code{font-size:8px;font-weight:600;opacity:.7;letter-spacing:.04em;line-height:1}
+.s2 .s2-num{font-family:‘Bebas Neue’,sans-serif;font-size:22px;line-height:1}
+.s2.m{background:var(–s3);color:var(–dim);border-color:var(–b1)}
+.s2.m .s2-code{color:var(–muted)}
+.s2.o{background:var(–gbg);color:var(–green);border-color:var(–gbdr)}
+.s2.d{background:var(–goldbg);color:var(–gold);border-color:var(–goldbdr)}
+
+.empty-state{display:none;text-align:center;padding:60px 20px;color:var(–muted);font-size:14px}
+
 .comm-hdr-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
 .icon-btn{
-  background:var(--s2);border:1px solid var(--b1);border-radius:10px;
-  padding:7px 12px;color:var(--muted);font-family:'DM Sans',sans-serif;
-  font-size:12px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:5px;
-  transition:border-color .15s;
+background:var(–s2);border:1px solid var(–b1);border-radius:10px;
+padding:7px 12px;color:var(–muted);font-family:‘DM Sans’,sans-serif;
+font-size:12px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:5px;
+transition:border-color .15s;
 }
-.icon-btn:active{border-color:var(--gold)}
+.icon-btn:active{border-color:var(–gold)}
 .users-list{padding:10px 14px 20px;display:flex;flex-direction:column;gap:8px}
 .ucard{
-  background:var(--s1);border:1px solid var(--b1);border-radius:16px;
-  padding:13px;display:flex;align-items:center;gap:12px;
-  cursor:pointer;transition:border-color .15s,background .15s;
-  -webkit-tap-highlight-color:transparent;
+background:var(–s1);border:1px solid var(–b1);border-radius:16px;
+padding:13px;display:flex;align-items:center;gap:12px;
+cursor:pointer;transition:border-color .15s,background .15s;
+-webkit-tap-highlight-color:transparent;
 }
-.ucard:active{border-color:var(--gold);background:var(--s2)}
+.ucard:active{border-color:var(–gold);background:var(–s2)}
 .avatar{
-  width:44px;height:44px;border-radius:13px;
-  background:var(--s3);display:flex;align-items:center;justify-content:center;
-  font-family:'Bebas Neue',sans-serif;font-size:17px;color:var(--gold);
-  flex-shrink:0;border:1px solid var(--goldbdr);
+width:44px;height:44px;border-radius:13px;
+background:var(–s3);display:flex;align-items:center;justify-content:center;
+font-family:‘Bebas Neue’,sans-serif;font-size:17px;color:var(–gold);
+flex-shrink:0;border:1px solid var(–goldbdr);
 }
 .uinfo{flex:1;min-width:0}
 .uname{font-weight:700;font-size:14px;margin-bottom:1px}
-.ucity{font-size:12px;color:var(--muted);margin-bottom:4px}
+.ucity{font-size:12px;color:var(–muted);margin-bottom:4px}
 .match-badge{font-size:12px;font-weight:700;white-space:nowrap}
-.match-badge.hot{color:var(--gold)}.match-badge.cold{color:var(--muted)}
-.mini-bar{height:2px;background:var(--s3);border-radius:2px;overflow:hidden;margin-top:5px}
-.mini-fill{height:100%;background:var(--goldg);border-radius:2px}
-.mini-pct{font-size:11px;color:var(--muted);margin-top:3px}
-.comm-msg{text-align:center;padding:50px 20px;color:var(--muted);font-size:14px;line-height:1.8}
+.match-badge.hot{color:var(–gold)}.match-badge.cold{color:var(–muted)}
+.mini-bar{height:2px;background:var(–s3);border-radius:2px;overflow:hidden;margin-top:5px}
+.mini-fill{height:100%;background:var(–goldg);border-radius:2px}
+.mini-pct{font-size:11px;color:var(–muted);margin-top:3px}
+.comm-msg{text-align:center;padding:50px 20px;color:var(–muted);font-size:14px;line-height:1.8}
 
-/* ════════════════════════════════
-   MATCH VIEW
-════════════════════════════════ */
-.match-hdr{background:var(--s1);border-bottom:1px solid var(--b1);padding:13px 16px 12px;flex-shrink:0}
+.match-hdr{background:var(–s1);border-bottom:1px solid var(–b1);padding:13px 16px 12px;flex-shrink:0}
 .match-hdr-top{display:flex;align-items:center;gap:10px;margin-bottom:12px}
 .back-btn{
-  background:var(--s2);border:1px solid var(--b1);border-radius:10px;
-  padding:7px 11px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:13px;
-  cursor:pointer;display:flex;align-items:center;gap:4px;flex-shrink:0;transition:border-color .15s;
+background:var(–s2);border:1px solid var(–b1);border-radius:10px;
+padding:7px 11px;color:var(–text);font-family:‘DM Sans’,sans-serif;font-size:13px;
+cursor:pointer;display:flex;align-items:center;gap:4px;flex-shrink:0;transition:border-color .15s;
 }
-.back-btn:active{border-color:var(--gold)}
-.match-name{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:.03em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}
+.back-btn:active{border-color:var(–gold)}
+.match-name{font-family:‘Bebas Neue’,sans-serif;font-size:24px;letter-spacing:.03em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}
 .match-summary{
-  background:var(--s2);border:1px solid var(--b1);
-  border-radius:14px;padding:13px 15px;
-  display:flex;align-items:center;justify-content:space-between;gap:12px;
+background:var(–s2);border:1px solid var(–b1);
+border-radius:14px;padding:13px 15px;
+display:flex;align-items:center;justify-content:space-between;gap:12px;
 }
-.match-big{font-family:'Bebas Neue',sans-serif;font-size:36px;color:var(--gold);line-height:1}
-.match-big-lbl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-top:1px}
-.match-sides{text-align:right;font-size:13px;color:var(--muted);line-height:1.9}
+.match-big{font-family:‘Bebas Neue’,sans-serif;font-size:36px;color:var(–gold);line-height:1}
+.match-big-lbl{font-size:11px;color:var(–muted);text-transform:uppercase;letter-spacing:.08em;margin-top:1px}
+.match-sides{text-align:right;font-size:13px;color:var(–muted);line-height:1.9}
 .match-sides strong{font-size:16px}
 .match-scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:160px}
 .msection{padding:16px 16px 0}
-.msect-title{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
-.chips-wrap{display:flex;flex-wrap:wrap;gap:5px;padding-bottom:16px;border-bottom:1px solid var(--b1)}
-.cn{padding:4px 9px;border-radius:7px;font-size:12px;font-weight:700}
-.cn.get{background:var(--gbg);color:var(--green);border:1px solid var(--gbdr)}
-.cn.give{background:var(--goldbg);color:var(--gold);border:1px solid var(--goldbdr)}
-.cn-none{font-size:13px;color:var(--muted)}
+.msect-title{font-size:11px;font-weight:700;color:var(–muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:10px}
+.chips-wrap{display:flex;flex-wrap:wrap;gap:5px;padding-bottom:16px;border-bottom:1px solid var(–b1)}
+.cn{padding:4px 9px;border-radius:7px;font-size:12px;font-weight:700;font-family:monospace;letter-spacing:.03em}
+.cn.get{background:var(–gbg);color:var(–green);border:1px solid var(–gbdr)}
+.cn.give{background:var(–goldbg);color:var(–gold);border:1px solid var(–goldbdr)}
+.cn-none{font-size:13px;color:var(–muted)}
 
-/* Match footer */
 #match-footer{
-  position:fixed;bottom:var(--nav);left:0;right:0;
-  background:var(--s1);border-top:1px solid var(--b1);
-  padding:12px 16px 14px;
-  flex-direction:column;gap:9px;display:none;z-index:150;
+position:fixed;bottom:var(–nav);left:0;right:0;
+background:var(–s1);border-top:1px solid var(–b1);
+padding:12px 16px 14px;
+flex-direction:column;gap:9px;display:none;z-index:150;
 }
 #match-footer.on{display:flex}
-.contact-row{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted)}
-.contact-num{font-weight:700;color:var(--text)}
+.contact-row{display:flex;align-items:center;gap:8px;font-size:13px;color:var(–muted)}
+.contact-num{font-weight:700;color:var(–text)}
 .btn-row{display:flex;gap:8px}
 .btn-wa{
-  flex:1;background:#25d366;color:#fff;border:none;border-radius:12px;
-  padding:13px 10px;font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:.04em;
-  cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:opacity .15s;
+flex:1;background:#25d366;color:#fff;border:none;border-radius:12px;
+padding:13px 10px;font-family:‘Bebas Neue’,sans-serif;font-size:16px;letter-spacing:.04em;
+cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:opacity .15s;
 }
 .btn-wa:active{opacity:.85}
 .btn-chat{
-  flex:1;background:var(--blue);color:#fff;border:none;border-radius:12px;
-  padding:13px 10px;font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:.04em;
-  cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:opacity .15s;
+flex:1;background:var(–blue);color:#fff;border:none;border-radius:12px;
+padding:13px 10px;font-family:‘Bebas Neue’,sans-serif;font-size:16px;letter-spacing:.04em;
+cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px;transition:opacity .15s;
 }
 .btn-chat:active{opacity:.85}
 
-/* ════════════════════════════════
-   CHATS INBOX
-════════════════════════════════ */
 .inbox-list{padding:10px 14px 20px;display:flex;flex-direction:column;gap:8px}
 .ccard{
-  background:var(--s1);border:1px solid var(--b1);border-radius:16px;
-  padding:13px;display:flex;align-items:center;gap:12px;
-  cursor:pointer;transition:border-color .15s;-webkit-tap-highlight-color:transparent;
+background:var(–s1);border:1px solid var(–b1);border-radius:16px;
+padding:13px;display:flex;align-items:center;gap:12px;
+cursor:pointer;transition:border-color .15s;-webkit-tap-highlight-color:transparent;
 }
-.ccard:active{border-color:var(--blue)}
+.ccard:active{border-color:var(–blue)}
 .ccard-info{flex:1;min-width:0}
 .ccard-name{font-weight:700;font-size:14px}
-.ccard-preview{font-size:12px;color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:2px}
-.ccard-time{font-size:11px;color:var(--muted);flex-shrink:0;align-self:flex-start}
+.ccard-preview{font-size:12px;color:var(–muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-top:2px}
+.ccard-time{font-size:11px;color:var(–muted);flex-shrink:0;align-self:flex-start}
 
-/* ════════════════════════════════
-   CHAT VIEW
-════════════════════════════════ */
 #tab-chatview{z-index:50}
 .chat-hdr{
-  background:var(--s1);border-bottom:1px solid var(--b1);
-  padding:12px 16px;flex-shrink:0;display:flex;align-items:center;gap:12px;
+background:var(–s1);border-bottom:1px solid var(–b1);
+padding:12px 16px;flex-shrink:0;display:flex;align-items:center;gap:12px;
 }
 .chat-hdr-info{flex:1;min-width:0}
 .chat-hdr-name{font-weight:700;font-size:15px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.chat-hdr-sub{font-size:12px;color:var(--muted);margin-top:1px}
+.chat-hdr-sub{font-size:12px;color:var(–muted);margin-top:1px}
 .chat-messages{
-  flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;
-  padding:14px 14px 10px;display:flex;flex-direction:column;gap:8px;
+flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;
+padding:14px 14px 10px;display:flex;flex-direction:column;gap:8px;
 }
 .msg{max-width:78%;padding:9px 13px;border-radius:16px;font-size:14px;line-height:1.5;word-break:break-word}
-.msg.mine{background:var(--blue);color:#fff;align-self:flex-end;border-bottom-right-radius:4px}
-.msg.theirs{background:var(--s3);color:var(--text);align-self:flex-start;border-bottom-left-radius:4px}
+.msg.mine{background:var(–blue);color:#fff;align-self:flex-end;border-bottom-right-radius:4px}
+.msg.theirs{background:var(–s3);color:var(–text);align-self:flex-start;border-bottom-left-radius:4px}
 .msg-time{font-size:10px;opacity:.55;margin-top:3px;text-align:right}
 .msg.theirs .msg-time{text-align:left}
-.chat-empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--muted);font-size:14px;padding:20px;text-align:center}
+.chat-empty{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(–muted);font-size:14px;padding:20px;text-align:center}
 .chat-input-wrap{
-  background:var(--s1);border-top:1px solid var(--b1);
-  padding:10px 14px max(14px,env(safe-area-inset-bottom));
-  display:flex;gap:8px;align-items:flex-end;flex-shrink:0;
+background:var(–s1);border-top:1px solid var(–b1);
+padding:10px 14px max(14px,env(safe-area-inset-bottom));
+display:flex;gap:8px;align-items:flex-end;flex-shrink:0;
 }
 .chat-input{
-  flex:1;background:var(--s2);border:1px solid var(--b1);border-radius:20px;
-  padding:10px 16px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:14px;
-  outline:none;resize:none;max-height:100px;overflow-y:auto;
-  -webkit-appearance:none;transition:border-color .2s;line-height:1.4;
+flex:1;background:var(–s2);border:1px solid var(–b1);border-radius:20px;
+padding:10px 16px;color:var(–text);font-family:‘DM Sans’,sans-serif;font-size:14px;
+outline:none;resize:none;max-height:100px;overflow-y:auto;
+-webkit-appearance:none;transition:border-color .2s;line-height:1.4;
 }
-.chat-input:focus{border-color:var(--blue)}
-.chat-input::placeholder{color:var(--dim)}
+.chat-input:focus{border-color:var(–blue)}
+.chat-input::placeholder{color:var(–dim)}
 .send-btn{
-  width:40px;height:40px;border-radius:50%;background:var(--blue);
-  border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;
-  flex-shrink:0;transition:opacity .15s;align-self:flex-end;
+width:40px;height:40px;border-radius:50%;background:var(–blue);
+border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;
+flex-shrink:0;transition:opacity .15s;align-self:flex-end;
 }
 .send-btn:active{opacity:.8}
 
-/* ════════════════════════════════
-   ADMIN PANEL
-════════════════════════════════ */
-#tab-admin{z-index:60;background:var(--bg)}
-.admin-hdr{background:var(--s1);border-bottom:1px solid var(--b1);padding:13px 16px;flex-shrink:0;display:flex;align-items:center;gap:12px}
+#tab-admin{z-index:60;background:var(–bg)}
+.admin-hdr{background:var(–s1);border-bottom:1px solid var(–b1);padding:13px 16px;flex-shrink:0;display:flex;align-items:center;gap:12px}
 .admin-content{padding:16px 14px 100px;display:flex;flex-direction:column;gap:14px}
-.admin-card{background:var(--s1);border:1px solid var(--b1);border-radius:16px;padding:16px}
-.admin-card h3{font-family:'Bebas Neue',sans-serif;font-size:20px;color:var(--gold);margin-bottom:12px;letter-spacing:.04em}
+.admin-card{background:var(–s1);border:1px solid var(–b1);border-radius:16px;padding:16px}
+.admin-card h3{font-family:‘Bebas Neue’,sans-serif;font-size:20px;color:var(–gold);margin-bottom:12px;letter-spacing:.04em}
 .admin-row{display:flex;gap:8px;align-items:center}
 .admin-row .inp{flex:1}
 .btn-sm{
-  background:var(--s3);border:1px solid var(--b2);border-radius:10px;
-  padding:11px 14px;color:var(--text);font-family:'DM Sans',sans-serif;font-size:13px;font-weight:600;
-  cursor:pointer;white-space:nowrap;transition:border-color .15s;flex-shrink:0;
+background:var(–s3);border:1px solid var(–b2);border-radius:10px;
+padding:11px 14px;color:var(–text);font-family:‘DM Sans’,sans-serif;font-size:13px;font-weight:600;
+cursor:pointer;white-space:nowrap;transition:border-color .15s;flex-shrink:0;
 }
-.btn-sm:active{border-color:var(--gold)}
-.btn-sm.gold{background:var(--gold);color:#000;border-color:transparent}
+.btn-sm:active{border-color:var(–gold)}
+.btn-sm.gold{background:var(–gold);color:#000;border-color:transparent}
 .codes-table{display:flex;flex-direction:column;gap:6px;margin-top:8px;max-height:300px;overflow-y:auto}
 .code-row{
-  display:flex;align-items:center;justify-content:space-between;
-  background:var(--s2);border:1px solid var(--b1);border-radius:10px;padding:9px 12px;
+display:flex;align-items:center;justify-content:space-between;
+background:var(–s2);border:1px solid var(–b1);border-radius:10px;padding:9px 12px;
 }
-.code-val{font-family:monospace;font-size:14px;font-weight:700;letter-spacing:.1em;color:var(--text)}
+.code-val{font-family:monospace;font-size:14px;font-weight:700;letter-spacing:.1em;color:var(–text)}
 .code-status{font-size:11px;font-weight:700;padding:3px 8px;border-radius:6px}
-.code-status.free{background:var(--gbg);color:var(--green);border:1px solid var(--gbdr)}
-.code-status.used{background:var(--s3);color:var(--muted)}
+.code-status.free{background:var(–gbg);color:var(–green);border:1px solid var(–gbdr)}
+.code-status.used{background:var(–s3);color:var(–muted)}
 .admin-stat-row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.admin-stat{background:var(--s2);border-radius:10px;padding:11px;text-align:center}
-.admin-stat .n{font-family:'Bebas Neue',sans-serif;font-size:28px;color:var(--gold);line-height:1}
-.admin-stat .l{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-top:2px}
+.admin-stat{background:var(–s2);border-radius:10px;padding:11px;text-align:center}
+.admin-stat .n{font-family:‘Bebas Neue’,sans-serif;font-size:28px;color:var(–gold);line-height:1}
+.admin-stat .l{font-size:11px;color:var(–muted);text-transform:uppercase;letter-spacing:.06em;margin-top:2px}
 .copy-all-btn{width:100%;margin-top:10px}
 
-/* ════════════════════════════════
-   BOTTOM NAV
-════════════════════════════════ */
 #bottom-nav{
-  position:absolute;bottom:0;left:0;right:0;height:var(--nav);
-  background:var(--s1);border-top:1px solid var(--b1);display:flex;z-index:200;
+position:absolute;bottom:0;left:0;right:0;height:var(–nav);
+background:var(–s1);border-top:1px solid var(–b1);display:flex;z-index:200;
 }
 .nav-btn{
-  flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
-  background:none;border:none;color:var(--muted);font-family:'DM Sans',sans-serif;
-  font-size:10px;font-weight:500;cursor:pointer;-webkit-tap-highlight-color:transparent;
-  transition:color .15s;position:relative;
+flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
+background:none;border:none;color:var(–muted);font-family:‘DM Sans’,sans-serif;
+font-size:10px;font-weight:500;cursor:pointer;-webkit-tap-highlight-color:transparent;
+transition:color .15s;position:relative;
 }
-.nav-btn.on{color:var(--gold)}
+.nav-btn.on{color:var(–gold)}
 .nav-badge{
-  position:absolute;top:7px;right:calc(50% - 16px);
-  background:var(--blue);color:#fff;font-size:9px;font-weight:700;
-  border-radius:8px;padding:1px 5px;min-width:16px;text-align:center;display:none;
+position:absolute;top:7px;right:calc(50% - 16px);
+background:var(–blue);color:#fff;font-size:9px;font-weight:700;
+border-radius:8px;padding:1px 5px;min-width:16px;text-align:center;display:none;
 }
 .nav-badge.on{display:block}
 
-/* ════════════════════════════════
-   TOAST
-════════════════════════════════ */
 #toast{
-  position:fixed;bottom:calc(var(--nav) + 14px);left:50%;
-  transform:translateX(-50%) translateY(10px);
-  background:var(--s2);border:1px solid var(--b2);border-radius:12px;
-  padding:10px 20px;font-size:13px;font-weight:600;color:var(--text);
-  opacity:0;transition:opacity .2s,transform .2s;
-  pointer-events:none;white-space:nowrap;z-index:400;
+position:fixed;bottom:calc(var(–nav) + 14px);left:50%;
+transform:translateX(-50%) translateY(10px);
+background:var(–s2);border:1px solid var(–b2);border-radius:12px;
+padding:10px 20px;font-size:13px;font-weight:600;color:var(–text);
+opacity:0;transition:opacity .2s,transform .2s;
+pointer-events:none;white-space:nowrap;z-index:400;
 }
 #toast.on{opacity:1;transform:translateX(-50%) translateY(0)}
 </style>
+
 </head>
 <body>
 
 <!-- ══════════ LANDING ══════════ -->
+
 <div id="screen-landing">
 
   <div class="landing-nav">
@@ -694,103 +559,79 @@ body.show-app   #screen-app     { display: block !important; }
   </div>
 
   <div class="landing-hero" style="position:relative">
-    <!-- Color blobs -->
     <div style="position:absolute;width:180px;height:180px;background:#E8392A;border-radius:50%;filter:blur(50px);opacity:.18;top:-60px;right:-60px;pointer-events:none;animation:blobFloat 6s ease-in-out infinite"></div>
     <div style="position:absolute;width:150px;height:150px;background:#2B6DB5;border-radius:50%;filter:blur(50px);opacity:.18;top:60px;left:-60px;pointer-events:none;animation:blobFloat 8s ease-in-out infinite reverse"></div>
     <div style="position:absolute;width:120px;height:120px;background:#F5C800;border-radius:50%;filter:blur(40px);opacity:.15;bottom:0;right:20px;pointer-events:none;animation:blobFloat 7s ease-in-out infinite 2s"></div>
 
-    <!-- Trionda WC2026 Official Ball Style -->
-    <div class="ball-wrap">
-      <svg class="soccer-ball" viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <clipPath id="ballClip"><circle cx="70" cy="70" r="64"/></clipPath>
-          <radialGradient id="ballShine" cx="35%" cy="30%" r="55%">
-            <stop offset="0%" stop-color="#fff" stop-opacity="0.35"/>
-            <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
-          </radialGradient>
-          <radialGradient id="ballShadow" cx="65%" cy="70%" r="50%">
-            <stop offset="0%" stop-color="#000" stop-opacity="0.18"/>
-            <stop offset="100%" stop-color="#000" stop-opacity="0"/>
-          </radialGradient>
-        </defs>
-        <!-- White base -->
-        <circle cx="70" cy="70" r="64" fill="#f0f0f0"/>
-        <!-- Red flowing panel - top right -->
-        <path d="M70,6 C95,6 118,20 128,45 C115,38 98,32 80,36 C65,39 52,50 48,65 C44,52 48,35 60,22 C63,15 66,9 70,6 Z" fill="#D62828" clip-path="url(#ballClip)"/>
-        <!-- Red panel lower extension -->
-        <path d="M128,45 C134,58 134,80 126,95 C118,82 112,68 110,54 C116,50 122,47 128,45 Z" fill="#C41E1E" clip-path="url(#ballClip)"/>
-        <!-- Blue flowing panel - left -->
-        <path d="M6,70 C6,48 17,28 35,16 C40,28 42,44 38,58 C34,70 26,80 16,86 C10,81 6,76 6,70 Z" fill="#1A5DAD" clip-path="url(#ballClip)"/>
-        <!-- Blue panel lower -->
-        <path d="M16,86 C22,98 32,108 46,114 C46,100 48,88 54,78 C44,82 30,84 16,86 Z" fill="#1648A0" clip-path="url(#ballClip)"/>
-        <!-- Green accent panel - bottom -->
-        <path d="M70,134 C50,134 32,124 20,108 C34,106 50,108 62,114 C68,117 74,122 78,128 C75,132 72,134 70,134 Z" fill="#1A8A3C" clip-path="url(#ballClip)"/>
-        <!-- Subtle panel lines/texture -->
-        <path d="M48,65 C52,50 65,39 80,36 C90,44 98,56 98,70 C98,84 90,96 78,104 C64,98 52,84 48,68 Z" fill="none" stroke="rgba(0,0,0,0.06)" stroke-width="1" clip-path="url(#ballClip)"/>
-        <!-- Stars -->
-        <g fill="#FFD700" opacity="0.9">
-          <!-- Star top -->
-          <polygon points="70,18 71.5,22.5 76,22.5 72.5,25 74,29.5 70,27 66,29.5 67.5,25 64,22.5 68.5,22.5" transform="scale(0.7) translate(30,12)"/>
-          <!-- Star right -->
-          <polygon points="70,18 71.5,22.5 76,22.5 72.5,25 74,29.5 70,27 66,29.5 67.5,25 64,22.5 68.5,22.5" transform="scale(0.6) translate(95,60)"/>
-          <!-- Star bottom left -->
-          <polygon points="70,18 71.5,22.5 76,22.5 72.5,25 74,29.5 70,27 66,29.5 67.5,25 64,22.5 68.5,22.5" transform="scale(0.55) translate(10,120)"/>
-          <!-- Star top left -->  
-          <polygon points="70,18 71.5,22.5 76,22.5 72.5,25 74,29.5 70,27 66,29.5 67.5,25 64,22.5 68.5,22.5" transform="scale(0.5) translate(30,50)"/>
-        </g>
-        <!-- Center: "26" FIFA style -->
-        <circle cx="70" cy="70" r="22" fill="rgba(255,255,255,0.92)" stroke="rgba(0,0,0,0.08)" stroke-width="1"/>
-        <text x="70" y="76" font-family="'Bebas Neue',sans-serif" font-size="22" font-weight="900" fill="#111" text-anchor="middle" letter-spacing="1">26</text>
-        <text x="70" y="84" font-family="Arial,sans-serif" font-size="6" font-weight="700" fill="#666" text-anchor="middle" letter-spacing="1.5">FIFA</text>
-        <!-- Shine overlay -->
-        <circle cx="70" cy="70" r="64" fill="url(#ballShine)"/>
-        <circle cx="70" cy="70" r="64" fill="url(#ballShadow)"/>
-        <!-- Border -->
-        <circle cx="70" cy="70" r="64" fill="none" stroke="rgba(0,0,0,0.15)" stroke-width="1.5"/>
-      </svg>
-      <div class="ball-glow"></div>
-    </div>
+```
+<div class="ball-wrap">
+  <svg class="soccer-ball" viewBox="0 0 140 140" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <clipPath id="ballClip"><circle cx="70" cy="70" r="64"/></clipPath>
+      <radialGradient id="ballShine" cx="35%" cy="30%" r="55%">
+        <stop offset="0%" stop-color="#fff" stop-opacity="0.35"/>
+        <stop offset="100%" stop-color="#fff" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="ballShadow" cx="65%" cy="70%" r="50%">
+        <stop offset="0%" stop-color="#000" stop-opacity="0.18"/>
+        <stop offset="100%" stop-color="#000" stop-opacity="0"/>
+      </radialGradient>
+    </defs>
+    <circle cx="70" cy="70" r="64" fill="#f0f0f0"/>
+    <path d="M70,6 C95,6 118,20 128,45 C115,38 98,32 80,36 C65,39 52,50 48,65 C44,52 48,35 60,22 C63,15 66,9 70,6 Z" fill="#D62828" clip-path="url(#ballClip)"/>
+    <path d="M128,45 C134,58 134,80 126,95 C118,82 112,68 110,54 C116,50 122,47 128,45 Z" fill="#C41E1E" clip-path="url(#ballClip)"/>
+    <path d="M6,70 C6,48 17,28 35,16 C40,28 42,44 38,58 C34,70 26,80 16,86 C10,81 6,76 6,70 Z" fill="#1A5DAD" clip-path="url(#ballClip)"/>
+    <path d="M16,86 C22,98 32,108 46,114 C46,100 48,88 54,78 C44,82 30,84 16,86 Z" fill="#1648A0" clip-path="url(#ballClip)"/>
+    <path d="M70,134 C50,134 32,124 20,108 C34,106 50,108 62,114 C68,117 74,122 78,128 C75,132 72,134 70,134 Z" fill="#1A8A3C" clip-path="url(#ballClip)"/>
+    <circle cx="70" cy="70" r="22" fill="rgba(255,255,255,0.92)" stroke="rgba(0,0,0,0.08)" stroke-width="1"/>
+    <text x="70" y="76" font-family="'Bebas Neue',sans-serif" font-size="22" font-weight="900" fill="#111" text-anchor="middle" letter-spacing="1">26</text>
+    <text x="70" y="84" font-family="Arial,sans-serif" font-size="6" font-weight="700" fill="#666" text-anchor="middle" letter-spacing="1.5">FIFA</text>
+    <circle cx="70" cy="70" r="64" fill="url(#ballShine)"/>
+    <circle cx="70" cy="70" r="64" fill="url(#ballShadow)"/>
+    <circle cx="70" cy="70" r="64" fill="none" stroke="rgba(0,0,0,0.15)" stroke-width="1.5"/>
+  </svg>
+  <div class="ball-glow"></div>
+</div>
 
-    <div class="landing-eyebrow">
-      <div class="dot"></div>
-      FIFA World Cup 2026 · <span id="user-count-badge">Cargando...</span>
-    </div>
+<div class="landing-eyebrow">
+  <div class="dot" style="width:6px;height:6px;border-radius:50%;background:#2E9E5B;animation:pulse 2s infinite"></div>
+  FIFA World Cup 2026 · <span id="user-count-badge">Cargando...</span>
+</div>
 
-    <div class="landing-h1">
-      <span class="line1">MI</span>
-      <span class="line2">ALBUM</span>
-      <span class="line3">2026</span>
-    </div>
+<div class="landing-h1">
+  <span class="line1">MI</span>
+  <span class="line2">ALBUM</span>
+  <span class="line3">2026</span>
+</div>
 
-    <!-- Mexico tricolor stripe -->
-    <div class="mx-stripe">
-      <div style="background:#006847"></div>
-      <div style="background:rgba(255,255,255,0.15)"></div>
-      <div style="background:#CE1126"></div>
-    </div>
+<div class="mx-stripe">
+  <div style="background:#006847"></div>
+  <div style="background:rgba(255,255,255,0.15)"></div>
+  <div style="background:#CE1126"></div>
+</div>
 
-    <p class="landing-sub">
-      Registra tus estampas, encuentra coleccionistas y <strong>haz cambios directamente en la app.</strong>
-    </p>
+<p class="landing-sub">
+  Registra tus estampas, encuentra coleccionistas y <strong>haz cambios directamente en la app.</strong>
+</p>
 
-    <!-- PROMO BANNER -->
-    <div class="promo-banner">
-      <div class="promo-sparkle">⚽</div>
-      <div class="promo-body">
-        <div class="promo-label">Premio exclusivo</div>
-        <div class="promo-title">El primero en completar el álbum se gana un <strong>balón oficial del Mundial 2026</strong></div>
-      </div>
-    </div>
+<div class="promo-banner">
+  <div class="promo-sparkle">⚽</div>
+  <div class="promo-body">
+    <div class="promo-label">Premio exclusivo</div>
+    <div class="promo-title">El primero en completar el álbum se gana un <strong>balón oficial del Mundial 2026</strong></div>
+  </div>
+</div>
 
-    <button class="btn-cta" onclick="window.open('https://wa.me/526624333876?text=Hola!%20Quiero%20un%20código%20para%20MiAlbum%202026','_blank')">
-      🏆 QUIERO MI CÓDIGO
-    </button>
-    <button class="btn-cta-secondary" onclick="goToSetup()">
-      Ya tengo mi código →
-    </button>
+<button class="btn-cta" onclick="window.open('https://wa.me/526624333876?text=Hola!%20Quiero%20un%20código%20para%20MiAlbum%202026','_blank')">
+  🏆 QUIERO MI CÓDIGO
+</button>
+<button class="btn-cta-secondary" onclick="goToSetup()">
+  Ya tengo mi código →
+</button>
+```
+
   </div>
 
-  <!-- Rainbow color bar like the official album cover -->
   <div style="display:flex;height:6px;width:100%;margin:20px 0 0;flex-shrink:0">
     <div style="flex:1;background:#E8392A"></div>
     <div style="flex:1;background:#F07020"></div>
@@ -822,7 +663,6 @@ body.show-app   #screen-app     { display: block !important; }
     </div>
   </div>
 
-  <!-- Contact section -->
   <div style="padding:0 16px 40px">
     <div style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.1);border-radius:20px;padding:22px">
       <div style="text-align:center">
@@ -842,6 +682,7 @@ body.show-app   #screen-app     { display: block !important; }
 </div>
 
 <!-- ══════════ SETUP ══════════ -->
+
 <div id="screen-setup">
   <div style="width:100%;max-width:360px;padding:16px 0 0">
     <button onclick="goToLanding()" style="background:none;border:none;color:var(--muted);font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;cursor:pointer;display:flex;align-items:center;gap:6px;padding:0">
@@ -896,29 +737,34 @@ body.show-app   #screen-app     { display: block !important; }
       </select>
     </div>
 
-    <div class="divider">Código de acceso</div>
+```
+<div class="divider">Código de acceso</div>
 
-    <div class="field">
-      <label>Código de acceso</label>
-      <div class="code-field">
-        <input id="inp-code" class="inp" type="text" placeholder="MX26-XXXX" autocomplete="off" maxlength="9">
-      </div>
-      <div class="error-msg" id="code-error">Código inválido o ya utilizado.</div>
-      <div style="display:flex;align-items:flex-start;gap:8px;background:rgba(206,17,38,0.08);border:1px solid rgba(206,17,38,0.2);border-radius:10px;padding:10px 12px;margin-top:4px">
-        <span style="font-size:14px;flex-shrink:0">🔒</span>
-        <span style="font-size:11px;color:rgba(255,255,255,0.5);line-height:1.6"><strong style="color:#fff">Nunca compartas tu código.</strong> Es tu contraseña personal y permanente. Si alguien más lo usa, perderás acceso a tu cuenta.</span>
-      </div>
-    </div>
+<div class="field">
+  <label>Código de acceso</label>
+  <div class="code-field">
+    <input id="inp-code" class="inp" type="text" placeholder="MX26-XXXX" autocomplete="off" maxlength="9">
+  </div>
+  <div class="error-msg" id="code-error">Código inválido o ya utilizado.</div>
+  <div style="display:flex;align-items:flex-start;gap:8px;background:rgba(206,17,38,0.08);border:1px solid rgba(206,17,38,0.2);border-radius:10px;padding:10px 12px;margin-top:4px">
+    <span style="font-size:14px;flex-shrink:0">🔒</span>
+    <span style="font-size:11px;color:rgba(255,255,255,0.5);line-height:1.6"><strong style="color:#fff">Nunca compartas tu código.</strong> Es tu contraseña personal y permanente. Si alguien más lo usa, perderás acceso a tu cuenta.</span>
+  </div>
+</div>
 
-    <button class="btn-primary" onclick="createProfile()">ENTRAR AL ÁLBUM →</button>
-    <p class="hint">Tu código es tu contraseña permanente.<br>Úsalo en cualquier dispositivo para acceder.</p>
+<button class="btn-primary" onclick="createProfile()">ENTRAR AL ÁLBUM →</button>
+<p class="hint">Tu código es tu contraseña permanente.<br>Úsalo en cualquier dispositivo para acceder.</p>
+```
+
   </div>
 </div>
 
 <!-- ══════════ MAIN APP ══════════ -->
+
 <div id="screen-app">
 
   <!-- ── MI ÁLBUM ── -->
+
   <div id="tab-album" class="tab on">
     <div class="hdr">
       <div class="hdr-top">
@@ -928,28 +774,39 @@ body.show-app   #screen-app     { display: block !important; }
       <div class="stats">
         <div class="sbox"><div class="snum cg" id="st-o">0</div><div class="slbl">Tengo</div></div>
         <div class="sbox"><div class="snum co" id="st-d">0</div><div class="slbl">Repetidas</div></div>
-        <div class="sbox"><div class="snum cr" id="st-m">980</div><div class="slbl">Faltan</div></div>
+        <div class="sbox"><div class="snum cr" id="st-m">994</div><div class="slbl">Faltan</div></div>
         <div class="sbox"><div class="snum cp" id="st-p">0%</div><div class="slbl">Álbum</div></div>
       </div>
       <div class="prog-track"><div class="prog-fill" id="prog"></div></div>
       <div class="pills">
-        <button class="pill on" data-f="all" onclick="setFilter(this)">Todas (980)</button>
+        <button class="pill on" data-f="all" onclick="setFilter(this)">Todas (994)</button>
         <button class="pill" data-f="o" onclick="setFilter(this)">✓ Tengo</button>
         <button class="pill" data-f="d" onclick="setFilter(this)">★ Repetidas</button>
         <button class="pill" data-f="m" onclick="setFilter(this)">✕ Faltan</button>
       </div>
-      <input class="inp" id="inp-search" type="number" min="1" max="980"
-             placeholder="Buscar estampa (1–980)"
-             oninput="renderGrid()" autocomplete="off"
-             style="font-size:13px;padding:9px 14px">
+      <input class="inp" id="inp-search" type="text"
+             placeholder="Buscar (ej. MEX 5, FWC 12, ARG)"
+             oninput="renderAlbum()" autocomplete="off"
+             style="font-size:13px;padding:9px 14px;text-transform:uppercase">
     </div>
     <div class="scroll">
-      <div class="s-grid" id="grid"></div>
+      <div class="album-tools">
+        <button class="tool-btn" onclick="expandAll(true)">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+          Abrir todo
+        </button>
+        <button class="tool-btn" onclick="expandAll(false)">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 15l-6-6-6 6"/></svg>
+          Cerrar todo
+        </button>
+      </div>
+      <div class="album-list" id="album-list"></div>
       <div class="empty-state" id="empty">No hay estampas en esta vista</div>
     </div>
   </div>
 
   <!-- ── COMUNIDAD ── -->
+
   <div id="tab-community" class="tab">
     <div class="hdr">
       <div class="comm-hdr-row">
@@ -976,6 +833,7 @@ body.show-app   #screen-app     { display: block !important; }
   </div>
 
   <!-- ── MATCH VIEW ── -->
+
   <div id="tab-match" class="tab">
     <div class="match-hdr">
       <div class="match-hdr-top">
@@ -1005,7 +863,6 @@ body.show-app   #screen-app     { display: block !important; }
     </div>
   </div>
 
-  <!-- Match footer -->
   <div id="match-footer">
     <div class="contact-row">
       <div class="dot-g"></div>
@@ -1025,6 +882,7 @@ body.show-app   #screen-app     { display: block !important; }
   </div>
 
   <!-- ── CHATS INBOX ── -->
+
   <div id="tab-chats" class="tab">
     <div class="hdr">
       <div class="hdr-top">
@@ -1039,6 +897,7 @@ body.show-app   #screen-app     { display: block !important; }
   </div>
 
   <!-- ── CHAT VIEW ── -->
+
   <div id="tab-chatview" class="tab">
     <div class="chat-hdr">
       <button class="back-btn" id="chat-back-btn">
@@ -1062,6 +921,7 @@ body.show-app   #screen-app     { display: block !important; }
   </div>
 
   <!-- ── ADMIN PANEL ── -->
+
   <div id="tab-admin" class="tab">
     <div class="admin-hdr">
       <button class="back-btn" onclick="showTab('album')">
@@ -1071,7 +931,6 @@ body.show-app   #screen-app     { display: block !important; }
     </div>
     <div class="scroll">
       <div class="admin-content">
-        <!-- Stats -->
         <div class="admin-card">
           <h3>📊 Resumen</h3>
           <div class="admin-stat-row">
@@ -1082,70 +941,70 @@ body.show-app   #screen-app     { display: block !important; }
           </div>
         </div>
 
-        <!-- Generate codes -->
-        <div class="admin-card">
-          <h3>🔑 Generar Códigos</h3>
-          <div class="admin-row">
-            <input class="inp" id="adm-qty" type="number" min="1" max="100" value="10" placeholder="Cantidad" style="max-width:90px">
-            <input class="inp" id="adm-prefix" type="text" value="MX26" placeholder="Prefijo" style="max-width:90px;text-transform:uppercase">
-            <button class="btn-sm gold" onclick="generateCodes()">GENERAR</button>
-          </div>
-        </div>
-
-        <!-- Codes list -->
-        <div class="admin-card">
-          <h3>📋 Lista de Códigos</h3>
-          <button class="btn-sm copy-all-btn" onclick="copyAllFreeCodes()" style="width:100%;margin-bottom:10px">📋 Copiar todos los libres</button>
-          <div class="codes-table" id="codes-table">
-            <div style="color:var(--muted);font-size:13px">Genera códigos para verlos aquí.</div>
-          </div>
-        </div>
-        <!-- Delete users -->
-        <div class="admin-card">
-          <h3>🗑️ Eliminar Usuario</h3>
-          <p style="font-size:13px;color:var(--muted);margin-bottom:12px;line-height:1.6">Busca por nombre o WhatsApp y elimina su cuenta y libera su código.</p>
-          <div class="admin-row" style="margin-bottom:10px">
-            <input class="inp" id="adm-search-user" type="text" placeholder="Nombre o WhatsApp..." oninput="searchUsers()">
-          </div>
-          <div id="adm-users-list" style="display:flex;flex-direction:column;gap:6px;max-height:250px;overflow-y:auto"></div>
-        </div>
-
-        <!-- Reps management -->
-        <div class="admin-card">
-          <h3>👥 Representantes</h3>
-          <p style="font-size:13px;color:var(--muted);margin-bottom:12px;line-height:1.6">Reps que aparecen en la portada para que los clientes los contacten.</p>
-          <div class="admin-row" style="flex-direction:column;gap:8px;align-items:stretch;margin-bottom:10px">
-            <input class="inp" id="rep-name-inp" type="text" placeholder="Nombre del rep" autocomplete="off">
-            <select id="rep-school-inp" class="inp" style="cursor:pointer">
-              <option value="">Escuela...</option>
-              <option value="Irlandés Hermosillo">Irlandés Hermosillo</option>
-              <option value="Tec de Monterrey Hermosillo">Tec de Monterrey Hermosillo</option>
-              <option value="Campogrande">Campogrande</option>
-              <option value="Senda">Senda</option>
-              <option value="Vera">Vera</option>
-              <option value="CDI">CDI</option>
-              <option value="Regis">Regis</option>
-              <option value="Guadalajara">Guadalajara</option>
-              <option value="Tec Obregón">Tec Obregón</option>
-              <option value="Otros">Otros</option>
-            </select>
-            <input class="inp" id="rep-wa-inp" type="tel" placeholder="WhatsApp con lada (ej. 526621234567)" autocomplete="off">
-            <button class="btn-sm gold" onclick="addRep()">➕ AGREGAR REP</button>
-          </div>
-          <div id="reps-admin-list" style="display:flex;flex-direction:column;gap:6px;max-height:300px;overflow-y:auto"></div>
-        </div>
-
-        <!-- Code requests -->
-        <div class="admin-card">
-          <h3>📩 Solicitudes de Código</h3>
-          <div class="codes-table" id="requests-table">
-            <div style="color:var(--muted);font-size:13px">No hay solicitudes aún.</div>
-          </div>
-        </div>
-
+```
+    <div class="admin-card">
+      <h3>🔑 Generar Códigos</h3>
+      <div class="admin-row">
+        <input class="inp" id="adm-qty" type="number" min="1" max="100" value="10" placeholder="Cantidad" style="max-width:90px">
+        <input class="inp" id="adm-prefix" type="text" value="MX26" placeholder="Prefijo" style="max-width:90px;text-transform:uppercase">
+        <button class="btn-sm gold" onclick="generateCodes()">GENERAR</button>
       </div>
     </div>
+
+    <div class="admin-card">
+      <h3>📋 Lista de Códigos</h3>
+      <button class="btn-sm copy-all-btn" onclick="copyAllFreeCodes()" style="width:100%;margin-bottom:10px">📋 Copiar todos los libres</button>
+      <div class="codes-table" id="codes-table">
+        <div style="color:var(--muted);font-size:13px">Genera códigos para verlos aquí.</div>
+      </div>
+    </div>
+
+    <div class="admin-card">
+      <h3>🗑️ Eliminar Usuario</h3>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:12px;line-height:1.6">Busca por nombre o WhatsApp y elimina su cuenta y libera su código.</p>
+      <div class="admin-row" style="margin-bottom:10px">
+        <input class="inp" id="adm-search-user" type="text" placeholder="Nombre o WhatsApp..." oninput="searchUsers()">
+      </div>
+      <div id="adm-users-list" style="display:flex;flex-direction:column;gap:6px;max-height:250px;overflow-y:auto"></div>
+    </div>
+
+    <div class="admin-card">
+      <h3>👥 Representantes</h3>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:12px;line-height:1.6">Reps que aparecen en la portada para que los clientes los contacten.</p>
+      <div class="admin-row" style="flex-direction:column;gap:8px;align-items:stretch;margin-bottom:10px">
+        <input class="inp" id="rep-name-inp" type="text" placeholder="Nombre del rep" autocomplete="off">
+        <select id="rep-school-inp" class="inp" style="cursor:pointer">
+          <option value="">Escuela...</option>
+          <option value="Irlandés Hermosillo">Irlandés Hermosillo</option>
+          <option value="Tec de Monterrey Hermosillo">Tec de Monterrey Hermosillo</option>
+          <option value="Campogrande">Campogrande</option>
+          <option value="Senda">Senda</option>
+          <option value="Vera">Vera</option>
+          <option value="CDI">CDI</option>
+          <option value="Regis">Regis</option>
+          <option value="Guadalajara">Guadalajara</option>
+          <option value="Tec Obregón">Tec Obregón</option>
+          <option value="Otros">Otros</option>
+        </select>
+        <input class="inp" id="rep-wa-inp" type="tel" placeholder="WhatsApp con lada (ej. 526621234567)" autocomplete="off">
+        <button class="btn-sm gold" onclick="addRep()">➕ AGREGAR REP</button>
+      </div>
+      <div id="reps-admin-list" style="display:flex;flex-direction:column;gap:6px;max-height:300px;overflow-y:auto"></div>
+    </div>
+
+    <div class="admin-card">
+      <h3>📩 Solicitudes de Código</h3>
+      <div class="codes-table" id="requests-table">
+        <div style="color:var(--muted);font-size:13px">No hay solicitudes aún.</div>
+      </div>
+    </div>
+
   </div>
+</div>
+```
+
+  </div>
+
   <div id="bottom-nav">
     <button class="nav-btn on" data-tab="album" onclick="showTab('album')">
       <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>
@@ -1179,17 +1038,92 @@ const firebaseConfig = {
 };
 
 /* ─── ADMIN CONFIG ─── */
-const ADMIN_PASSWORD = 'soyadmin'; // Cámbiala por lo que quieras
+const ADMIN_PASSWORD = 'soyadmin';
+
+/* ═══════════════════════════════════════════
+   ALBUM STRUCTURE
+   ═══════════════════════════════════════════ */
+const TEAM_ORDER = [
+  'MEX','RSA','KOR','CZE','CAN','BIH','QAT','SUI','BRA','MAR',
+  'HAI','SCO','USA','PAR','AUS','TUR','GER','CUW','CIV','ECU',
+  'NED','JPN','SWE','TUN','BEL','EGY','IRN','NZL','ESP','CPV',
+  'KSA','URU','FRA','SEN','IRQ','NOR','ARG','ALG','AUT','JOR',
+  'POR','COD','UZB','COL','ENG','CRO','GHA','PAN'
+];
+
+const TEAM_DATA = {
+  MEX:{name:'México',flag:'🇲🇽'},        RSA:{name:'Sudáfrica',flag:'🇿🇦'},
+  KOR:{name:'Corea del Sur',flag:'🇰🇷'},  CZE:{name:'Rep. Checa',flag:'🇨🇿'},
+  CAN:{name:'Canadá',flag:'🇨🇦'},        BIH:{name:'Bosnia y H.',flag:'🇧🇦'},
+  QAT:{name:'Catar',flag:'🇶🇦'},          SUI:{name:'Suiza',flag:'🇨🇭'},
+  BRA:{name:'Brasil',flag:'🇧🇷'},        MAR:{name:'Marruecos',flag:'🇲🇦'},
+  HAI:{name:'Haití',flag:'🇭🇹'},          SCO:{name:'Escocia',flag:'🏴󠁧󠁢󠁳󠁣󠁴󠁿'},
+  USA:{name:'EE. UU.',flag:'🇺🇸'},       PAR:{name:'Paraguay',flag:'🇵🇾'},
+  AUS:{name:'Australia',flag:'🇦🇺'},     TUR:{name:'Turquía',flag:'🇹🇷'},
+  GER:{name:'Alemania',flag:'🇩🇪'},      CUW:{name:'Curazao',flag:'🇨🇼'},
+  CIV:{name:'Costa de Marfil',flag:'🇨🇮'}, ECU:{name:'Ecuador',flag:'🇪🇨'},
+  NED:{name:'Países Bajos',flag:'🇳🇱'},  JPN:{name:'Japón',flag:'🇯🇵'},
+  SWE:{name:'Suecia',flag:'🇸🇪'},        TUN:{name:'Túnez',flag:'🇹🇳'},
+  BEL:{name:'Bélgica',flag:'🇧🇪'},        EGY:{name:'Egipto',flag:'🇪🇬'},
+  IRN:{name:'Irán',flag:'🇮🇷'},           NZL:{name:'Nueva Zelanda',flag:'🇳🇿'},
+  ESP:{name:'España',flag:'🇪🇸'},         CPV:{name:'Cabo Verde',flag:'🇨🇻'},
+  KSA:{name:'Arabia Saudí',flag:'🇸🇦'},  URU:{name:'Uruguay',flag:'🇺🇾'},
+  FRA:{name:'Francia',flag:'🇫🇷'},        SEN:{name:'Senegal',flag:'🇸🇳'},
+  IRQ:{name:'Irak',flag:'🇮🇶'},           NOR:{name:'Noruega',flag:'🇳🇴'},
+  ARG:{name:'Argentina',flag:'🇦🇷'},     ALG:{name:'Argelia',flag:'🇩🇿'},
+  AUT:{name:'Austria',flag:'🇦🇹'},        JOR:{name:'Jordania',flag:'🇯🇴'},
+  POR:{name:'Portugal',flag:'🇵🇹'},      COD:{name:'RD Congo',flag:'🇨🇩'},
+  UZB:{name:'Uzbekistán',flag:'🇺🇿'},    COL:{name:'Colombia',flag:'🇨🇴'},
+  ENG:{name:'Inglaterra',flag:'🏴󠁧󠁢󠁥󠁮󠁧󠁿'}, CRO:{name:'Croacia',flag:'🇭🇷'},
+  GHA:{name:'Ghana',flag:'🇬🇭'},          PAN:{name:'Panamá',flag:'🇵🇦'}
+};
+
+// Build sections in album order: 48 teams → FWC → CC → Panini
+const SECTIONS = [];
+let _idx = 0;
+TEAM_ORDER.forEach(code => {
+  const t = TEAM_DATA[code];
+  SECTIONS.push({
+    id:code, type:'team', code, name:t.name, flag:t.flag,
+    count:20, startIdx:_idx, startNum:1
+  });
+  _idx += 20;
+});
+SECTIONS.push({id:'FWC',type:'special',code:'FWC',name:'FIFA World Cup',flag:'🏆',count:19,startIdx:_idx,startNum:1});
+_idx += 19;
+SECTIONS.push({id:'CC',type:'special',code:'CC',name:'Coca-Cola',flag:'🥤',count:14,startIdx:_idx,startNum:1});
+_idx += 14;
+SECTIONS.push({id:'PANINI',type:'special',code:'',name:'Panini',flag:'⭐',count:1,startIdx:_idx,startNum:0,label:'00'});
+_idx += 1;
+
+const TOTAL = _idx; // 994
+
+// Build a fast lookup: global index → {code, num, label, sectionId}
+const STICKER_INFO = new Array(TOTAL);
+SECTIONS.forEach(sec => {
+  for (let i = 0; i < sec.count; i++) {
+    const num = sec.startNum + i;
+    const numStr = sec.id === 'PANINI' ? '00' : String(num);
+    const label = sec.code ? `${sec.code} ${numStr}` : numStr;
+    STICKER_INFO[sec.startIdx + i] = {
+      sectionId: sec.id,
+      code: sec.code,
+      num: numStr,
+      label
+    };
+  }
+});
 
 /* ─── CONSTANTS ─── */
-const TOTAL    = 980;
 const UID_KEY  = 'mx26_uid';
+const OPEN_KEY = 'mx26_open_sections';
 
 /* ─── STATE ─── */
 let db, myUid, myProfile;
 let myStickers      = 'm'.repeat(TOTAL);
 let activeTab       = 'album';
 let albumFilter     = 'all';
+let openSections    = new Set();
 let communityUsers  = [];
 let communityLoaded = false;
 let communityFilter = 'all';
@@ -1203,17 +1137,33 @@ let inboxChats      = [];
 let chatBackDest    = 'community';
 let adminLoaded     = false;
 
+/* Migration helper: pad/truncate stickers to current TOTAL */
+function normalizeStickers(s) {
+  if (typeof s !== 'string') return 'm'.repeat(TOTAL);
+  if (s.length === TOTAL) return s;
+  if (s.length < TOTAL) return s + 'm'.repeat(TOTAL - s.length);
+  return s.slice(0, TOTAL);
+}
+
+/* Load saved open sections from localStorage */
+try {
+  const saved = JSON.parse(localStorage.getItem(OPEN_KEY) || '[]');
+  if (Array.isArray(saved)) saved.forEach(id => openSections.add(id));
+} catch(e) {}
+
+function saveOpenSections() {
+  try { localStorage.setItem(OPEN_KEY, JSON.stringify([...openSections])); } catch(e) {}
+}
+
 /* ════════════════ INIT ════════════════ */
 async function init() {
   firebase.initializeApp(firebaseConfig);
   db = firebase.firestore();
 
-  // Show landing by default
   document.body.classList.remove('show-setup','show-app');
   loadUserCount();
   loadReps();
 
-  // Check for admin access via URL hash
   if (window.location.hash === '#admin') {
     const pw = prompt('Contraseña de administrador:');
     if (pw === ADMIN_PASSWORD) {
@@ -1233,7 +1183,7 @@ async function init() {
       if (doc.exists) {
         const d    = doc.data();
         myProfile  = { name: d.name, whatsapp: d.whatsapp, city: d.school || d.city, school: d.school || '', grade: d.grade || '' };
-        myStickers = d.stickers || 'm'.repeat(TOTAL);
+        myStickers = normalizeStickers(d.stickers);
         enterApp();
         return;
       }
@@ -1249,13 +1199,11 @@ async function createProfile() {
   try {
     const codeDoc = await db.collection('codes').doc(code).get();
 
-    // Code doesn't exist or inactive
     if (!codeDoc.exists || !codeDoc.data().active) {
       showCodeError('Código inválido. Verifica e intenta de nuevo.');
       return;
     }
 
-    // ── RETURNING USER: code already used → log them in ──
     if (codeDoc.data().used) {
       const existingUid = codeDoc.data().usedBy;
       if (!existingUid) { showCodeError('Error con este código. Contáctanos.'); return; }
@@ -1264,7 +1212,7 @@ async function createProfile() {
       const d = userDoc.data();
       myUid      = existingUid;
       myProfile  = { name: d.name, whatsapp: d.whatsapp, city: d.school || d.city, school: d.school || '', grade: d.grade || '' };
-      myStickers = d.stickers || 'm'.repeat(TOTAL);
+      myStickers = normalizeStickers(d.stickers);
       localStorage.setItem(UID_KEY, myUid);
       hideCodeError();
       enterApp();
@@ -1272,7 +1220,6 @@ async function createProfile() {
       return;
     }
 
-    // ── NEW USER: code unused → register ──
     const name   = g('inp-name').value.trim();
     const wa     = g('inp-wa').value.trim();
     const school = g('inp-school').value || 'Otra';
@@ -1317,7 +1264,7 @@ function hideCodeError() {
 function enterApp() {
   document.body.classList.add('show-app');
   g('chip-name').textContent = myProfile.name.split(' ')[0];
-  renderGrid();
+  renderAlbum();
   updateStats();
   startInboxListener();
 }
@@ -1329,10 +1276,14 @@ function tap(idx) {
   a[idx] = cycle[a[idx]];
   myStickers = a.join('');
   updateStats();
-  if (albumFilter === 'all') {
-    const el = document.getElementById('s'+idx);
-    if (el) el.className = 's ' + myStickers[idx];
-  } else { renderGrid(); }
+  // Update only the affected cell + section header
+  const el = document.getElementById('s'+idx);
+  if (el) {
+    el.className = 's2 ' + myStickers[idx];
+  }
+  // Update section progress
+  const info = STICKER_INFO[idx];
+  if (info) updateSectionHeader(info.sectionId);
   scheduleSave();
 }
 
@@ -1358,33 +1309,200 @@ function updateStats() {
   const pct = Math.round((o+d)/TOTAL*100);
   g('st-p').textContent = pct+'%';
   g('prog').style.width  = pct+'%';
+  document.querySelector('[data-f="all"]').textContent = `Todas (${TOTAL})`;
   document.querySelector('[data-f="o"]').textContent = '✓ Tengo ('    +o+')';
   document.querySelector('[data-f="d"]').textContent = '★ Repetidas ('+d+')';
   document.querySelector('[data-f="m"]').textContent = '✕ Faltan ('   +m+')';
 }
 
 function setFilter(el) {
-  document.querySelectorAll('.pill').forEach(p=>p.classList.remove('on'));
+  document.querySelectorAll('.pill[data-f]').forEach(p=>p.classList.remove('on'));
   el.classList.add('on');
   albumFilter = el.dataset.f;
   g('inp-search').value='';
-  renderGrid();
+  renderAlbum();
 }
 
-function renderGrid() {
-  const search = g('inp-search').value;
-  let indices;
-  if (search) {
-    const n=parseInt(search);
-    indices=(n>=1&&n<=TOTAL)?[n-1]:[];
-  } else {
-    indices=[];
-    for(let i=0;i<TOTAL;i++) if(albumFilter==='all'||myStickers[i]===albumFilter) indices.push(i);
+/* Parse search input: "MEX 5" / "MEX5" / "MEX" / "5" / "FWC 12" / "00" */
+function parseSearch(raw) {
+  const q = (raw || '').trim().toUpperCase();
+  if (!q) return null;
+
+  // "00" → Panini
+  if (q === '00') return { type:'one', sectionId:'PANINI', num:0 };
+
+  // Code only: "MEX", "FWC", "CC"
+  const codeOnly = q.match(/^([A-Z]{2,4})$/);
+  if (codeOnly) {
+    const code = codeOnly[1];
+    const sec = SECTIONS.find(s => s.code === code || s.id === code);
+    if (sec) return { type:'section', sectionId: sec.id };
   }
-  const grid=g('grid'), empty=g('empty');
-  if(!indices.length){grid.innerHTML='';empty.style.display='block';return;}
-  empty.style.display='none';
-  grid.innerHTML=indices.map(i=>`<div id="s${i}" class="s ${myStickers[i]}" onclick="tap(${i})">${i+1}</div>`).join('');
+
+  // Code + number: "MEX 5", "MEX5", "FWC 12"
+  const codeNum = q.match(/^([A-Z]{2,4})\s*(\d+)$/);
+  if (codeNum) {
+    const code = codeNum[1];
+    const num  = parseInt(codeNum[2]);
+    const sec = SECTIONS.find(s => s.code === code || s.id === code);
+    if (sec && num >= sec.startNum && num < sec.startNum + sec.count) {
+      return { type:'one', sectionId: sec.id, num };
+    }
+    return { type:'empty' };
+  }
+
+  // Just a number: search across all sections
+  const numOnly = q.match(/^(\d+)$/);
+  if (numOnly) {
+    return { type:'num', num: parseInt(numOnly[1]) };
+  }
+
+  return { type:'empty' };
+}
+
+function getSectionStats(sec) {
+  let o=0,d=0,m=0;
+  for (let i=sec.startIdx; i<sec.startIdx+sec.count; i++) {
+    const c = myStickers[i];
+    if (c==='o') o++; else if (c==='d') d++; else m++;
+  }
+  return { o, d, m, have: o+d, total: sec.count, pct: Math.round((o+d)/sec.count*100) };
+}
+
+function sectionHasFiltered(sec, filter, search) {
+  if (search) {
+    if (search.type === 'section') return sec.id === search.sectionId;
+    if (search.type === 'one') return sec.id === search.sectionId;
+    if (search.type === 'num') {
+      // Check if any sticker in this section matches the number
+      for (let i = sec.startIdx; i < sec.startIdx+sec.count; i++) {
+        const info = STICKER_INFO[i];
+        if (parseInt(info.num) === search.num) return true;
+      }
+      return false;
+    }
+    return false;
+  }
+  if (filter === 'all') return true;
+  for (let i=sec.startIdx; i<sec.startIdx+sec.count; i++) {
+    if (myStickers[i] === filter) return true;
+  }
+  return false;
+}
+
+function buildStickersForSection(sec, filter, search) {
+  const cells = [];
+  for (let i = sec.startIdx; i < sec.startIdx+sec.count; i++) {
+    const info = STICKER_INFO[i];
+    let include = true;
+
+    if (search) {
+      if (search.type === 'section') include = true;
+      else if (search.type === 'one') include = (info.sectionId === search.sectionId && parseInt(info.num) === search.num);
+      else if (search.type === 'num') include = (parseInt(info.num) === search.num);
+      else include = false;
+    } else if (filter !== 'all') {
+      include = (myStickers[i] === filter);
+    }
+
+    if (include) {
+      const state = myStickers[i];
+      const codeStr = sec.code || '';
+      cells.push(
+        `<div id="s${i}" class="s2 ${state}" onclick="tap(${i})">` +
+          (codeStr ? `<div class="s2-code">${codeStr}</div>` : '') +
+          `<div class="s2-num">${info.num}</div>` +
+        `</div>`
+      );
+    }
+  }
+  return cells;
+}
+
+function renderAlbum() {
+  const search = parseSearch(g('inp-search').value);
+  const filter = albumFilter;
+  const list = g('album-list');
+  const empty = g('empty');
+
+  // Auto-expand sections when searching
+  if (search && (search.type === 'section' || search.type === 'one' || search.type === 'num')) {
+    SECTIONS.forEach(s => {
+      if (sectionHasFiltered(s, filter, search)) openSections.add(s.id);
+    });
+  }
+
+  let html = '';
+  let anyVisible = false;
+
+  for (const sec of SECTIONS) {
+    if (!sectionHasFiltered(sec, filter, search)) continue;
+    anyVisible = true;
+
+    const stats = getSectionStats(sec);
+    const isOpen = openSections.has(sec.id);
+    const isComplete = stats.have === sec.total;
+    const codeBadge = sec.code ? `<span class="sect-code">${sec.code}</span>` : '';
+
+    // For Panini (1 sticker, no team-style header confusion)
+    const cells = buildStickersForSection(sec, filter, search);
+    const cellsHtml = cells.join('');
+
+    html += `<div class="sect ${isOpen?'open':''} ${isComplete?'complete':''}" id="sect-${sec.id}">
+      <div class="sect-hdr" onclick="toggleSection('${sec.id}')">
+        <div class="sect-flag">${sec.flag}</div>
+        <div class="sect-info">
+          <div class="sect-name">${escH(sec.name)}${codeBadge}</div>
+          <div class="sect-meta">
+            <div class="sect-prog"><div class="sect-prog-fill" style="width:${stats.pct}%"></div></div>
+            <span class="sect-count" id="sect-cnt-${sec.id}">${stats.have}/${stats.total}</span>
+          </div>
+        </div>
+        <svg class="sect-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+      </div>
+      <div class="sect-body">
+        <div class="s-grid-team">${cellsHtml || '<div style="grid-column:1/-1;text-align:center;padding:14px;color:var(--muted);font-size:12px">Sin estampas en este filtro</div>'}</div>
+      </div>
+    </div>`;
+  }
+
+  if (!anyVisible) {
+    list.innerHTML = '';
+    empty.style.display = 'block';
+  } else {
+    empty.style.display = 'none';
+    list.innerHTML = html;
+  }
+}
+
+function updateSectionHeader(sectionId) {
+  const sec = SECTIONS.find(s => s.id === sectionId);
+  if (!sec) return;
+  const stats = getSectionStats(sec);
+  const cntEl = g('sect-cnt-'+sectionId);
+  if (cntEl) cntEl.textContent = `${stats.have}/${stats.total}`;
+  const sectEl = g('sect-'+sectionId);
+  if (sectEl) {
+    const fill = sectEl.querySelector('.sect-prog-fill');
+    if (fill) fill.style.width = stats.pct+'%';
+    if (stats.have === sec.total) sectEl.classList.add('complete');
+    else sectEl.classList.remove('complete');
+  }
+}
+
+function toggleSection(id) {
+  if (openSections.has(id)) openSections.delete(id);
+  else openSections.add(id);
+  saveOpenSections();
+  const el = g('sect-'+id);
+  if (el) el.classList.toggle('open');
+}
+
+function expandAll(open) {
+  if (open) SECTIONS.forEach(s => openSections.add(s.id));
+  else openSections.clear();
+  saveOpenSections();
+  renderAlbum();
 }
 
 /* ════════════════ COMMUNITY ════════════════ */
@@ -1415,7 +1533,6 @@ function renderCommunity() {
   const search = (g('comm-search').value || '').toLowerCase();
   let users = [...communityUsers];
 
-  // Apply filter
   if (communityFilter === 'school') {
     users = users.filter(u => u.school && myProfile && u.school === myProfile.school);
   } else if (communityFilter === 'grade') {
@@ -1424,7 +1541,6 @@ function renderCommunity() {
     users = [...communityUsers].sort((a,b) => (b.completePct||0) - (a.completePct||0)).slice(0,20);
   }
 
-  // Apply search
   if (search) users = users.filter(u =>
     u.name.toLowerCase().includes(search) ||
     (u.school||'').toLowerCase().includes(search) ||
@@ -1437,7 +1553,6 @@ function renderCommunity() {
     return;
   }
 
-  // Leaderboard view
   if (communityFilter === 'top') {
     list.innerHTML = `
       <div style="padding:4px 0 8px;text-align:center">
@@ -1467,8 +1582,8 @@ function renderCommunity() {
   list.innerHTML = users.map(u => {
     const initials  = u.name.trim().split(' ').slice(0,2).map(w=>w[0]||'').join('').toUpperCase();
     const pct       = u.completePct || 0;
-    const dupes     = (u.stickers||'').split('').filter(c=>c==='d').length;
-    const their     = u.stickers || 'm'.repeat(TOTAL);
+    const their     = normalizeStickers(u.stickers);
+    const dupes     = their.split('').filter(c=>c==='d').length;
     let canGet=0, canGive=0;
     for (let i=0; i<TOTAL; i++) {
       if (myStickers[i]==='m' && their[i]==='d') canGet++;
@@ -1504,11 +1619,11 @@ function openMatch(userId) {
 
 function buildMatch() {
   const u=selectedUser;
-  const their=u.stickers||'m'.repeat(TOTAL);
+  const their=normalizeStickers(u.stickers);
   const iGet=[],iGive=[];
   for(let i=0;i<TOTAL;i++){
-    if(myStickers[i]==='m'&&their[i]==='d') iGet.push(i+1);
-    if(myStickers[i]==='d'&&their[i]==='m') iGive.push(i+1);
+    if(myStickers[i]==='m'&&their[i]==='d') iGet.push(STICKER_INFO[i].label);
+    if(myStickers[i]==='d'&&their[i]==='m') iGive.push(STICKER_INFO[i].label);
   }
   const bal=Math.min(iGet.length,iGive.length);
   g('match-title').textContent=u.name;
@@ -1518,8 +1633,8 @@ function buildMatch() {
     `<strong style="color:var(--green)">${iGet.length}</strong> puedes recibir<br>`+
     `<strong style="color:var(--gold)">${iGive.length}</strong> puedes dar`;
   g('get-count').textContent=iGet.length; g('give-count').textContent=iGive.length;
-  g('get-chips').innerHTML=iGet.length?iGet.map(n=>`<span class="cn get">${n}</span>`).join(''):'<span class="cn-none">Ninguna</span>';
-  g('give-chips').innerHTML=iGive.length?iGive.map(n=>`<span class="cn give">${n}</span>`).join(''):'<span class="cn-none">Ninguna</span>';
+  g('get-chips').innerHTML=iGet.length?iGet.map(lbl=>`<span class="cn get">${escH(lbl)}</span>`).join(''):'<span class="cn-none">Ninguna</span>';
+  g('give-chips').innerHTML=iGive.length?iGive.map(lbl=>`<span class="cn give">${escH(lbl)}</span>`).join(''):'<span class="cn-none">Ninguna</span>';
   g('btn-wa-contact').onclick=()=>{
     const recv=iGet.slice(0,30).join(', ')+(iGet.length>30?' …':'');
     const send=iGive.slice(0,30).join(', ')+(iGive.length>30?' …':'');
@@ -1532,11 +1647,8 @@ function buildMatch() {
 /* ════════════════ CHAT ════════════════ */
 function normalizeMxPhone(num) {
   const digits = String(num || '').replace(/\D/g,'');
-  // Already has Mexico country code
   if (digits.startsWith('52') && digits.length >= 12) return digits;
-  // 10-digit local Mexican number -> prepend 52
   if (digits.length === 10) return '52' + digits;
-  // Anything else, return as-is (they typed country code themselves)
   return digits;
 }
 
@@ -1600,7 +1712,6 @@ function startInboxListener(){
     .onSnapshot(snap=>{
       inboxChats=[];
       snap.forEach(doc=>inboxChats.push({id:doc.id,...doc.data()}));
-      // Sort client-side by lastAt descending
       inboxChats.sort((a,b)=>{
         const ta = a.lastAt ? a.lastAt.toMillis() : 0;
         const tb = b.lastAt ? b.lastAt.toMillis() : 0;
@@ -1646,7 +1757,6 @@ async function openChatFromInbox(cid,otherId){
 
 function updateChatBadge(){
   const badge = g('chat-badge');
-  // Count chats where last message was NOT sent by me
   const unread = inboxChats.filter(c =>
     c.lastMessage && c.lastSenderId && c.lastSenderId !== myUid
   ).length;
@@ -1680,7 +1790,6 @@ async function loadAdminData() {
     g('adm-users').textContent = usersSnap.size;
     renderCodes(codes);
 
-    // Render requests
     const reqTable = g('requests-table');
     if (reqSnap.empty) {
       reqTable.innerHTML = '<div style="color:var(--muted);font-size:13px">No hay solicitudes aún.</div>';
@@ -1734,7 +1843,6 @@ async function addRep() {
   if (!name || !school || !whatsapp) { toast('Llena todos los campos'); return; }
   if (whatsapp.length < 10) { toast('WhatsApp inválido'); return; }
   try {
-    // Get current count for ordering
     const snap = await db.collection('reps').get();
     await db.collection('reps').add({
       name, school, whatsapp,
@@ -1762,18 +1870,16 @@ async function loadReps() {
   const grid = g('reps-grid');
   if (!grid) return;
 
-  // Default reps (can be overridden in admin)
   const defaultReps = [
-    { name: 'Alex Tonella',     school: 'Campogrande',       whatsapp: '526625227619' },
+    { name: 'Alex Tonella',     school: 'Campogrande',         whatsapp: '526625227619' },
     { name: 'Santiago Salido',  school: 'Irlandés Hermosillo', whatsapp: '526623003581' },
-    { name: 'Toño Gándara',     school: 'Tec Obregón',       whatsapp: '526441001010' },
-    { name: 'Toño González',    school: 'Guadalajara',       whatsapp: '526622752603' },
-    { name: 'JuanFran Salazar', school: 'Otros',             whatsapp: '526624333876' }
+    { name: 'Toño Gándara',     school: 'Tec Obregón',         whatsapp: '526441001010' },
+    { name: 'Toño González',    school: 'Guadalajara',         whatsapp: '526622752603' },
+    { name: 'JuanFran Salazar', school: 'Otros',               whatsapp: '526624333876' }
   ];
 
   let reps = defaultReps;
 
-  // Try to load custom reps from Firebase
   try {
     const snap = await db.collection('reps').orderBy('order','asc').get();
     if (!snap.empty) {
@@ -2014,7 +2120,7 @@ function goToLanding(){
   document.body.classList.remove('show-setup','show-app');
   setTimeout(()=>{ const l=g('screen-landing'); if(l) l.scrollTop=0; },50);
 }
-// Format code input automatically
+
 const codeInput = document.getElementById('inp-code');
 if (codeInput) {
   codeInput.addEventListener('input', function() {
@@ -2032,5 +2138,6 @@ setTimeout(()=>{
   if(l) l.scrollTop = 0;
 }, 50);
 </script>
+
 </body>
 </html>
