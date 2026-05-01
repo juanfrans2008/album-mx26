@@ -3,7 +3,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover">
 <title>MiAlbum 2026 – FIFA World Cup</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -37,7 +37,7 @@
   --blue:  #2B6DB5;
   --bbg:   #070f1a;
   --bbdr:  rgba(43,109,181,0.35);
-  --nav: 82px;
+  --nav: 82px;  /* base nav height - safe area added separately */
 }
 html,body{height:100%;overflow:hidden}
 body{background:#0a0a0a;color:var(--text);font-family:'DM Sans',sans-serif;-webkit-font-smoothing:antialiased}
@@ -249,7 +249,7 @@ box-shadow:0 4px 24px rgba(201,164,62,.25);
 .error-msg.on{display:block}
 
 #screen-app{display:none;height:100%;position:relative}
-.tab{position:absolute;inset:0;bottom:var(–nav);display:none;flex-direction:column;overflow:hidden}
+.tab{position:absolute;inset:0;bottom:calc(82px + env(safe-area-inset-bottom));display:none;flex-direction:column;overflow:hidden}
 .tab.on{display:flex}
 .scroll{flex:1;overflow-y:auto;overflow-x:hidden;-webkit-overflow-scrolling:touch}
 
@@ -271,8 +271,11 @@ background:#1c1c1c;border:1px solid rgba(255,255,255,0.08);
 border-radius:10px;padding:8px 4px;text-align:center;
 }
 .snum{font-family:‘Bebas Neue’,sans-serif;font-size:23px;line-height:1}
-.snum.cg{color:var(–green)}.snum.co{color:var(–gold)}.snum.cr{color:var(–red)}.snum.cp{color:#818cf8}
-.slbl{font-size:9px;color:var(–muted);text-transform:uppercase;letter-spacing:.06em;margin-top:1px}
+.snum.cg{color:#3ecf7e !important;-webkit-text-fill-color:#3ecf7e !important}
+.snum.co{color:#F5C800 !important;-webkit-text-fill-color:#F5C800 !important}
+.snum.cr{color:#E8392A !important;-webkit-text-fill-color:#E8392A !important}
+.snum.cp{color:#D4A017 !important;-webkit-text-fill-color:#D4A017 !important}
+.slbl{font-size:9px;color:#666;text-transform:uppercase;letter-spacing:.06em;margin-top:1px}
 .prog-track{height:3px;background:#222222;border-radius:2px;overflow:hidden;margin-bottom:10px}
 .prog-fill{height:100%;background:var(–goldg);border-radius:2px;transition:width .5s cubic-bezier(.4,0,.2,1);width:0%}
 
@@ -404,7 +407,8 @@ flex-shrink:0;border:1px solid rgba(212,160,23,0.4);
 .match-hdr-top{display:flex;align-items:center;gap:10px;margin-bottom:12px}
 .back-btn{
 background:#1c1c1c;border:1px solid rgba(255,255,255,0.09);border-radius:10px;
-padding:7px 11px;color:var(–text);font-family:‘DM Sans’,sans-serif;font-size:13px;
+padding:7px 11px;color:#f0f0f0 !important;-webkit-text-fill-color:#f0f0f0 !important;
+font-family:‘DM Sans’,sans-serif;font-size:13px;
 cursor:pointer;display:flex;align-items:center;gap:4px;flex-shrink:0;transition:border-color .15s;
 -webkit-appearance:none;appearance:none;
 }
@@ -544,9 +548,11 @@ background:#1c1c1c;border:1px solid rgba(255,255,255,0.09);border-radius:10px;pa
 .copy-all-btn{width:100%;margin-top:10px}
 
 #bottom-nav{
-position:absolute;bottom:0;left:0;right:0;height:var(–nav);
+position:absolute;bottom:0;left:0;right:0;
+height:calc(82px + env(safe-area-inset-bottom));
 background:#111111;border-top:1px solid rgba(255,255,255,0.08);display:flex;z-index:200;
 padding-bottom:env(safe-area-inset-bottom);
+align-items:flex-start;padding-top:6px;
 }
 .nav-btn{
 flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;
@@ -563,7 +569,7 @@ border-radius:8px;padding:1px 5px;min-width:16px;text-align:center;display:none;
 .nav-badge.on{display:block}
 
 #toast{
-position:fixed;bottom:calc(var(–nav) + 14px);left:50%;
+position:fixed;bottom:calc(82px + 14px);left:50%;
 transform:translateX(-50%) translateY(10px);
 background:#1c1c1c;border:1px solid var(–b2);border-radius:12px;
 padding:10px 20px;font-size:13px;font-weight:600;color:var(–text);
